@@ -19,7 +19,7 @@
             --white: #ffffff;
             --border-color: #dde1e7;
             --success: #388e3c;
-            --admin-dark: #2c3e50;
+            --danger: #d32f2f;
         }
 
         * {
@@ -35,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* --- HEADER NAVIGATION --- */
+        /* --- HEADER NAVBAR --- */
         header {
             background-color: var(--amzn-dark);
             color: var(--white);
@@ -92,8 +92,15 @@
             border-radius: 2px;
         }
 
-        .location-picker:hover { border-color: #fff; }
-        .location-picker b { color: #fff; display: block; font-size: 13px; }
+        .location-picker:hover {
+            border-color: #fff;
+        }
+
+        .location-picker b {
+            color: #fff;
+            display: block;
+            font-size: 13px;
+        }
 
         .search-engine {
             flex: 1;
@@ -109,7 +116,7 @@
             background: #f3f3f3;
             border: none;
             border-right: 1px solid #ccc;
-            padding: 0 12px;
+            padding: 0 10px;
             font-size: 12px;
             color: #333;
             outline: none;
@@ -127,7 +134,7 @@
         .search-engine button {
             background: var(--fk-yellow);
             border: none;
-            padding: 0 22px;
+            padding: 0 20px;
             cursor: pointer;
             color: #111;
             font-size: 16px;
@@ -135,7 +142,9 @@
             transition: background 0.2s;
         }
 
-        .search-engine button:hover { background: #f4d000; }
+        .search-engine button:hover {
+            background: #f4d000;
+        }
 
         .header-actions {
             display: flex;
@@ -155,9 +164,19 @@
             border: 1px solid transparent;
         }
 
-        .action-link:hover { border-color: #fff; }
-        .action-link span:first-child { font-size: 11px; color: #bbb; }
-        .action-link span:last-child { font-weight: bold; font-size: 13px; }
+        .action-link:hover {
+            border-color: #fff;
+        }
+
+        .action-link span:first-child {
+            font-size: 11px;
+            color: #bbb;
+        }
+
+        .action-link span:last-child {
+            font-weight: bold;
+            font-size: 13px;
+        }
 
         .cart-badge-btn {
             background: var(--fk-blue);
@@ -173,8 +192,12 @@
             font-size: 14px;
             transition: background 0.2s;
         }
-        .cart-badge-btn:hover { background: #1a60d8; }
 
+        .cart-badge-btn:hover {
+            background: #1a60d8;
+        }
+
+        /* Sub Navigation Bar */
         .sub-navigation {
             background: var(--amzn-light);
             padding: 8px 4%;
@@ -194,18 +217,25 @@
             border: 1px solid transparent;
             cursor: pointer;
         }
-        .sub-navigation a:hover { border-color: #fff; }
+
+        .sub-navigation a:hover {
+            border-color: #fff;
+        }
 
         /* --- LAYOUT STRUCTURE --- */
         .main-wrapper {
             max-width: 1600px;
             margin: 20px auto;
             padding: 0 20px;
-            min-height: 70vh;
         }
 
-        .view-panel { display: none; }
-        .view-panel.active { display: block; }
+        .view-panel {
+            display: none;
+        }
+
+        .view-panel.active {
+            display: block;
+        }
 
         /* --- HOME HERO & PRODUCT GRID --- */
         .hero-banner {
@@ -220,10 +250,24 @@
             min-height: 280px;
         }
 
-        .hero-banner h2 { font-size: 36px; margin-bottom: 12px; font-weight: 800; }
-        .hero-banner p { font-size: 16px; max-width: 600px; margin-bottom: 20px; line-height: 1.5; }
-        
-        .hero-buttons { display: flex; gap: 15px; }
+        .hero-banner h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .hero-banner p {
+            font-size: 16px;
+            max-width: 600px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
         .btn-cta {
             background: var(--fk-orange);
             color: var(--white);
@@ -235,7 +279,11 @@
             font-size: 14px;
             transition: transform 0.2s;
         }
-        .btn-cta:hover { transform: translateY(-2px); background: #e05312; }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            background: #e05312;
+        }
 
         .section-header {
             display: flex;
@@ -247,7 +295,6 @@
             border-radius: 4px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
-        .section-header h3 { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 
         .product-grid {
             display: grid;
@@ -269,7 +316,11 @@
             border: 1px solid var(--border-color);
             cursor: pointer;
         }
-        .product-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
 
         .badge-deodap {
             position: absolute;
@@ -292,11 +343,17 @@
             justify-content: center;
             margin-bottom: 12px;
         }
-        .product-img-box img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .product-img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
 
         .product-info h4 {
             font-size: 14px;
             font-weight: 600;
+            color: var(--text-main);
             margin-bottom: 6px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -305,15 +362,57 @@
             line-height: 1.4;
         }
 
-        .supplier-info { font-size: 11px; color: var(--text-light); margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
-        .rating-box { display: flex; align-items: center; gap: 5px; margin-bottom: 8px; }
-        .rating-stars { background: var(--success); color: var(--white); font-size: 11px; font-weight: bold; padding: 2px 6px; border-radius: 3px; }
-        .rating-count { font-size: 11px; color: var(--text-light); }
+        .supplier-info {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
 
-        .price-section { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px; }
-        .price-current { font-size: 18px; font-weight: 800; }
-        .price-original { font-size: 13px; color: var(--text-light); text-decoration: line-through; }
-        .price-off { font-size: 12px; color: var(--success); font-weight: bold; }
+        .rating-box {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 8px;
+        }
+
+        .rating-stars {
+            background: var(--success);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .rating-count {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        .price-section {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .price-current {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .price-original {
+            font-size: 13px;
+            color: var(--text-light);
+            text-decoration: line-through;
+        }
+
+        .price-off {
+            font-size: 12px;
+            color: var(--success);
+            font-weight: bold;
+        }
 
         .wholesale-tier-box {
             background: #e8f5e9;
@@ -328,13 +427,34 @@
             font-weight: 600;
         }
 
-        .card-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .btn-add-cart { background: var(--fk-yellow); border: none; padding: 10px; font-weight: bold; cursor: pointer; border-radius: 3px; font-size: 12px; transition: background 0.2s; }
-        .btn-add-cart:hover { background: #f4d000; }
-        .btn-buy-now { background: var(--fk-orange); color: var(--white); border: none; padding: 10px; font-weight: bold; cursor: pointer; border-radius: 3px; font-size: 12px; transition: background 0.2s; }
-        .btn-buy-now:hover { background: #d9530f; }
+        .card-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
 
-        /* --- AMAZON PRODUCT DETAIL PAGE (PDP) --- */
+        .btn-add-cart {
+            background: var(--fk-yellow);
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .btn-buy-now {
+            background: var(--fk-orange);
+            color: var(--white);
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        /* --- PRODUCT DETAIL PAGE (PDP) - AMAZON STYLE --- */
         .pdp-container {
             background: var(--white);
             padding: 30px;
@@ -342,120 +462,313 @@
             display: grid;
             grid-template-columns: 1fr 1.2fr 400px;
             gap: 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             border: 1px solid var(--border-color);
         }
 
-        .pdp-gallery { display: flex; gap: 15px; }
-        .pdp-thumbnails { display: flex; flex-direction: column; gap: 10px; }
-        .pdp-thumb {
-            width: 60px;
-            height: 60px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 4px;
-            cursor: pointer;
-            object-fit: contain;
-        }
-        .pdp-thumb.active, .pdp-thumb:hover { border-color: var(--fk-blue); }
-        .pdp-main-img { flex: 1; display: flex; align-items: center; justify-content: center; height: 450px; border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; }
-        .pdp-main-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
-
-        .pdp-details h2 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
-        .pdp-specs-list { margin: 15px 0; font-size: 14px; color: #444; line-height: 1.6; }
-        .pdp-buy-box {
-            background: #fafafa;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
+        .pdp-gallery {
             display: flex;
             flex-direction: column;
             gap: 15px;
+        }
+
+        .pdp-main-img {
+            width: 100%;
+            height: 380px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .pdp-main-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .pdp-thumbnails {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .thumb-box {
+            width: 70px;
+            height: 70px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            transition: border-color 0.2s;
+        }
+
+        .thumb-box:hover, .thumb-box.active {
+            border-color: var(--fk-blue);
+            box-shadow: 0 0 4px rgba(40,116,240,0.3);
+        }
+
+        .thumb-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .pdp-details h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .pdp-specs {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .pdp-buybox {
+            background: #fafafa;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 6px;
             height: fit-content;
         }
 
-        /* --- CART & PAYMENT VIEW --- */
-        .cart-container-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
-        .cart-items-card, .checkout-summary-card {
+        .pdp-buybox .price-current {
+            font-size: 26px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* --- CART & PAYMENT VIEWS --- */
+        .cart-container-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .cart-items-card, .checkout-summary-card, .payment-card {
             background: var(--white);
             padding: 25px;
             border-radius: 6px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             border: 1px solid var(--border-color);
         }
-        .cart-row-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--border-color); }
-        .cart-item-details { display: flex; gap: 15px; align-items: center; }
-        .cart-item-details img { width: 70px; height: 70px; object-fit: contain; border: 1px solid var(--border-color); border-radius: 4px; padding: 5px; }
-        .qty-control-box { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
-        .qty-control-box button { background: #eee; border: 1px solid #ccc; width: 25px; height: 25px; cursor: pointer; font-weight: bold; border-radius: 2px; }
 
-        .shipping-method-box { margin: 15px 0; }
-        .shipping-option-card {
+        .cart-row-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            padding: 12px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-item-details {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .cart-item-details img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
             border: 1px solid var(--border-color);
             border-radius: 4px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-size: 13px;
+            padding: 5px;
         }
-        .shipping-option-card input { accent-color: var(--fk-blue); }
 
-        .summary-line-item { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; color: #555; }
-        .summary-line-item.total-line { font-size: 18px; font-weight: 800; color: var(--text-main); border-top: 2px dashed var(--border-color); padding-top: 15px; margin-top: 15px; }
+        .qty-control-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
 
-        .btn-checkout-final {
+        .qty-control-box button {
+            background: #eee;
+            border: 1px solid #ccc;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .summary-line-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .summary-line-item.total-line {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-main);
+            border-top: 2px dashed var(--border-color);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .btn-main-action {
             background: var(--fk-yellow);
             color: var(--text-main);
             border: none;
             width: 100%;
             padding: 15px;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 15px;
             border-radius: 4px;
             cursor: pointer;
             margin-top: 20px;
             transition: background 0.2s;
         }
-        .btn-checkout-final:hover { background: #f4d000; }
+
+        .btn-main-action:hover {
+            background: #f4d000;
+        }
 
         /* --- CUSTOMER ACCOUNT MANAGEMENT --- */
-        .account-layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
-        .account-sidebar { background: var(--white); padding: 20px; border-radius: 6px; border: 1px solid var(--border-color); height: fit-content; }
-        .account-sidebar ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        .account-sidebar a { color: var(--text-main); text-decoration: none; font-size: 14px; padding: 10px; border-radius: 4px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .account-sidebar a:hover, .account-sidebar a.active { background: #e8f0fe; color: var(--fk-blue); font-weight: bold; }
-        .account-content-card { background: var(--white); padding: 25px; border-radius: 6px; border: 1px solid var(--border-color); }
+        .account-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+        }
+
+        .account-sidebar {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            height: fit-content;
+        }
+
+        .account-sidebar ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .account-sidebar a {
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .account-sidebar a:hover, .account-sidebar a.active {
+            background: #e8f0fe;
+            color: var(--fk-blue);
+            font-weight: bold;
+        }
+
+        .account-content-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
 
         /* --- SELLER PORTAL & REGISTRATION --- */
-        .auth-container { max-width: 500px; margin: 40px auto; background: var(--white); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .auth-container h2 { font-size: 22px; margin-bottom: 20px; text-align: center; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 14px; outline: none; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 20px;
+        }
 
-        .dashboard-layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
-        .dashboard-nav { background: var(--white); padding: 20px; border-radius: 6px; border: 1px solid var(--border-color); height: fit-content; }
-        .dashboard-nav ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-        .dashboard-nav a { color: var(--text-main); text-decoration: none; font-size: 14px; padding: 8px 10px; border-radius: 4px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .dashboard-nav a:hover, .dashboard-nav a.active { background: #e8f0fe; color: var(--fk-blue); font-weight: bold; }
+        .dashboard-nav {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            height: fit-content;
+        }
 
-        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .metric-card { background: var(--white); padding: 20px; border-radius: 6px; border: 1px solid var(--border-color); border-left: 4px solid var(--fk-blue); }
-        .metric-card h5 { font-size: 12px; color: var(--text-light); text-transform: uppercase; margin-bottom: 8px; }
-        .metric-card p { font-size: 24px; font-weight: 800; }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
 
-        /* --- ADMIN PANEL --- */
-        .admin-login-box { max-width: 400px; margin: 60px auto; background: var(--white); padding: 30px; border-radius: 8px; border: 2px solid var(--admin-dark); text-align: center; }
-        .admin-dashboard { background: var(--white); padding: 25px; border-radius: 6px; border: 1px solid var(--border-color); }
-        .admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .admin-table th, .admin-table td { padding: 12px; border: 1px solid var(--border-color); text-align: left; font-size: 13px; }
-        .admin-table th { background: var(--admin-dark); color: #fff; }
+        .metric-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--fk-blue);
+        }
 
-        /* --- TOAST NOTIFICATION --- */
+        .metric-card h5 {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .metric-card p {
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--fk-blue);
+        }
+
+        /* --- ADMIN PORTAL --- */
+        .admin-login-box {
+            max-width: 450px;
+            margin: 50px auto;
+            background: var(--white);
+            padding: 35px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        /* Toast notification */
         #toast-notification {
             position: fixed;
             bottom: 30px;
@@ -473,14 +786,19 @@
         }
 
         @media(max-width: 900px) {
-            .pdp-container, .dashboard-layout, .account-layout, .cart-container-layout, .form-row { grid-template-columns: 1fr; }
-            .top-header { flex-direction: column; align-items: stretch; }
+            .pdp-container, .dashboard-layout, .cart-container-layout, .account-layout, .form-row {
+                grid-template-columns: 1fr;
+            }
+            .top-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER & NAVIGATION -->
+    <!-- HEADER & NAVIGATION HUB -->
     <header>
         <div class="top-header">
             <div class="brand-box" onclick="switchView('home-view')">
@@ -498,303 +816,287 @@
 
             <div class="search-engine">
                 <select id="searchCategorySelect">
-                    <option value="All">All Departments</option>
-                    <option value="Home & Kitchen">Home & Kitchen (DeoDap)</option>
+                    <option value="All">All Depts</option>
+                    <option value="Home & Kitchen">Home & Kitchen</option>
                     <option value="Electronics">Electronics</option>
-                    <option value="Fashion">Fashion & Wearables</option>
+                    <option value="Fashion">Fashion</option>
                     <option value="Wholesale Lots">Wholesale Bulk</option>
                 </select>
-                <input type="text" id="globalSearchInput" placeholder="Search products, DeoDap items, wholesale bundles, or vendors...">
+                <input type="text" id="globalSearchInput" placeholder="Search products, DeoDap items, wholesale bundles...">
                 <button onclick="executeGlobalSearch()"><i class="fa fa-search"></i></button>
             </div>
 
             <div class="header-actions">
-                <a class="action-link" onclick="handleSellerNavClick()">
+                <a class="action-link" onclick="handleSellerNavAccess()">
                     <span>Seller Central</span>
                     <span>Start Selling <i class="fa fa-store"></i></span>
                 </a>
 
                 <a class="action-link" onclick="switchView('account-view')">
                     <span>Hello, Subhash</span>
-                    <span>My Account <i class="fa fa-user"></i></span>
+                    <span>My Account <i class="fa fa-user-circle"></i></span>
                 </a>
 
                 <button class="cart-badge-btn" onclick="switchView('cart-view')">
                     <i class="fa fa-shopping-cart"></i> Cart <span id="cartItemCounter">(0)</span>
                 </button>
-
-                <a class="action-link" onclick="switchView('admin-login-view')" style="color: var(--fk-yellow);">
-                    <span>Restricted</span>
-                    <span>Admin Panel <i class="fa fa-lock"></i></span>
-                </a>
             </div>
         </div>
 
+        <!-- SUB NAVIGATION RAIL -->
         <div class="sub-navigation">
             <a onclick="filterByDept('All')"><i class="fa fa-bars"></i> All Products</a>
             <a onclick="filterByDept('Home & Kitchen')">🏠 Home & Kitchen (DeoDap Wholesale)</a>
             <a onclick="filterByDept('Electronics')">💻 Electronics & Gadgets</a>
             <a onclick="filterByDept('Fashion')">👕 Fashion & Apparel</a>
             <a onclick="filterByDept('Wholesale Lots')">📦 Bulk Wholesale Lots</a>
-            <a onclick="handleSellerNavClick()">💼 Seller Registration & Dashboard</a>
+            <a onclick="switchView('admin-auth-view')" style="color: var(--fk-yellow);"><i class="fa fa-shield-alt"></i> Admin Portal</a>
         </div>
     </header>
 
-    <!-- CONTENT WRAPPER -->
     <div class="main-wrapper">
 
-        <!-- ================= VIEW 1: HOME SHOPFRONT ================= -->
+        <!-- ================= VIEW 1: HOME STOREFRONT ================= -->
         <div id="home-view" class="view-panel active">
             <div class="hero-banner">
                 <h2>SRP Shopping Pro Enterprise Hub</h2>
-                <p>Merging Amazon's structural depth, Flipkart's conversion badges, Meesho's vendor architecture, and DeoDap's wholesale bulk pricing models.</p>
+                <p>Merging Amazon's robust product detail layout, Flipkart's conversion badges, Meesho's vendor architecture, and DeoDap's wholesale bulk pricing models.</p>
                 <div class="hero-buttons">
                     <button class="btn-cta" onclick="filterByDept('Home & Kitchen')">Explore DeoDap Deals</button>
-                    <button class="btn-cta" style="background: var(--fk-blue);" onclick="handleSellerNavClick()">Open Seller Store</button>
+                    <button class="btn-cta" style="background: var(--fk-blue);" onclick="handleSellerNavAccess()">Open Seller Store</button>
                 </div>
             </div>
 
             <div class="section-header">
                 <h3><i class="fa fa-fire" style="color: var(--fk-orange);"></i> Trending B2B Wholesale & Retail Inventory</h3>
-                <span style="font-size: 13px; color: var(--text-light);">Direct Manufacturer & Vendor Fulfillment</span>
+                <span style="font-size: 13px; color: var(--text-light);">Direct Manufacturer Fulfillment</span>
             </div>
 
-            <div class="product-grid" id="mainProductGrid"></div>
+            <div class="product-grid" id="mainProductGrid">
+                <!-- Dynamically rendered via JS -->
+            </div>
         </div>
 
-        <!-- ================= VIEW 2: PRODUCT DETAIL PAGE (PDP) ================= -->
+        <!-- ================= VIEW 2: AMAZON-STYLE PRODUCT DETAIL PAGE (PDP) ================= -->
         <div id="pdp-view" class="view-panel">
-            <button onclick="switchView('home-view')" style="margin-bottom: 15px; background: none; border: none; color: var(--fk-blue); cursor: pointer; font-weight: bold; font-size: 14px;">
-                <i class="fa fa-arrow-left"></i> Back to Results
+            <button onclick="switchView('home-view')" style="background: none; border: none; color: var(--fk-blue); font-weight: bold; cursor: pointer; margin-bottom: 15px; font-size: 14px;">
+                <i class="fa fa-arrow-left"></i> Back to Search Results
             </button>
-            <div class="pdp-container" id="pdpContainerDetails">
-                <!-- Populated dynamically -->
+            
+            <div class="pdp-container" id="pdpContainerBox">
+                <!-- Populated dynamically with multiple images gallery -->
             </div>
         </div>
 
-        <!-- ================= VIEW 3: CART & PAYMENT VIEW ================= -->
+        <!-- ================= VIEW 3: CART PAGE ================= -->
         <div id="cart-view" class="view-panel">
-            <h2 style="margin-bottom: 20px; font-weight: 800;">Shopping Cart & Wholesale Checkout</h2>
+            <h2 style="margin-bottom: 20px; font-weight: 800;">Shopping Cart & Bulk Wholesale Review</h2>
             <div class="cart-container-layout">
                 <div class="cart-items-card" id="cartItemsContainerDiv"></div>
-
                 <div class="checkout-summary-card">
-                    <h3 style="font-size: 16px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Logistics & Shipping</h3>
-                    <div class="shipping-method-box">
-                        <label class="shipping-option-card">
-                            <input type="radio" name="shippingMethod" checked>
-                            <div>
-                                <b>Standard Express Dispatch</b>
-                                <div style="font-size: 11px; color: var(--text-light);">Delivered in 3-5 business days - ₹40</div>
-                            </div>
-                        </label>
-                        <label class="shipping-option-card">
-                            <input type="radio" name="shippingMethod">
-                            <div>
-                                <b>DeoDap Heavy Freight Cargo</b>
-                                <div style="font-size: 11px; color: var(--text-light);">Heavy pallet wholesale express - ₹120</div>
-                            </div>
-                        </label>
-                    </div>
-
-                    <h3 style="font-size: 16px; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Payment Gateway</h3>
-                    <div class="shipping-method-box">
-                        <label class="shipping-option-card">
-                            <input type="radio" name="paymentMethod" checked>
-                            <div><b>Cash on Delivery (COD)</b></div>
-                        </label>
-                        <label class="shipping-option-card">
-                            <input type="radio" name="paymentMethod">
-                            <div><b>UPI / Credit Card / NetBanking (Extra 5% Off)</b></div>
-                        </label>
-                    </div>
-
+                    <h3 style="font-size: 16px; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Order Summary</h3>
                     <div class="summary-line-item">
                         <span>Cart Subtotal</span>
                         <span id="cartSubtotalText">₹0</span>
                     </div>
                     <div class="summary-line-item">
-                        <span>Shipping Fee</span>
+                        <span>Estimated Shipping</span>
                         <span id="shippingFeeText">₹40</span>
                     </div>
                     <div class="summary-line-item total-line">
-                        <span>Total Payable Amount</span>
+                        <span>Total Amount</span>
                         <span id="cartTotalPayableText">₹40</span>
                     </div>
-
-                    <button class="btn-checkout-final" onclick="executeOrderFinalization()">PLACE ORDER SECURELY</button>
+                    <button class="btn-main-action" onclick="switchView('payment-view')">PROCEED TO SECURE PAYMENT</button>
                 </div>
             </div>
         </div>
 
-        <!-- ================= VIEW 4: CUSTOMER ACCOUNT MANAGEMENT ================= -->
+        <!-- ================= VIEW 4: PAYMENT PAGE ================= -->
+        <div id="payment-view" class="view-panel">
+            <h2 style="margin-bottom: 20px; font-weight: 800;">Secure Payment Gateway</h2>
+            <div class="cart-container-layout">
+                <div class="payment-card">
+                    <h3 style="margin-bottom: 15px; font-size: 16px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Select Payment Mode</h3>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
+                        <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer;">
+                            <input type="radio" name="payGateway" checked>
+                            <div><b>UPI / QR Code</b> (Google Pay, PhonePe, Paytm - Instant 5% Off)</div>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer;">
+                            <input type="radio" name="payGateway">
+                            <div><b>Credit / Debit Card</b> (Visa, Mastercard, RuPay)</div>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer;">
+                            <input type="radio" name="payGateway">
+                            <div><b>Net Banking</b> (SBI, HDFC, ICICI, Axis)</div>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border-color); border-radius: 4px; cursor: pointer;">
+                            <input type="radio" name="payGateway">
+                            <div><b>Cash on Delivery (COD)</b></div>
+                        </label>
+                    </div>
+
+                    <div id="cardDetailsBox" style="background: #f9f9f9; padding: 15px; border-radius: 4px; border: 1px solid var(--border-color); margin-bottom: 20px;">
+                        <div class="form-group"><label>Card Number</label><input type="text" placeholder="4532 •••• •••• 8892"></div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM/YY"></div>
+                            <div class="form-group"><label>CVV</label><input type="password" placeholder="123"></div>
+                        </div>
+                    </div>
+
+                    <button class="btn-main-action" style="background: var(--fk-orange); color: #fff;" onclick="executeOrderFinalization()">PAY & PLACE ORDER SECURELY</button>
+                </div>
+                
+                <div class="checkout-summary-card" style="height: fit-content;">
+                    <h3 style="font-size: 16px; margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Delivery Address</h3>
+                    <p style="font-size: 13px; color: #555; line-height: 1.5;"><b>Subhash Chandra Rajpurohit</b><br>Near JNVU Campus, Sector 4<br>Jodhpur / Jaipur, Rajasthan - 302001<br>Phone: +91 98765 43210</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 5: CUSTOMER ACCOUNT MANAGEMENT ================= -->
         <div id="account-view" class="view-panel">
             <div class="account-layout">
                 <div class="account-sidebar">
-                    <h3>Customer Hub</h3>
+                    <h3 style="font-size: 15px; color: var(--fk-blue); margin-bottom: 10px;">My Account Hub</h3>
                     <ul>
-                        <li><a class="active" onclick="switchAccountTab('profile', this)"><i class="fa fa-user-circle"></i> My Profile</a></li>
-                        <li><a onclick="switchAccountTab('orders', this)"><i class="fa fa-box"></i> My Orders</a></li>
+                        <li><a class="active" onclick="switchAccountTab('profile', this)"><i class="fa fa-user"></i> Profile Settings</a></li>
+                        <li><a onclick="switchAccountTab('orders', this)"><i class="fa fa-box"></i> My Orders & Tracking</a></li>
                         <li><a onclick="switchAccountTab('addresses', this)"><i class="fa fa-map-marker-alt"></i> Saved Addresses</a></li>
                         <li><a onclick="switchAccountTab('wishlist', this)"><i class="fa fa-heart"></i> My Wishlist</a></li>
-                        <li><a onclick="switchView('home-view')"><i class="fa fa-sign-out-alt"></i> Back to Store</a></li>
+                        <li><a onclick="switchView('home-view')" style="color: var(--danger);"><i class="fa fa-sign-out-alt"></i> Sign Out</a></li>
                     </ul>
                 </div>
-                <div class="account-content-card" id="accountContentCard">
-                    <!-- Dynamic Tab Content -->
+                <div class="account-content-card" id="accountContentPanel">
+                    <h3>Customer Profile Details</h3>
+                    <p style="color: var(--text-light); margin-bottom: 20px; font-size: 13px;">Manage your personal information, security, and preferences.</p>
+                    <form onsubmit="event.preventDefault(); showToastNotification('Profile updated successfully!');">
+                        <div class="form-row">
+                            <div class="form-group"><label>Full Name</label><input type="text" value="Subhash Chandra Rajpurohit"></div>
+                            <div class="form-group"><label>Email Address</label><input type="email" value="subhash.rajpurohit@srp.com"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Mobile Phone</label><input type="text" value="+91 9876543210"></div>
+                            <div class="form-group"><label>Default Region</label><input type="text" value="Rajasthan, India"></div>
+                        </div>
+                        <button type="submit" class="btn-main-action" style="width: auto; padding: 10px 25px;">Save Changes</button>
+                    </form>
                 </div>
             </div>
         </div>
 
-        <!-- ================= VIEW 5: SELLER REGISTRATION & DASHBOARD ================= -->
-        <div id="seller-auth-view" class="view-panel">
-            <div class="auth-container">
-                <h2><i class="fa fa-store" style="color: var(--fk-blue);"></i> Register as SRP Seller</h2>
-                <form id="sellerRegistrationForm" onsubmit="handleSellerRegistration(event)">
-                    <div class="form-group">
-                        <label>Business / Store Name</label>
-                        <input type="text" id="regStoreName" required placeholder="e.g. Rajpurohit Enterprises">
+        <!-- ================= VIEW 6A: SELLER REGISTRATION ================= -->
+        <div id="seller-register-view" class="view-panel">
+            <div style="max-width: 650px; margin: 0 auto; background: var(--white); padding: 35px; border-radius: 8px; border: 1px solid var(--border-color);">
+                <h2 style="margin-bottom: 8px;"><i class="fa fa-store" style="color: var(--fk-blue);"></i> Register as an SRP / Meesho Vendor</h2>
+                <p style="font-size: 13px; color: var(--text-light); margin-bottom: 25px;">Complete your supplier onboarding to start selling products across the wholesale and retail network.</p>
+                
+                <form onsubmit="handleSellerRegistrationSubmit(event)">
+                    <div class="form-row">
+                        <div class="form-group"><label>Store / Business Legal Name</label><input type="text" id="regStoreName" required placeholder="e.g. Rajpurohit Enterprises"></div>
+                        <div class="form-group"><label>GSTIN / Tax ID Number</label><input type="text" id="regGst" required placeholder="08AABCR1234F1Z5"></div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group">
-                            <label>Owner Full Name</label>
-                            <input type="text" id="regOwnerName" required placeholder="Subhash Rajpurohit">
-                        </div>
-                        <div class="form-group">
-                            <label>GSTIN / Tax ID</label>
-                            <input type="text" id="regGst" required placeholder="08AABCR1234F1Z5">
-                        </div>
+                        <div class="form-group"><label>Contact Person Name</label><input type="text" id="regOwner" required value="Subhash Rajpurohit"></div>
+                        <div class="form-group"><label>Business Phone</label><input type="text" id="regPhone" required value="+91 9876543210"></div>
                     </div>
-                    <div class="form-group">
-                        <label>Business Email & Phone</label>
-                        <input type="text" id="regContact" required placeholder="support@srcenterprises.com | +91 9876543210">
-                    </div>
-                    <button type="submit" class="btn-checkout-final" style="margin-top: 10px; background: var(--fk-blue); color: #fff;">Complete Seller Registration</button>
+                    <div class="form-group"><label>Warehouse Pickup Address</label><textarea id="regAddress" rows="2" required placeholder="Industrial Area, Jodhpur / Jaipur"></textarea></div>
+                    <button type="submit" class="btn-main-action" style="background: var(--fk-blue); color: #fff;">Complete Registration & Open Dashboard</button>
                 </form>
             </div>
         </div>
 
+        <!-- ================= VIEW 6B: SELLER DASHBOARD ================= -->
         <div id="seller-dashboard-view" class="view-panel">
             <div class="dashboard-layout">
                 <div class="dashboard-nav">
-                    <h3>Seller Control Panel</h3>
-                    <ul>
-                        <li><a class="active"><i class="fa fa-chart-line"></i> Analytics & Metrics</a></li>
-                        <li><a onclick="switchView('home-view')"><i class="fa fa-store"></i> View Storefront</a></li>
-                        <li><a onclick="showToastNotification('Inventory Manifest CSV exported.')"><i class="fa fa-file-excel"></i> Export CSV</a></li>
+                    <h3 style="font-size: 15px; color: var(--fk-blue); margin-bottom: 12px;">Vendor Portal</h3>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px;">
+                        <li><a class="active" style="background:#e8f0fe; color:var(--fk-blue); padding:8px; border-radius:4px; font-weight:bold;"><i class="fa fa-chart-line"></i> Analytics & Metrics</a></li>
+                        <li><a onclick="switchView('home-view')" style="cursor:pointer; padding:8px;"><i class="fa fa-store"></i> View Storefront</a></li>
+                        <li><a onclick="showToastNotification('Vendor CSV manifest downloaded.')" style="cursor:pointer; padding:8px;"><i class="fa fa-file-excel"></i> Export Inventory CSV</a></li>
                     </ul>
                 </div>
                 <div>
                     <div class="metrics-grid">
                         <div class="metric-card">
-                            <h5>Total Revenue</h5>
-                            <p>₹1,42,850</p>
+                            <h5>Total Store Earnings</h5>
+                            <p>₹1,84,200</p>
                         </div>
                         <div class="metric-card" style="border-left-color: var(--fk-orange);">
-                            <h5>Active Listings</h5>
+                            <h5>Active Live Listings</h5>
                             <p id="statActiveListingsCount">6</p>
                         </div>
                         <div class="metric-card" style="border-left-color: var(--success);">
                             <h5>Pending Bulk Orders</h5>
-                            <p>28</p>
+                            <p>34</p>
                         </div>
                     </div>
 
-                    <div class="cart-items-card">
-                        <h3><i class="fa fa-plus-circle" style="color: var(--fk-blue);"></i> Add New Product Listing</h3>
-                        <form id="vendorProductForm" onsubmit="handleNewVendorProductSubmission(event)" style="margin-top: 15px;">
+                    <div style="background: var(--white); padding: 30px; border-radius: 6px; border: 1px solid var(--border-color);">
+                        <h3 style="font-size: 18px; margin-bottom: 20px;"><i class="fa fa-plus-circle" style="color: var(--fk-blue);"></i> Add New Product Listing</h3>
+                        <form id="vendorProductForm" onsubmit="handleNewVendorProductSubmission(event)">
                             <div class="form-row">
-                                <div class="form-group">
-                                    <label>Product Title</label>
-                                    <input type="text" id="vpTitle" required placeholder="e.g. Smart Watch Pro">
-                                </div>
-                                <div class="form-group">
-                                    <label>Category</label>
+                                <div class="form-group"><label>Product Title</label><input type="text" id="vpTitle" required placeholder="e.g. Smart Watch Pro"></div>
+                                <div class="form-group"><label>Department Category</label>
                                     <select id="vpCategory">
                                         <option value="Home & Kitchen">Home & Kitchen (DeoDap)</option>
                                         <option value="Electronics">Electronics</option>
                                         <option value="Fashion">Fashion & Apparel</option>
-                                        <option value="Wholesale Lots">Wholesale Lots</option>
+                                        <option value="Wholesale Lots">Wholesale Bulk</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group">
-                                    <label>Retail Selling Price (₹)</label>
-                                    <input type="number" id="vpPrice" required placeholder="349">
-                                </div>
-                                <div class="form-group">
-                                    <label>Original MRP (₹)</label>
-                                    <input type="number" id="vpOriginalPrice" required placeholder="999">
-                                </div>
+                                <div class="form-group"><label>Retail Price (₹)</label><input type="number" id="vpPrice" required placeholder="499"></div>
+                                <div class="form-group"><label>Original MRP (₹)</label><input type="number" id="vpOriginalPrice" required placeholder="1499"></div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group">
-                                    <label>Wholesale Bulk Price (₹)</label>
-                                    <input type="number" id="vpBulkPrice" required placeholder="280">
-                                </div>
-                                <div class="form-group">
-                                    <label>Min Bulk Tier</label>
-                                    <input type="text" id="vpMinBulk" required placeholder="Min 5 pcs">
-                                </div>
+                                <div class="form-group"><label>Wholesale / Bulk Price (₹)</label><input type="number" id="vpBulkPrice" required placeholder="390"></div>
+                                <div class="form-group"><label>Min Bulk Tier</label><input type="text" id="vpMinBulk" required placeholder="Min 5 pcs"></div>
                             </div>
-                            <div class="form-group">
-                                <label>Image URL (Primary)</label>
-                                <input type="url" id="vpImage" required placeholder="https://images.unsplash.com/photo-...">
+                            <div class="form-row">
+                                <div class="form-group"><label>Primary Image URL</label><input type="url" id="vpImage" required placeholder="https://images.unsplash.com/photo-..."></div>
+                                <div class="form-group"><label>Extra Gallery Image URL</label><input type="url" id="vpImageExtra" placeholder="https://images.unsplash.com/photo-..."></div>
                             </div>
-                            <button type="submit" class="btn-checkout-final" style="background: var(--fk-blue); color: #fff; margin-top: 5px;">Publish to Marketplace</button>
+                            <button type="submit" class="btn-main-action" style="background: var(--fk-blue); color: #fff; margin-top: 10px;">Publish Listing Live</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ================= VIEW 6: PASSWORD PROTECTED ADMIN PANEL ================= -->
-        <div id="admin-login-view" class="view-panel">
+        <!-- ================= VIEW 7: PASSWORD PROTECTED ADMIN PORTAL ================= -->
+        <div id="admin-auth-view" class="view-panel">
             <div class="admin-login-box">
-                <h2><i class="fa fa-lock" style="color: var(--admin-dark);"></i> Admin Security Portal</h2>
-                <p style="font-size: 12px; color: var(--text-light); margin-bottom: 20px;">Enter administrative master password (default: admin123)</p>
+                <h3 style="margin-bottom: 8px; font-size: 20px;"><i class="fa fa-shield-alt" style="color: var(--fk-yellow);"></i> Admin Gateway</h3>
+                <p style="font-size: 13px; color: var(--text-light); margin-bottom: 20px;">Enter security password to access platform oversight (Default: <b>admin2026</b>)</p>
+                
                 <form onsubmit="handleAdminLogin(event)">
-                    <div class="form-group">
-                        <input type="password" id="adminPasswordInput" required placeholder="Enter password...">
-                    </div>
-                    <button type="submit" class="btn-checkout-final" style="background: var(--admin-dark); color: #fff; margin-top: 0;">Authenticate</button>
+                    <div class="form-group"><label>Admin Username</label><input type="text" value="superadmin@srp.com" readonly></div>
+                    <div class="form-group"><label>Security Password</label><input type="password" id="adminPasswordInput" required placeholder="Enter password"></div>
+                    <button type="submit" class="btn-main-action" style="background: var(--amzn-dark); color: #fff;">Authenticate Admin Portal</button>
                 </form>
             </div>
         </div>
 
         <div id="admin-dashboard-view" class="view-panel">
-            <div class="admin-dashboard">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2><i class="fa fa-shield-alt" style="color: var(--admin-dark);"></i> Master Admin Dashboard</h2>
-                    <button onclick="switchView('home-view')" class="btn-cta" style="background: var(--admin-dark);">Logout Admin</button>
+            <div style="background: var(--white); padding: 30px; border-radius: 6px; border: 1px solid var(--border-color);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+                    <h2><i class="fa fa-user-shield" style="color: var(--fk-blue);"></i> Platform Administrator Master Console</h2>
+                    <button onclick="switchView('home-view')" style="background: var(--danger); color: #fff; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-weight: bold;">Logout Admin</button>
                 </div>
-                <div class="metrics-grid" style="margin-bottom: 20px;">
-                    <div class="metric-card"><h5>Total Registered Sellers</h5><p id="adminSellerCount">1</p></div>
-                    <div class="metric-card"><h5>Platform Gross Merchandise</h5><p>₹18,42,900</p></div>
-                    <div class="metric-card"><h5>Active Inventory Count</h5><p id="adminInventoryCount">6</p></div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card"><h5>Total Gross Platform GMV</h5><p>₹48,92,100</p></div>
+                    <div class="metric-card"><h5>Active Registered Vendors</h5><p>142 Stores</p></div>
+                    <div class="metric-card" style="border-left-color: var(--success);"><h5>Platform Commission Earned</h5><p>₹3,91,360</p></div>
                 </div>
-                <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 16px;">Registered Vendors & Sellers Manifest</h3>
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Store Name</th>
-                            <th>Owner</th>
-                            <th>GSTIN</th>
-                            <th>Contact</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminSellersTableBody">
-                        <tr>
-                            <td>SRP Direct Wholesale Hub</td>
-                            <td>Subhash Rajpurohit</td>
-                            <td>08SRP9999K1Z8</td>
-                            <td>support@srp.com</td>
-                            <td><b style="color:var(--success);">Verified Active</b></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <h3 style="margin: 20px 0 10px 0; font-size: 16px;">System Inventory Moderation</h3>
+                <div id="adminInventoryTableContainer"></div>
             </div>
         </div>
 
@@ -803,8 +1105,9 @@
     <!-- TOAST POPUP NOTIFICATION -->
     <div id="toast-notification">Notification Message Here</div>
 
-    <!-- CORE JAVASCRIPT SYSTEM ENGINE -->
+    <!-- CORE JAVASCRIPT ENGINE -->
     <script>
+        // Database of products with multiple images for Amazon-style PDP
         let marketplaceInventory = [
             {
                 id: 1,
@@ -817,13 +1120,13 @@
                 minBulk: "Min 5 pcs",
                 rating: 4.4,
                 ratingsCount: "3,420",
-                vendor: "DeoDap Houseware Direct",
                 images: [
-                    "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&q=80",
-                    "https://images.unsplash.com/photo-1584990347426-c785bc675753?w=500&q=80",
-                    "https://images.unsplash.com/photo-1570857502809-08184874388e?w=500&q=80"
+                    "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&q=80",
+                    "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&q=80",
+                    "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&q=80"
                 ],
-                description: "High-grade stainless steel wringer mop with micro-fiber absorbent refill heads. Ideal for wet and dry floor cleaning."
+                vendor: "DeoDap Houseware Direct",
+                specs: "Heavy-duty stainless steel wringer pole, 360-degree flexible head, super-absorbent microfiber nano strands."
             },
             {
                 id: 2,
@@ -836,12 +1139,12 @@
                 minBulk: "Min 10 pcs",
                 rating: 4.2,
                 ratingsCount: "1,890",
-                vendor: "SRP Tech Wholesale Hub",
                 images: [
-                    "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&q=80",
-                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80"
+                    "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&q=80",
+                    "https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?w=600&q=80"
                 ],
-                description: "Immersive sound with deep bass drivers, touch controls, and 30-hour battery backup with fast charging case."
+                vendor: "SRP Tech Wholesale Hub",
+                specs: "Bluetooth 5.3 connectivity, 30-hour total playback with charging case, IPX4 splash proof."
             },
             {
                 id: 3,
@@ -854,12 +1157,12 @@
                 minBulk: "Min 12 pcs",
                 rating: 4.5,
                 ratingsCount: "5,120",
-                vendor: "DeoDap Houseware Direct",
                 images: [
-                    "https://images.unsplash.com/photo-1584990347426-c785bc675753?w=500&q=80",
-                    "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&q=80"
+                    "https://images.unsplash.com/photo-1584990347426-c785bc675753?w=600&q=80",
+                    "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=80"
                 ],
-                description: "Handy quick chopper with 3 sharp stainless steel blades for effortless vegetable and onion slicing."
+                vendor: "DeoDap Houseware Direct",
+                specs: "Unbreakable ABS plastic body, 3 heavy-duty stainless steel rotating blades for effortless chopping."
             },
             {
                 id: 4,
@@ -872,11 +1175,12 @@
                 minBulk: "Min 6 pcs",
                 rating: 4.1,
                 ratingsCount: "940",
-                vendor: "Rajpurohit Apparels",
                 images: [
-                    "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&q=80"
+                    "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80",
+                    "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80"
                 ],
-                description: "Breathable 100% cotton fabric designed for formal or casual everyday wear."
+                vendor: "Rajpurohit Apparels",
+                specs: "100% bio-washed premium cotton, breathable fabric engineered for daily wear and formal casuals."
             },
             {
                 id: 5,
@@ -889,12 +1193,12 @@
                 minBulk: "Min 5 pcs",
                 rating: 4.3,
                 ratingsCount: "2,150",
-                vendor: "SRP Tech Wholesale Hub",
                 images: [
-                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80",
-                    "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&q=80"
+                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80",
+                    "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600&q=80"
                 ],
-                description: "All-day activity tracking, heart rate sensor, SPO2 monitor, and smart notifications."
+                vendor: "SRP Tech Wholesale Hub",
+                specs: "TFT color display, 24/7 heart rate tracking, blood oxygen SpO2 monitor, multi-sport tracking."
             },
             {
                 id: 6,
@@ -907,30 +1211,28 @@
                 minBulk: "Min 8 pcs",
                 rating: 4.6,
                 ratingsCount: "4,080",
-                vendor: "DeoDap Houseware Direct",
                 images: [
-                    "https://images.unsplash.com/photo-1570857502809-08184874388e?w=500&q=80"
+                    "https://images.unsplash.com/photo-1570857502809-08184874388e?w=600&q=80",
+                    "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=600&q=80"
                 ],
-                description: "Blend fresh smoothies on the go with this USB rechargeable juice blender cup."
+                vendor: "DeoDap Houseware Direct",
+                specs: "Food-grade material, built-in rechargeable battery via USB, 6-blade 3D mixing for smoothies and shakes."
             }
         ];
 
         let shoppingCart = [];
-        let registeredSellersList = [
-            { storeName: "SRP Direct Wholesale Hub", owner: "Subhash Rajpurohit", gstin: "08SRP9999K1Z8", contact: "support@srp.com", status: "Verified Active" }
-        ];
-        let isSellerRegistered = true; // Set true by default for demo convenience
+        let isSellerRegistered = false; // Seller registration state flag
 
-        // Switch application view containers
+        // Switch application views
         function switchView(panelId) {
             document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('active'));
             document.getElementById(panelId).classList.add('active');
             if(panelId === 'cart-view') renderCartViewContents();
-            if(panelId === 'account-view') switchAccountTab('profile');
+            if(panelId === 'admin-dashboard-view') renderAdminInventoryTable();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Render main product catalog grid
+        // Render main storefront grid
         function renderProductCatalog(listToRender = marketplaceInventory) {
             const gridContainer = document.getElementById('mainProductGrid');
             gridContainer.innerHTML = '';
@@ -942,10 +1244,10 @@
 
             listToRender.forEach(prod => {
                 gridContainer.innerHTML += `
-                    <div class="product-card" onclick="openProductDetailPage(${prod.id})">
+                    <div class="product-card" onclick="openProductDetail(${prod.id})">
                         <span class="badge-deodap">Wholesale / Retail</span>
                         <div class="product-img-box">
-                            <img src="${prod.images ? prod.images[0] : prod.image}" alt="${prod.title}">
+                            <img src="${prod.images[0]}" alt="${prod.title}">
                         </div>
                         <div class="product-info">
                             <div class="supplier-info"><i class="fa fa-store" style="color: var(--fk-blue);"></i> ${prod.vendor}</div>
@@ -974,75 +1276,69 @@
             document.getElementById('statActiveListingsCount').innerText = marketplaceInventory.length;
         }
 
-        // Amazon-style Product Detail Page (PDP)
-        function openProductDetailPage(productId) {
+        // Open Amazon-style Product Detail Page (PDP) with multiple images
+        function openProductDetail(productId) {
             const prod = marketplaceInventory.find(p => p.id === productId);
             if(!prod) return;
 
-            const imgList = prod.images || [prod.image];
-            let thumbsHTML = '';
-            imgList.forEach((imgUrl, idx) => {
-                thumbsHTML += `<img src="${imgUrl}" class="pdp-thumb ${idx === 0 ? 'active' : ''}" onclick="changeMainPdpImage(this, '${imgUrl}')">`;
+            let thumbnailsHtml = '';
+            prod.images.forEach((imgUrl, idx) => {
+                let activeCls = idx === 0 ? 'active' : '';
+                thumbnailsHtml += `<div class="thumb-box ${activeCls}" onclick="changeMainPdpImage('${imgUrl}', this)"><img src="${imgUrl}" alt=""></div>`;
             });
 
-            const pdpContainer = document.getElementById('pdpContainerDetails');
+            const pdpContainer = document.getElementById('pdpContainerBox');
             pdpContainer.innerHTML = `
                 <div class="pdp-gallery">
-                    <div class="pdp-thumbnails">${thumbsHTML}</div>
                     <div class="pdp-main-img">
-                        <img id="mainPdpDisplayImg" src="${imgList[0]}" alt="${prod.title}">
+                        <img id="mainActivePdpImage" src="${prod.images[0]}" alt="${prod.title}">
                     </div>
+                    <div class="pdp-thumbnails">${thumbnailsHtml}</div>
                 </div>
                 <div class="pdp-details">
+                    <div style="font-size: 12px; color: var(--fk-blue); font-weight: bold; margin-bottom: 5px;">Brand / Vendor: ${prod.vendor}</div>
                     <h2>${prod.title}</h2>
-                    <div class="supplier-info"><i class="fa fa-store" style="color: var(--fk-blue);"></i> Sold by: <b>${prod.vendor}</b></div>
-                    <div class="rating-box">
+                    <div class="rating-box" style="margin-bottom: 12px;">
                         <span class="rating-stars">${prod.rating} <i class="fa fa-star" style="font-size:9px;"></i></span>
                         <span class="rating-count">${prod.ratingsCount} ratings & reviews</span>
                     </div>
-                    <div class="price-section" style="margin: 15px 0;">
-                        <span class="price-current" style="font-size: 26px;">₹${prod.price}</span>
-                        <span class="price-original" style="font-size: 16px;">₹${prod.originalPrice}</span>
-                        <span class="price-off" style="font-size: 14px;">${prod.discount}</span>
+                    <div class="price-section" style="font-size: 22px;">
+                        <span class="price-current">₹${prod.price}</span>
+                        <span class="price-original">₹${prod.originalPrice}</span>
+                        <span class="price-off">${prod.discount}</span>
                     </div>
-                    <div class="wholesale-tier-box" style="padding: 10px; font-size: 12px;">
-                        <span>📦 DeoDap Bulk Wholesale Pricing</span>
-                        <span>₹${prod.bulkPrice} (${prod.minBulk})</span>
+                    <div class="wholesale-tier-box" style="margin: 15px 0;">
+                        <span>📦 Bulk Wholesale B2B Tier</span>
+                        <span>₹${prod.bulkPrice} per unit (${prod.minBulk})</span>
                     </div>
-                    <div class="pdp-specs-list">
-                        <b>Product Overview:</b>
-                        <p style="margin-top: 5px;">${prod.description || 'High quality guaranteed product with multi-vendor assurance and speedy delivery across Rajasthan and India.'}</p>
-                    </div>
+                    <h4 style="font-size: 14px; margin-top: 15px; margin-bottom: 5px;">Product Specifications:</h4>
+                    <p class="pdp-specs">${prod.specs}</p>
                 </div>
-                <div class="pdp-buy-box">
-                    <div style="font-size: 20px; font-weight: 800; color: var(--success);">In Stock</div>
-                    <div style="font-size: 13px; color: var(--text-light);">Ships from and sold by SRP Fulfillment.</div>
-                    <button class="btn-add-cart" style="padding: 12px; font-size: 14px;" onclick="addItemToCart(${prod.id})"><i class="fa fa-cart-plus"></i> Add to Cart</button>
-                    <button class="btn-buy-now" style="padding: 12px; font-size: 14px;" onclick="buyItemImmediately(${prod.id})">Buy Now</button>
+                <div class="pdp-buybox">
+                    <span class="price-current">₹${prod.price}</span>
+                    <div style="font-size:12px; color: var(--success); font-weight:bold; margin-bottom:15px;"><i class="fa fa-check-circle"></i> In Stock - Fast Delivery</div>
+                    <button class="btn-main-action" style="background: var(--fk-yellow); margin-bottom: 10px;" onclick="addItemToCart(${prod.id})">Add to Cart</button>
+                    <button class="btn-main-action" style="background: var(--fk-orange); color: #fff; margin-top:0;" onclick="buyItemImmediately(${prod.id})">Buy Now</button>
                 </div>
             `;
             switchView('pdp-view');
         }
 
-        function changeMainPdpImage(thumbEl, imageUrl) {
-            document.querySelectorAll('.pdp-thumb').forEach(t => t.classList.remove('active'));
+        function changeMainPdpImage(imgUrl, thumbEl) {
+            document.getElementById('mainActivePdpImage').src = imgUrl;
+            document.querySelectorAll('.thumb-box').forEach(b => b.classList.remove('active'));
             thumbEl.classList.add('active');
-            document.getElementById('mainPdpDisplayImg').src = imageUrl;
         }
 
-        // Cart Management
+        // Add to cart & buy now handlers
         function addItemToCart(productId) {
-            const matchedProduct = marketplaceInventory.find(p => p.id === productId);
-            const existingCartItem = shoppingCart.find(item => item.id === productId);
-
-            if(existingCartItem) {
-                existingCartItem.quantity += 1;
-            } else {
-                shoppingCart.push({ ...matchedProduct, quantity: 1, image: matchedProduct.images ? matchedProduct.images[0] : matchedProduct.image });
-            }
+            const matched = marketplaceInventory.find(p => p.id === productId);
+            const existing = shoppingCart.find(i => i.id === productId);
+            if(existing) existing.quantity += 1;
+            else shoppingCart.push({ ...matched, quantity: 1 });
 
             updateCartBadgeCount();
-            showToastNotification(`Added to Cart: ${matchedProduct.title}`);
+            showToastNotification(`Added to Cart: ${matched.title}`);
         }
 
         function buyItemImmediately(productId) {
@@ -1051,159 +1347,99 @@
         }
 
         function updateCartBadgeCount() {
-            const totalItemsCount = shoppingCart.reduce((sum, item) => sum + item.quantity, 0);
-            document.getElementById('cartItemCounter').innerText = `(${totalItemsCount})`;
+            const total = shoppingCart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartItemCounter').innerText = `(${total})`;
         }
 
+        // Render Cart View
         function renderCartViewContents() {
-            const containerDiv = document.getElementById('cartItemsContainerDiv');
-            containerDiv.innerHTML = '';
+            const container = document.getElementById('cartItemsContainerDiv');
+            container.innerHTML = '';
 
             if(shoppingCart.length === 0) {
-                containerDiv.innerHTML = `<div style="text-align:center; padding: 40px; color: var(--text-light);"><h3>Your shopping cart is currently empty.</h3><p style="margin-top:10px;">Explore our catalog to add items.</p></div>`;
+                container.innerHTML = `<div style="text-align:center; padding: 40px; color: var(--text-light);"><h3>Your cart is empty.</h3></div>`;
                 document.getElementById('cartSubtotalText').innerText = '₹0';
                 document.getElementById('shippingFeeText').innerText = '₹0';
                 document.getElementById('cartTotalPayableText').innerText = '₹0';
                 return;
             }
 
-            let subtotalAmount = 0;
+            let subtotal = 0;
             shoppingCart.forEach(item => {
-                subtotalAmount += item.price * item.quantity;
-                containerDiv.innerHTML += `
+                subtotal += item.price * item.quantity;
+                container.innerHTML += `
                     <div class="cart-row-item">
                         <div class="cart-item-details">
-                            <img src="${item.image}" alt="">
+                            <img src="${item.images[0]}" alt="">
                             <div>
                                 <h4 style="font-size: 14px; margin-bottom: 4px;">${item.title}</h4>
-                                <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px;">Vendor: ${item.vendor}</div>
+                                <div style="font-size: 11px; color: var(--text-light);">Vendor: ${item.vendor}</div>
                                 <div style="font-size: 14px; font-weight: 800;">₹${item.price}</div>
                                 <div class="qty-control-box">
-                                    <button onclick="adjustCartQuantity(${item.id}, -1)">-</button>
+                                    <button onclick="adjustCartQty(${item.id}, -1)">-</button>
                                     <span style="font-weight: bold; font-size: 13px;">${item.quantity}</span>
-                                    <button onclick="adjustCartQuantity(${item.id}, 1)">+</button>
+                                    <button onclick="adjustCartQty(${item.id}, 1)">+</button>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <button style="background:none; border:none; color: #ff5252; cursor:pointer; font-size: 16px;" onclick="removeCartItem(${item.id})"><i class="fa fa-trash"></i></button>
-                        </div>
+                        <button style="background:none; border:none; color: var(--danger); cursor:pointer; font-size:16px;" onclick="removeCartItem(${item.id})"><i class="fa fa-trash"></i></button>
                     </div>
                 `;
             });
 
-            let shippingFee = subtotalAmount > 600 ? 0 : 40;
-            let grandTotal = subtotalAmount + shippingFee;
-
-            document.getElementById('cartSubtotalText').innerText = `₹${subtotalAmount}`;
-            document.getElementById('shippingFeeText').innerText = shippingFee === 0 ? 'FREE' : `₹${shippingFee}`;
-            document.getElementById('cartTotalPayableText').innerText = `₹${grandTotal}`;
+            let shipping = subtotal > 600 ? 0 : 40;
+            let total = subtotal + shipping;
+            document.getElementById('cartSubtotalText').innerText = `₹${subtotal}`;
+            document.getElementById('shippingFeeText').innerText = shipping === 0 ? 'FREE' : `₹${shipping}`;
+            document.getElementById('cartTotalPayableText').innerText = `₹${total}`;
         }
 
-        function adjustCartQuantity(productId, deltaValue) {
-            const cartItemTarget = shoppingCart.find(i => i.id === productId);
-            if(cartItemTarget) {
-                cartItemTarget.quantity += deltaValue;
-                if(cartItemTarget.quantity <= 0) shoppingCart = shoppingCart.filter(i => i.id !== productId);
+        function adjustCartQty(id, delta) {
+            const item = shoppingCart.find(i => i.id === id);
+            if(item) {
+                item.quantity += delta;
+                if(item.quantity <= 0) shoppingCart = shoppingCart.filter(i => i.id !== id);
             }
             updateCartBadgeCount();
             renderCartViewContents();
         }
 
-        function removeCartItem(productId) {
-            shoppingCart = shoppingCart.filter(i => i.id !== productId);
+        function removeCartItem(id) {
+            shoppingCart = shoppingCart.filter(i => i.id !== id);
             updateCartBadgeCount();
             renderCartViewContents();
             showToastNotification("Item removed from cart.");
         }
 
-        function executeOrderFinalization() {
-            if(shoppingCart.length === 0) {
-                alert("Your cart is empty.");
-                return;
-            }
-            alert("Order placed successfully via SRP Enterprise Gateway! Tracking ID generated.");
-            shoppingCart = [];
-            updateCartBadgeCount();
-            switchView('home-view');
-        }
-
-        // Customer Account Management Tabs
+        // Account navigation tabs switcher
         function switchAccountTab(tabName, el) {
-            if(el) {
-                document.querySelectorAll('.account-sidebar a').forEach(a => a.classList.remove('active'));
-                el.classList.add('active');
-            }
-            const card = document.getElementById('accountContentCard');
-            if(tabName === 'profile') {
-                card.innerHTML = `
-                    <h3>Customer Profile</h3>
-                    <div style="margin-top: 15px; font-size: 14px; line-height: 1.8;">
-                        <p><b>Name:</b> Subhash Chandra Rajpurohit</p>
-                        <p><b>Email:</b> subhash.rajpurohit@srp.com</p>
-                        <p><b>Phone:</b> +91 98765 43210</p>
-                        <p><b>Membership:</b> SRP Enterprise Wholesale Tier</p>
-                    </div>
-                `;
-            } else if(tabName === 'orders') {
-                card.innerHTML = `
-                    <h3>My Orders History</h3>
-                    <div style="margin-top: 15px; font-size: 14px;">
-                        <div style="padding: 12px; border: 1px solid var(--border-color); border-radius: 4px; margin-bottom: 10px;">
-                            <b>Order #SRP-92814</b> - <span style="color: var(--success);">Delivered</span>
-                            <div style="font-size: 12px; color: var(--text-light); margin-top: 4px;">DeoDap 360 Degree Rotating Mop (Qty: 2) - ₹698</div>
-                        </div>
-                    </div>
-                `;
+            document.querySelectorAll('.account-sidebar a').forEach(a => a.classList.remove('active'));
+            el.classList.add('active');
+            const panel = document.getElementById('accountContentPanel');
+            if(tabName === 'orders') {
+                panel.innerHTML = `<h3>My Orders & Tracking</h3><div style="margin-top:15px; padding:15px; border:1px solid var(--border-color); border-radius:4px;"><div style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom:8px;"><span>Order #SRP-84920</span><span style="color:var(--success);">Out for Delivery</span></div><p style="font-size:13px; color:var(--text-light);">DeoDap 360 Rotating Mop • Qty: 1 • ₹349</p></div>`;
             } else if(tabName === 'addresses') {
-                card.innerHTML = `
-                    <h3>Saved Shipping Addresses</h3>
-                    <div style="margin-top: 15px; font-size: 14px; border: 1px solid var(--border-color); padding: 15px; border-radius: 4px;">
-                        <b>Subhash Rajpurohit (Home)</b>
-                        <p style="color: var(--text-light); font-size: 13px; margin-top: 4px;">Jai Narain Vyas University Campus, Jodhpur / Jaipur, Rajasthan - 302001</p>
-                    </div>
-                `;
+                panel.innerHTML = `<h3>Saved Delivery Addresses</h3><p style="font-size:13px; margin-top:10px; color:#555;"><b>Subhash Chandra Rajpurohit</b><br>Near JNVU Campus, Jodhpur, Rajasthan - 302001</p>`;
             } else if(tabName === 'wishlist') {
-                card.innerHTML = `
-                    <h3>My Saved Wishlist</h3>
-                    <p style="margin-top: 15px; font-size: 14px; color: var(--text-light);">You have 2 items saved in your wishlist.</p>
-                `;
+                panel.innerHTML = `<h3>My Wishlist Items</h3><p style="font-size:13px; margin-top:10px; color:var(--text-light);">No items currently saved in wishlist.</p>`;
+            } else {
+                panel.innerHTML = `<h3>Customer Profile Details</h3><p style="color:var(--text-light); font-size:13px;">Manage your personal settings.</p>`;
             }
         }
 
-        // Seller Registration & Dashboard Navigation
-        function handleSellerNavClick() {
+        // Seller Navigation Access Logic (First Register, Then Sell)
+        function handleSellerNavAccess() {
             if(isSellerRegistered) {
                 switchView('seller-dashboard-view');
             } else {
-                switchView('seller-auth-view');
+                switchView('seller-register-view');
             }
         }
 
-        function handleSellerRegistration(e) {
+        function handleSellerRegistrationSubmit(e) {
             e.preventDefault();
-            const storeName = document.getElementById('regStoreName').value;
-            const owner = document.getElementById('regOwnerName').value;
-            const gstin = document.getElementById('regGst').value;
-            const contact = document.getElementById('regContact').value;
-
-            registeredSellersList.push({ storeName, owner, gstin, contact, status: "Verified Active" });
             isSellerRegistered = true;
-            document.getElementById('adminSellerCount').innerText = registeredSellersList.length;
-            
-            // Populate admin table
-            const tbody = document.getElementById('adminSellersTableBody');
-            tbody.innerHTML += `
-                <tr>
-                    <td>${storeName}</td>
-                    <td>${owner}</td>
-                    <td>${gstin}</td>
-                    <td>${contact}</td>
-                    <td><b style="color:var(--success);">Verified Active</b></td>
-                </tr>
-            `;
-
-            showToastNotification("Seller registration successful! Welcome to Seller Central.");
+            showToastNotification("Vendor registration successful! Welcome to Seller Central.");
             switchView('seller-dashboard-view');
         }
 
@@ -1220,59 +1456,91 @@
                 minBulk: document.getElementById('vpMinBulk').value,
                 rating: 4.5,
                 ratingsCount: "1",
-                vendor: "SRP Verified Seller",
-                images: [document.getElementById('vpImage').value],
-                description: "Newly added multi-vendor catalog listing with wholesale and retail fulfillment."
+                images: [
+                    document.getElementById('vpImage').value,
+                    document.getElementById('vpImageExtra').value || document.getElementById('vpImage').value
+                ],
+                vendor: document.getElementById('regStoreName')?.value || "SRP Direct Vendor",
+                specs: "Newly listed vendor product with verified quality guarantee."
             };
-
             marketplaceInventory.unshift(newProd);
             renderProductCatalog();
-            document.getElementById('adminInventoryCount').innerText = marketplaceInventory.length;
-            showToastNotification("Product successfully published across SRP marketplace!");
+            showToastNotification("Product successfully published live across marketplace!");
             document.getElementById('vendorProductForm').reset();
-            switchView('home-view');
+            switchView('seller-dashboard-view');
         }
 
-        // Admin Security Authentication
+        // Admin authentication and management
         function handleAdminLogin(e) {
             e.preventDefault();
             const pwd = document.getElementById('adminPasswordInput').value;
-            if(pwd === 'admin123') {
-                showToastNotification("Admin authentication successful.");
+            if(pwd === 'admin2026') {
+                showToastNotification("Admin access authenticated successfully.");
                 switchView('admin-dashboard-view');
             } else {
-                alert("Incorrect admin password. (Default is admin123)");
+                alert("Incorrect admin password. Try 'admin2026'");
             }
         }
 
-        // Filtering & Search
-        function filterByDept(departmentName) {
+        function renderAdminInventoryTable() {
+            const container = document.getElementById('adminInventoryTableContainer');
+            let html = `<table style="width:100%; border-collapse:collapse; font-size:13px;">
+                <tr style="background:#f3f3f3; text-align:left;"><th style="padding:10px;">ID</th><th>Title</th><th>Vendor</th><th>Price</th><th>Action</th></tr>`;
+            marketplaceInventory.forEach(p => {
+                html += `<tr style="border-bottom:1px solid var(--border-color);">
+                    <td style="padding:10px;">#${p.id}</td><td>${p.title}</td><td>${p.vendor}</td><td>₹${p.price}</td>
+                    <td><button onclick="adminDeleteProduct(${p.id})" style="background:var(--danger); color:#fff; border:none; padding:4px 8px; border-radius:3px; cursor:pointer;">Remove</button></td>
+                </tr>`;
+            });
+            html += `</table>`;
+            container.innerHTML = html;
+        }
+
+        function adminDeleteProduct(id) {
+            marketplaceInventory = marketplaceInventory.filter(p => p.id !== id);
+            renderProductCatalog();
+            renderAdminInventoryTable();
+            showToastNotification("Product removed by admin.");
+        }
+
+        // Department filter & search
+        function filterByDept(dept) {
             switchView('home-view');
-            if(departmentName === 'All') renderProductCatalog(marketplaceInventory);
-            else renderProductCatalog(marketplaceInventory.filter(p => p.category === departmentName));
+            if(dept === 'All') renderProductCatalog(marketplaceInventory);
+            else renderProductCatalog(marketplaceInventory.filter(p => p.category === dept));
         }
 
         function executeGlobalSearch() {
             switchView('home-view');
-            const searchKeyword = document.getElementById('globalSearchInput').value.toLowerCase();
-            const selectedCategoryFilter = document.getElementById('searchCategorySelect').value;
-
-            const searchedResults = marketplaceInventory.filter(p => {
-                const matchesKeyword = p.title.toLowerCase().includes(searchKeyword) || p.vendor.toLowerCase().includes(searchKeyword);
-                const matchesCategory = selectedCategoryFilter === 'All' || p.category === selectedCategoryFilter;
-                return matchesKeyword && matchesCategory;
+            const keyword = document.getElementById('globalSearchInput').value.toLowerCase();
+            const cat = document.getElementById('searchCategorySelect').value;
+            const results = marketplaceInventory.filter(p => {
+                const matchKey = p.title.toLowerCase().includes(keyword) || p.vendor.toLowerCase().includes(keyword);
+                const matchCat = cat === 'All' || p.category === cat;
+                return matchKey && matchCat;
             });
-            renderProductCatalog(searchedResults);
+            renderProductCatalog(results);
         }
 
-        function showToastNotification(messageText) {
-            const toastEl = document.getElementById('toast-notification');
-            toastEl.innerText = messageText;
-            toastEl.style.display = 'block';
-            setTimeout(() => { toastEl.style.display = 'none'; }, 3000);
+        function executeOrderFinalization() {
+            if(shoppingCart.length === 0) {
+                alert("Cart is empty.");
+                return;
+            }
+            alert("Order placed successfully via SRP Secure Gateway! Tracking SMS dispatched.");
+            shoppingCart = [];
+            updateCartBadgeCount();
+            switchView('home-view');
         }
 
-        // Initialize App on Load
+        function showToastNotification(msg) {
+            const t = document.getElementById('toast-notification');
+            t.innerText = msg;
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 3000);
+        }
+
+        // Initial render execution
         renderProductCatalog();
     </script>
 </body>
