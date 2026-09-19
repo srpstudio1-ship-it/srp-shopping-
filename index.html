@@ -2054,7 +2054,36 @@ body.dark .source-box {
         grid-template-columns: 1fr;
     }
 }
-    </style>
+    
+/* Production payment/shipping integration UI */
+.production-gate{position:fixed;inset:0;z-index:500;background:rgba(6,12,24,.72);backdrop-filter:blur(9px);display:grid;place-items:center;padding:18px}
+.production-gate-card{width:min(760px,100%);background:var(--paper);color:var(--ink);border-radius:22px;box-shadow:0 30px 90px rgba(0,0,0,.35);overflow:hidden;border:1px solid var(--line)}
+.production-gate-top{padding:26px 28px;background:linear-gradient(135deg,#edf4ff,#fff8d9);border-bottom:1px solid var(--line)}
+.production-gate-brand{font-size:30px;font-weight:950;font-style:italic;color:var(--blue)}
+.production-gate-title{margin:8px 0 7px;font-size:27px;letter-spacing:-1px}
+.production-gate-copy{margin:0;color:var(--muted);font-size:12px;line-height:1.7;max-width:620px}
+.production-gate-body{padding:24px 28px}
+.production-gate-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.production-note{padding:12px 14px;border-radius:10px;background:var(--soft-blue);color:var(--muted);font-size:11px;line-height:1.6;margin-top:14px}
+.production-payment-card{margin-top:12px;padding:14px;border:1px solid var(--line);border-radius:11px;background:var(--paper)}
+.production-payment-card strong{display:block;font-size:12px}
+.production-payment-card small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+.production-payment-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.production-payment-actions a{display:inline-flex;align-items:center}
+.production-gallery-tools{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:7px}
+.production-gallery-preview{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:9px}
+.production-gallery-preview img{width:100%;height:76px;object-fit:cover;border-radius:7px;border:1px solid var(--line);background:#f5f7fb;padding:3px}
+.production-live-status{padding:10px 12px;border-radius:9px;background:var(--soft-green);color:var(--green);font-size:11px;font-weight:850;margin-bottom:12px}
+.production-live-status.warning{background:var(--soft-yellow);color:#7d6200}
+.production-live-status.error{background:var(--soft-red);color:var(--red)}
+.production-scan{display:grid;grid-template-columns:9px 1fr;gap:9px;padding:8px 0}
+.production-scan-dot{width:9px;height:9px;border-radius:50%;background:var(--blue);margin-top:5px}
+.production-scan strong{font-size:11px}
+.production-scan small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+@media(max-width:700px){.production-gate-actions{grid-template-columns:1fr}.production-gate-top,.production-gate-body{padding:20px}.production-gallery-preview{grid-template-columns:repeat(3,1fr)}}
+
+</style>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
     <div id="toastStack" class="toasts" aria-live="polite"></div>
@@ -4733,583 +4762,568 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<style id="srp-production-css">
-#srpProductionStatus strong{color:var(--brand)}
-.product-open{display:block}
-.notice-box{border:1px solid var(--line);border-radius:10px;padding:12px;background:#f7f9fc;color:#536074;font-size:11px;line-height:1.6}
-.no-scroll{overflow:hidden!important}
-.payment-option{transition:border-color .18s ease,background .18s ease}
-.payment-option:has(input:checked){border-color:#adc5f5;background:#f5f8ff}
-.srp-gallery-preview{display:flex;flex-wrap:wrap;gap:7px;margin-top:7px}
-.srp-gallery-preview img{width:70px;height:70px;object-fit:contain;border:1px solid var(--line);border-radius:7px;background:#f5f7fa;padding:4px}
-</style>
+<script id="srp-production-bridge">
+/*
+  SRP PRODUCTION BRIDGE
+  ---------------------
+  Browser responsibilities:
+    - account UX and existing 100% storefront feature set
+    - Razorpay Standard Checkout invocation
+    - gallery file selection / local persistence
+    - customer-facing live tracking refresh
+  Server responsibilities:
+    - authentication/JWT
+    - authoritative price/stock calculation
+    - Razorpay order creation
+    - Razorpay signature verification
+    - Razorpay payment-status verification
+    - webhook signature verification + deduplication
+    - internal order creation only after captured payment
+    - Shiprocket order/AWB creation
+    - live tracking API polling
+    - server-side order status changes
 
-
-<!-- SRP PRODUCTION INTEGRATION LAYER: server-backed auth, cart, Razorpay verification, UPI, webhooks, shipping tracking and persistent product-image uploads -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-(function SRPProductionLayer(){
-    "use strict";
-
-    const PRODUCTION = {
-        apiBase: "/api",
-        tokenKey: "srp_prod_token",
-        firstVisitKey: "srp_first_visit_seen",
-        config: null,
-        serverUser: null,
-        booted: false
+  IMPORTANT: no API secret is ever put in this HTML file.
+*/
+(function(){
+    const PROD_TOKEN_KEY = "srp-production-jwt";
+    const FIRST_VISIT_KEY = "srp-first-visit-gate-v4";
+    const PROD_CONFIG_KEY = "srp-production-config-cache";
+    const PROD_SESSION = {
+        get(){ return localStorage.getItem(PROD_TOKEN_KEY) || ""; },
+        set(value){ if(value) localStorage.setItem(PROD_TOKEN_KEY,value); else localStorage.removeItem(PROD_TOKEN_KEY); }
     };
+    state.production = state.production || {};
+    state.production.token = PROD_SESSION.get();
+    state.production.config = readJSON(PROD_CONFIG_KEY,{enabled:false,merchantUpiId:"8233615852@ptaxis",paymentLinkUrl:"https://rzp.io/rzp/juTBnc4Q",supportedMethods:["UPI","Card","Net Banking","Wallet"]});
+    state.production.trackingTimer = null;
+    state.production.gatewayBusy = false;
 
-    async function prodApi(path, options = {}) {
-        const cfg = { ...options, headers: { ...(options.headers || {}) } };
-        const token = localStorage.getItem(PRODUCTION.tokenKey) || localStorage.getItem("srp_token") || "";
-        if (token) cfg.headers.Authorization = "Bearer " + token;
-        if (cfg.body && typeof cfg.body === "object" && !(cfg.body instanceof FormData)) {
+    async function prodFetch(path, options={}){
+        const cfg = {...options};
+        cfg.headers = {...(options.headers||{})};
+        if(state.production.token) cfg.headers.Authorization = "Bearer " + state.production.token;
+        if(cfg.body && typeof cfg.body === "object" && !(cfg.body instanceof FormData)){
             cfg.headers["Content-Type"] = "application/json";
             cfg.body = JSON.stringify(cfg.body);
         }
-        const response = await fetch(PRODUCTION.apiBase + path, cfg);
-        const data = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(data.error || "The server rejected this request.");
+        const response = await fetch("/api" + path,cfg);
+        const data = await response.json().catch(()=>({}));
+        if(!response.ok){
+            if(response.status===401){state.production.token="";PROD_SESSION.set("");}
+            throw new Error(data.error || "Production server request failed.");
+        }
         return data;
     }
 
-    function hasServerSession(){
-        return Boolean(localStorage.getItem(PRODUCTION.tokenKey) || localStorage.getItem("srp_token"));
-    }
-
-    function syncSessionToken(token){
-        localStorage.setItem(PRODUCTION.tokenKey, token);
-        localStorage.setItem("srp_token", token);
-    }
-
-    function clearSessionToken(){
-        localStorage.removeItem(PRODUCTION.tokenKey);
-        localStorage.removeItem("srp_token");
-    }
-
-    function serverUserToLocal(serverUser){
+    function ensureLocalMirror(serverUser){
         if(!serverUser) return null;
-        const local = { ...serverUser };
-        local.passwordHash = "server-managed";
-        local.phone = local.phone || "";
-        local.preferences = local.preferences || {theme:"light"};
-        local.sellerId = local.sellerId || null;
-        state.db.users = Array.isArray(state.db.users) ? state.db.users : [];
-        const index = state.db.users.findIndex(u => u.id === local.id);
-        if(index >= 0) state.db.users[index] = { ...state.db.users[index], ...local };
-        else state.db.users.push(local);
-        state.db.carts[local.id] = state.db.carts[local.id] || [];
-        state.db.wishlists[local.id] = state.db.wishlists[local.id] || [];
-        state.db.savedForLater[local.id] = state.db.savedForLater[local.id] || [];
-        state.db.addresses[local.id] = state.db.addresses[local.id] || [];
-        return state.db.users.find(u=>u.id===local.id);
-    }
-
-    function requireProductionLogin(action){
-        if(user && hasServerSession()) return true;
-        toast("Sign in is required to " + action + ".", "error");
-        account.login();
-        return false;
-    }
-
-    function mergeProductFromServer(remote){
-        if(!remote || !remote.id) return;
-        const local = productById(remote.id);
-        if(local){
-            Object.assign(local, {
-                price: remote.price,
-                mrp: remote.mrp,
-                stock: remote.stock,
-                rating: remote.rating,
-                sellerId: remote.sellerId || remote.vendorId || local.sellerId,
-                sellerName: remote.sellerName,
-                source: remote.source,
-                sourceCheckedAt: remote.sourceCheckedAt,
-                images: Array.isArray(remote.images) && remote.images.length ? remote.images : local.images
-            });
+        let local = state.db.users.find(candidate => candidate.id === serverUser.id);
+        if(!local) local = state.db.users.find(candidate => candidate.email === serverUser.email);
+        if(!local){
+            local={
+                id:serverUser.id,
+                name:serverUser.name,
+                email:serverUser.email,
+                passwordHash:"server-managed",
+                role:serverUser.role,
+                status:serverUser.status||"active",
+                createdAt:now(),
+                phone:"",
+                sellerId:null,
+                preferences:{theme:"light"}
+            };
+            state.db.users.push(local);
         }else{
-            state.db.products.push({
-                ...remote,
-                sellerId: remote.sellerId || remote.vendorId,
-                category: remote.categoryName || remote.category,
-                images: remote.images || []
-            });
+            local.id=serverUser.id;
+            local.name=serverUser.name;
+            local.email=serverUser.email;
+            local.role=serverUser.role;
+            local.status=serverUser.status||"active";
         }
+        state.db.addresses[local.id]=state.db.addresses[local.id]||[];
+        state.db.carts[local.id]=state.db.carts[local.id]||[];
+        state.db.wishlists[local.id]=state.db.wishlists[local.id]||[];
+        state.db.savedForLater[local.id]=state.db.savedForLater[local.id]||[];
+        persist();
+        return local;
     }
 
-    async function syncCatalog(){
+    async function restoreProductionSession(){
+        if(!state.production.token) return false;
         try{
-            const data = await prodApi("/products?sort=popular");
-            (data.items || []).forEach(mergeProductFromServer);
-            persist();
-            if(state.route === "home") store.renderProducts();
-        }catch(error){
-            console.warn("Catalog sync skipped:", error.message);
-        }
-    }
-
-    async function syncCartFromServer(){
-        if(!hasServerSession() || !user) return;
-        try{
-            const data = await prodApi("/cart");
-            state.db.carts[user.id] = (data.items || []).map(item => ({productId:item.productId,quantity:Number(item.quantity || 1)}));
-            persist();
-            updateHeader();
-            if(state.route === "cart") cart.renderPage();
-        }catch(error){ console.warn("Cart sync failed:", error.message); }
-    }
-
-    async function syncWishlistFromServer(){
-        if(!hasServerSession() || !user) return;
-        try{
-            const items = await prodApi("/wishlist");
-            state.db.wishlists[user.id] = items.map(item=>item.id);
-            persist();
-        }catch(error){ console.warn("Wishlist sync failed:", error.message); }
-    }
-
-    async function serverRefreshSession(){
-        if(!hasServerSession()) return false;
-        try{
-            const me = await prodApi("/auth/me");
-            PRODUCTION.serverUser = me;
-            const local = serverUserToLocal(me);
-            setSession(local);
-            await Promise.all([syncCartFromServer(), syncWishlistFromServer()]);
+            const me=await prodFetch('/auth/me');
+            user=ensureLocalMirror(me);
             updateHeader();
             return true;
         }catch(error){
-            clearSessionToken();
-            PRODUCTION.serverUser = null;
+            state.production.token="";
+            PROD_SESSION.set("");
             return false;
         }
     }
 
-    function renderProductionStatus(){
-        let node = document.getElementById("srpProductionStatus");
-        if(!node){
-            node = document.createElement("div");
-            node.id = "srpProductionStatus";
-            node.style.cssText = "position:fixed;left:16px;bottom:16px;z-index:180;max-width:360px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--paper);box-shadow:0 10px 30px rgba(0,0,0,.12);font-size:10px;display:none";
-            document.body.appendChild(node);
+    async function loadProductionConfig(){
+        try{
+            state.production.config=await prodFetch('/payments/config');
+            writeJSON(PROD_CONFIG_KEY,state.production.config);
+        }catch(error){
+            /* Keep cached configuration; checkout will still fail closed if no live gateway is configured. */
         }
-        const p = PRODUCTION.config;
-        node.innerHTML = p ? `<strong>Payment:</strong> ${p.livePaymentsEnabled ? "Razorpay live mode configured" : "Gateway credentials required"}<br><strong>UPI:</strong> ${escapeHtml(p.merchantUpiId || "Not configured")}<br><strong>Shipping:</strong> ${p.liveShippingEnabled ? "Shiprocket live API configured" : "Shipping credentials required"}` : "Production configuration unavailable.";
     }
 
     function firstVisitGate(){
-        if(localStorage.getItem(PRODUCTION.firstVisitKey)==="1" || user) return;
-        const id = "srpFirstVisitGate";
-        if(document.getElementById(id)) return;
-        const wrap = document.createElement("div");
-        wrap.id = id;
-        wrap.style.cssText = "position:fixed;inset:0;z-index:260;background:rgba(3,7,18,.72);display:grid;place-items:center;padding:20px;backdrop-filter:blur(6px)";
-        wrap.innerHTML = `
-            <div class="modal" style="max-width:560px;width:100%;background:var(--paper);color:var(--ink);border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.35);overflow:hidden">
-                <div class="modal-head" style="padding:22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center"><div><span class="eyebrow">WELCOME TO SRP SHOPPING</span><h2 class="modal-title" style="margin:4px 0 0">Sign in for your shopping account</h2></div><span style="font-size:25px">🛍️</span></div>
-                <div class="modal-body" style="padding:22px">
-                    <p class="section-copy">You can skip for browsing, but you must sign in before adding products to your cart, buying, checking out, or managing an account.</p>
-                    <div style="display:grid;gap:9px;margin-top:18px"><button id="gateLogin" class="btn btn-primary">Sign in / Create account</button><button id="gateSkip" class="btn btn-outline">Skip for now</button></div>
+        if(localStorage.getItem(FIRST_VISIT_KEY)==='1' || user) return;
+        const node=document.createElement('div');
+        node.id='productionFirstVisitGate';
+        node.className='production-gate';
+        node.innerHTML=`
+            <div class="production-gate-card" role="dialog" aria-modal="true" aria-labelledby="productionGateTitle">
+                <div class="production-gate-top">
+                    <div class="production-gate-brand">SRP SHOPPING</div>
+                    <h2 id="productionGateTitle" class="production-gate-title">Sign in for your SRP Shopping journey</h2>
+                    <p class="production-gate-copy">You can browse without an account, but buying or adding any product to cart requires a signed-in customer account. Sign in now, create an account, or skip for this visit.</p>
+                </div>
+                <div class="production-gate-body">
+                    <div class="production-gate-actions">
+                        <button class="btn btn-primary" id="productionGateLogin">Sign in</button>
+                        <button class="btn btn-accent" id="productionGateRegister">Create account</button>
+                        <button class="btn btn-outline" id="productionGateSkip">Skip for now</button>
+                    </div>
+                    <div class="production-note">First visit only. Your choice is remembered on this browser. A future purchase still requires authentication even when you skip the gate.</div>
                 </div>
             </div>`;
-        document.body.appendChild(wrap);
-        document.body.classList.add("no-scroll");
-        document.getElementById("gateLogin").onclick = () => {
-            localStorage.setItem(PRODUCTION.firstVisitKey,"1");
-            wrap.remove(); document.body.classList.remove("no-scroll");
-            account.login();
+        document.body.appendChild(node);
+        document.body.classList.add('no-scroll');
+        document.getElementById('productionGateLogin').onclick=()=>{localStorage.setItem(FIRST_VISIT_KEY,'1');node.remove();document.body.classList.remove('no-scroll');account.login();};
+        document.getElementById('productionGateRegister').onclick=()=>{localStorage.setItem(FIRST_VISIT_KEY,'1');node.remove();document.body.classList.remove('no-scroll');account.register();};
+        document.getElementById('productionGateSkip').onclick=()=>{localStorage.setItem(FIRST_VISIT_KEY,'1');node.remove();document.body.classList.remove('no-scroll');toast('Browsing is open. Sign in is required to add products or buy.','info');};
+    }
+
+    function mirrorLocalOrder(serverOrder){
+        if(!serverOrder || !user) return null;
+        const existing=state.db.orders.find(order => order.id===serverOrder.id);
+        const localOrder={
+            id:serverOrder.id,
+            serverOrderId:serverOrder.id,
+            orderNumber:serverOrder.order_number,
+            userId:user.id,
+            items:(serverOrder.items||[]).map(item=>({
+                productId:item.product_id,
+                sellerId:item.seller_id,
+                name:item.name,
+                image:item.image||"",
+                quantity:Number(item.quantity),
+                price:Number(item.price)
+            })),
+            address:serverOrder.address||{},
+            paymentMethod:"Razorpay",
+            paymentStatus:serverOrder.payment_status,
+            paymentReference:serverOrder.razorpay_payment_id,
+            shippingStatus:(serverOrder.shipments||[])[0]?.status||"pending",
+            status:serverOrder.status,
+            totals:serverOrder.totals||{},
+            createdAt:serverOrder.created_at,
+            updatedAt:serverOrder.updated_at,
+            trackingNumber:(serverOrder.shipments||[])[0]?.awb||""
         };
-        document.getElementById("gateSkip").onclick = () => {
-            localStorage.setItem(PRODUCTION.firstVisitKey,"1");
-            wrap.remove(); document.body.classList.remove("no-scroll");
-            toast("Guest browsing enabled. Sign in before purchase actions.","info");
-        };
-    }
-
-    function addProductionGalleryInput(){
-        const imageField = document.getElementById("sellerProductImages");
-        if(!imageField || document.getElementById("sellerProductImageFiles")) return;
-        const label = document.createElement("label");
-        label.className = "full";
-        label.innerHTML = `Product image gallery<input id="sellerProductImageFiles" class="input" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple><small style="display:block;margin-top:5px;color:var(--muted)">Select multiple images directly from your gallery. Files are uploaded to the SRP server and the saved URLs are permanently attached to the product record.</small>`;
-        imageField.parentElement.parentElement.insertAdjacentElement("afterend", label);
-    }
-
-    async function uploadSellerImages(){
-        const fileInput = document.getElementById("sellerProductImageFiles");
-        if(!fileInput || !fileInput.files.length) return [];
-        const formData = new FormData();
-        Array.from(fileInput.files).forEach(file => formData.append("images", file));
-        const data = await prodApi("/uploads/product-images", {method:"POST", body:formData});
-        return data.urls || [];
-    }
-
-    async function createRazorpayPayment(){
-        if(!requireProductionLogin("complete payment")) return;
-        if(!PRODUCTION.config?.livePaymentsEnabled){
-            toast("Production Razorpay credentials are not configured on the server. No order can be placed without verified payment.","error");
-            return;
-        }
-        const address = state.checkoutAddress || {};
-        if(!address.name || !address.phone || !address.line1 || !address.city || !address.state || !address.pincode){
-            toast("Complete the delivery address first.","error");
-            state.checkoutStep = 1;
-            checkout.render();
-            return;
-        }
-        try{
-            const paymentOrder = await prodApi("/payments/razorpay/order", {
-                method:"POST",
-                body:{address, couponCode:state.checkoutCoupon || ""}
-            });
-            const options = {
-                key: paymentOrder.keyId,
-                amount: paymentOrder.amount,
-                currency: paymentOrder.currency || "INR",
-                name: state.db.settings.storeName || "SRP Shopping",
-                description: "SRP Shopping order payment",
-                order_id: paymentOrder.orderId,
-                prefill: {name:user.name, email:user.email, contact:user.phone || address.phone || ""},
-                notes: {srp_intent_id:paymentOrder.intentId},
-                theme: {color:"#2874f0"},
-                method: {upi:true,card:true,netbanking:true,wallet:true},
-                handler: async function(response){
-                    try{
-                        toast("Payment received. Verifying with SRP server...","info");
-                        const result = await prodApi("/payments/razorpay/verify", {
-                            method:"POST",
-                            body:{
-                                intentId:paymentOrder.intentId,
-                                razorpay_order_id:response.razorpay_order_id,
-                                razorpay_payment_id:response.razorpay_payment_id,
-                                razorpay_signature:response.razorpay_signature
-                            }
-                        });
-                        if(!result.verified || !result.order){
-                            toast("Payment verification failed. The order was not placed.","error");
-                            return;
-                        }
-                        syncLocalOrderFromServer(result.order);
-                        await syncCatalog();
-                        await syncCartFromServer();
-                        openVerifiedOrderSuccess(result.order);
-                    }catch(error){
-                        toast(error.message || "Payment verification failed. The order was not placed.","error");
-                    }
-                },
-                modal:{ondismiss:function(){toast("Payment window closed. No order was placed.","info");}},
-                retry:{enabled:true}
-            };
-            const razorpay = new window.Razorpay(options);
-            razorpay.on("payment.failed", function(){ toast("Razorpay reported a failed payment. No order was placed.","error"); });
-            razorpay.open();
-        }catch(error){
-            toast(error.message,"error");
-        }
-    }
-
-    function syncLocalOrderFromServer(order){
-        const local = {
-            id:order.id,
-            orderNumber:order.orderNumber,
-            userId:order.userId,
-            items:(order.items||[]).map(item=>({productId:item.productId,sellerId:item.sellerId, name:item.name, image:item.image, quantity:item.quantity, price:item.price})),
-            address:order.address,
-            paymentMethod:order.paymentMethod,
-            paymentStatus:order.paymentStatus,
-            paymentReference:order.paymentReference,
-            shippingStatus:order.shippingStatus,
-            status:order.status,
-            totals:{subtotal:order.totals.subtotal,discount:order.totals.discount,shipping:order.totals.shipping,tax:order.totals.tax,total:order.totals.total,coupon:order.totals.coupon || null},
-            createdAt:order.createdAt,
-            updatedAt:order.updatedAt,
-            trackingNumber:order.trackingNumber || "",
-            razorpayOrderId:order.razorpayOrderId,
-            shiprocketShipmentId:order.shiprocketShipmentId,
-            shippingProvider:order.shippingProvider
-        };
-        state.db.orders = Array.isArray(state.db.orders) ? state.db.orders : [];
-        const index = state.db.orders.findIndex(o=>o.id===local.id);
-        if(index>=0) state.db.orders[index]=local; else state.db.orders.unshift(local);
-        state.db.carts[user.id]=[];
+        if(existing) Object.assign(existing,localOrder); else state.db.orders.unshift(localOrder);
+        state.db.payments=state.db.payments||[];
+        const existingPayment=state.db.payments.find(p=>p.id===localOrder.paymentReference);
+        const payment={id:localOrder.paymentReference,orderId:localOrder.id,userId:user.id,method:'Razorpay',status:'captured',amount:Number(localOrder.totals.total||0),createdAt:localOrder.createdAt};
+        if(existingPayment) Object.assign(existingPayment,payment); else state.db.payments.unshift(payment);
         persist();
-        updateHeader();
+        return localOrder;
     }
 
-    function openVerifiedOrderSuccess(order){
-        openModal(`
-            <div class="modal-head"><h2 class="modal-title">Payment verified — order confirmed</h2><button class="close" onclick="closeModal()">×</button></div>
-            <div class="modal-body">
-                <div class="empty">
-                    <div class="empty-icon">✓</div>
-                    <div class="empty-title">${escapeHtml(order.orderNumber)}</div>
-                    <div class="empty-copy">Razorpay payment ${escapeHtml(order.paymentReference || "captured")} was verified server-side. The order was created only after captured-payment verification.</div>
-                    <div class="data-item" style="margin-top:14px;text-align:left"><strong>Shipping</strong><small>${escapeHtml(order.trackingNumber || "Shipment pending courier assignment")}</small></div>
-                    <div style="display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap"><button class="btn btn-primary" onclick="closeModal();account.showOrder('${escapeHtml(order.id)}')">Track order</button><button class="btn btn-outline" onclick="closeModal();router.go('home')">Continue shopping</button></div>
-                </div>
-            </div>`);
+    async function requireProductionAuth(){
+        if(state.production.token && user) return true;
+        const restored=await restoreProductionSession();
+        if(restored) return true;
+        account.login();
+        return false;
     }
 
-    async function openLiveOrder(id){
-        if(!requireProductionLogin("view order tracking")) return;
+    async function startRazorpayCheckout(){
+        if(state.production.gatewayBusy) return;
+        state.production.gatewayBusy=true;
         try{
-            const order = await prodApi("/orders/"+encodeURIComponent(id));
-            syncLocalOrderFromServer(order);
-            let tracking = {available:false,events:[]};
-            try{ tracking = await prodApi("/orders/"+encodeURIComponent(id)+"/tracking"); }catch(error){ tracking = {available:false,error:error.message,events:[]}; }
-            const flow = ["confirmed","packed","shipped","out_for_delivery","delivered"];
-            const idx = flow.indexOf(order.status);
-            const liveEvents = tracking.events || [];
-            openModal(`
-                <div class="modal-head"><h2 class="modal-title">Track ${escapeHtml(order.orderNumber)}</h2><button class="close" onclick="closeModal()">×</button></div>
-                <div class="modal-body">
-                    <div class="data-item"><strong>Payment</strong><small>${escapeHtml(order.paymentStatus)} · ${escapeHtml(order.paymentReference || "")}</small></div>
-                    <div class="data-item" style="margin-top:8px"><strong>Shipping provider</strong><small>${escapeHtml(order.shippingProvider || "Shiprocket")}</small></div>
-                    <div class="data-item" style="margin-top:8px"><strong>AWB / Tracking</strong><small>${escapeHtml(order.trackingNumber || "Not assigned yet")}</small></div>
-                    <div class="data-list" style="margin-top:12px">${flow.map((status,i)=>`<div class="data-item"><strong>${i<=idx?"✓":"○"} ${escapeHtml(status.replace(/_/g," "))}</strong><small>${i<=idx?"Recorded by the SRP order lifecycle.":"Awaiting server-side shipment update."}</small></div>`).join("")}</div>
-                    <h3 style="margin:16px 0 8px;font-size:14px">Live courier events</h3>
-                    ${liveEvents.length?liveEvents.map(e=>`<div class="data-item"><strong>${escapeHtml(e.status||"Update")}</strong><small>${escapeHtml(e.location||"")} ${escapeHtml(e.timestamp||"")}</small></div>`).join(""): `<div class="notice-box">${escapeHtml(tracking.error || "No live courier event is available yet. The page will show updates after Shiprocket assigns and reports the shipment.")}</div>`}
-                    <button class="btn btn-primary" style="margin-top:12px" onclick="account.showOrder('${escapeHtml(id)}')">Refresh tracking</button>
-                </div>`);
-        }catch(error){ toast(error.message,"error"); }
-    }
-
-    async function loadProductionConfig(){
-        try{
-            PRODUCTION.config = await prodApi("/production/config");
+            if(!(await requireProductionAuth())) return;
+            const items=getCart().map(item=>({productId:item.productId,quantity:item.quantity}));
+            if(!items.length){toast('Your cart is empty.','error');return;}
+            for(const item of items){
+                const product=productById(item.productId);
+                if(!product || product.status!=='active' || Number(product.stock)<Number(item.quantity)) throw new Error(`Stock changed for ${product?.name||'a product'}.`);
+            }
+            await loadProductionConfig();
+            if(!state.production.config.enabled){
+                showProductionPaymentSetupError();
+                return;
+            }
+            const create=await prodFetch('/payments/create-order',{method:'POST',body:{items,address:state.checkoutAddress,paymentMethod:state.checkoutPayment,couponCode:state.checkoutCoupon||null}});
+            if(!window.Razorpay) throw new Error('Razorpay Checkout could not load. Check network access to checkout.razorpay.com.');
+            const razorpayOptions={
+                key:create.keyId,
+                amount:create.amount,
+                currency:create.currency,
+                name:'SRP Shopping',
+                description:'SRP Shopping marketplace order',
+                order_id:create.orderId,
+                prefill:{name:user?.name||'',email:user?.email||'',contact:state.checkoutAddress.phone||''},
+                notes:{merchant_upi_id:create.merchantUpiId||state.production.config.merchantUpiId||''},
+                theme:{color:'#2874f0'},
+                handler:async function(response){
+                    await verifyRazorpayPayment(create,response);
+                },
+                modal:{ondismiss:function(){state.production.gatewayBusy=false;toast('Payment window closed. No order was placed.','info');}}
+            };
+            if(state.checkoutPayment==='UPI') razorpayOptions.config={display:{blocks:{preferred:{name:'Preferred payment methods',instruments:[{method:'upi'}]}}},sequence:['block.preferred'],preferences:{show_default_blocks:false}};
+            if(state.checkoutPayment==='Card') razorpayOptions.config={display:{blocks:{preferred:{name:'Card',instruments:[{method:'card'}]}}},sequence:['block.preferred'],preferences:{show_default_blocks:false}};
+            if(state.checkoutPayment==='Net Banking') razorpayOptions.config={display:{blocks:{preferred:{name:'Net Banking',instruments:[{method:'netbanking'}]}}},sequence:['block.preferred'],preferences:{show_default_blocks:false}};
+            if(state.checkoutPayment==='Wallet') razorpayOptions.config={display:{blocks:{preferred:{name:'Wallet',instruments:[{method:'wallet'}]}}},sequence:['block.preferred'],preferences:{show_default_blocks:false}};
+            const checkoutInstance=new Razorpay(razorpayOptions);
+            checkoutInstance.on('payment.failed',function(response){state.production.gatewayBusy=false;toast(response.error?.description||'Payment failed. No order was placed.','error');});
+            checkoutInstance.open();
         }catch(error){
-            PRODUCTION.config = {livePaymentsEnabled:false,liveShippingEnabled:false,merchantUpiId:"8233615852@ptaxis",razorpayPaymentLink:"https://rzp.io/rzp/juTBnc4Q"};
+            toast(error.message,'error');
+        }finally{
+            if(!window.Razorpay || !state.production.config.enabled) state.production.gatewayBusy=false;
         }
-        renderProductionStatus();
     }
 
-    function patchAccount(){
-        const originalLogin = account.submitLogin.bind(account);
-        account.submitLogin = async function(){
-            const email = el("loginEmail").value.trim().toLowerCase();
-            const password = el("loginPassword").value;
-            try{
-                const data = await prodApi("/auth/login",{method:"POST",body:{email,password}});
-                syncSessionToken(data.token);
-                const local = serverUserToLocal(data.user);
-                setSession(local);
-                await Promise.all([syncCartFromServer(),syncWishlistFromServer()]);
-                closeModal();
-                localStorage.setItem(PRODUCTION.firstVisitKey,"1");
-                updateHeader();
-                toast(`Welcome ${escapeHtml(local.name)}.`,"success");
-                if(state.route!=="home") router.go("home");
-            }catch(error){
-                toast(error.message,"error");
-            }
-        };
-        account.submitRegister = async function(){
-            const name=el("registerName").value.trim();
-            const email=el("registerEmail").value.trim().toLowerCase();
-            const password=el("registerPassword").value;
-            const confirm=el("registerConfirm").value;
-            if(!name||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||password.length<8||password!==confirm){toast("Use a valid email and a matching password of at least 8 characters.","error");return;}
-            try{
-                const data=await prodApi("/auth/register",{method:"POST",body:{name,email,password}});
-                syncSessionToken(data.token);
-                const local=serverUserToLocal(data.user);
-                setSession(local);
-                await syncCartFromServer();
-                closeModal();
-                localStorage.setItem(PRODUCTION.firstVisitKey,"1");
-                updateHeader();
-                toast("Account created successfully.","success");
-            }catch(error){toast(error.message,"error");}
-        };
-        account.logout = function(){
-            clearSessionToken();
-            setSession(null);
+    async function verifyRazorpayPayment(create,response){
+        try{
+            const verified=await prodFetch('/payments/verify',{method:'POST',body:{intentId:create.intentId,razorpay_order_id:response.razorpay_order_id,razorpay_payment_id:response.razorpay_payment_id,razorpay_signature:response.razorpay_signature}});
+            const localOrder=mirrorLocalOrder(verified.order);
+            state.db.carts[user.id]=[];
+            persist();
             updateHeader();
-            toast("Signed out.","success");
-            router.go("home");
-        };
-        account.showOrder = openLiveOrder;
-        const originalPassword = account.savePassword?.bind(account);
-        account.savePassword = async function(){
-            const oldPassword=el("oldPassword")?.value || "";
-            const newPassword=el("newPassword")?.value || "";
-            const confirm=el("newPasswordConfirm")?.value || "";
-            if(newPassword.length<8||newPassword!==confirm){toast("Use a new password of at least 8 characters and confirm it.","error");return;}
-            try{
-                await prodApi("/profile",{method:"PATCH",body:{newPassword}});
-                closeModal(); toast("Password changed on the server.","success");
-            }catch(error){toast(error.message,"error");}
-        };
-    }
-
-    function patchStore(){
-        store.addToCart = async function(id, quantity=1){
-            if(!requireProductionLogin("add a product to your cart")) return;
-            const product=productById(id);
-            if(!product||product.status!=="active"){toast("Product is unavailable.","error");return;}
-            if(Number(product.stock)<=0){toast("This product is out of stock.","error");return;}
-            try{
-                await prodApi("/cart",{method:"POST",body:{productId:id,quantity:Number(quantity)}});
-                await syncCartFromServer();
-                toast("Added to cart.","success");
-            }catch(error){toast(error.message,"error");}
-        };
-        store.buyNow = async function(id){
-            if(!requireProductionLogin("buy a product")) return;
-            await store.addToCart(id,1);
-            router.go("cart");
-        };
-        store.toggleWishlist = async function(id){
-            if(!requireProductionLogin("use your wishlist")) return;
-            try{
-                const result=await prodApi("/wishlist/"+encodeURIComponent(id),{method:"POST"});
-                const list=state.db.wishlists[user.id] || (state.db.wishlists[user.id]=[]);
-                const index=list.indexOf(id);
-                if(result.active && index<0)list.push(id);
-                if(!result.active && index>=0)list.splice(index,1);
-                persist(); updateHeader(); store.renderProducts(); toast(result.active?"Added to wishlist.":"Removed from wishlist.","success");
-            }catch(error){toast(error.message,"error");}
-        };
-    }
-
-    function patchCart(){
-        cart.add = function(id){return store.addToCart(id,1);};
-        cart.updateQty = async function(id,quantity){
-            if(!requireProductionLogin("change cart quantities")) return;
-            try{await prodApi("/cart/"+encodeURIComponent(id),{method:"PATCH",body:{quantity:Number(quantity)}});await syncCartFromServer();cart.renderPage();}catch(error){toast(error.message,"error");}
-        };
-        cart.remove = async function(id){
-            if(!requireProductionLogin("remove cart items")) return;
-            try{await prodApi("/cart/"+encodeURIComponent(id),{method:"DELETE"});await syncCartFromServer();cart.renderPage();toast("Item removed.","success");}catch(error){toast(error.message,"error");}
-        };
-        cart.clear = async function(){
-            if(!requireProductionLogin("clear your cart")) return;
-            for(const item of getCart()) await prodApi("/cart/"+encodeURIComponent(item.productId),{method:"DELETE"});
-            await syncCartFromServer();cart.renderPage();toast("Cart cleared.","success");
-        };
-        const originalRender = cart.renderPage.bind(cart);
-        cart.renderPage = async function(){
-            if(!requireProductionLogin("open your cart")) return;
-            await syncCartFromServer();
-            originalRender();
-        };
-    }
-
-    function patchCheckout(){
-        checkout.paymentStep = function(){
-            const live = Boolean(PRODUCTION.config?.livePaymentsEnabled);
-            const vpa = PRODUCTION.config?.merchantUpiId || "8233615852@ptaxis";
-            return `
-                <div class="form">
-                    <div><span class="eyebrow">RAZORPAY SECURE CHECKOUT</span><h2 style="margin:3px 0 0;font-size:18px">Choose your payment method</h2></div>
-                    <div class="notice-box" style="background:${live?"#eaf8f2":"#fff4e5"};color:${live?"#087f5b":"#8a5b00"}">${live?"Live Razorpay credentials are configured. Your order is created only after server-side payment verification.":"Razorpay credentials are not configured on this server yet. Payment and order placement are intentionally blocked."}</div>
-                    <label class="payment-option"><input type="radio" name="pay" value="UPI" ${state.checkoutPayment === "UPI" ? "checked" : ""}><span class="payment-title">UPI via Razorpay</span><span class="payment-copy">Pay using UPI inside Razorpay Checkout. Merchant VPA: ${escapeHtml(vpa)}</span></label>
-                    <label class="payment-option"><input type="radio" name="pay" value="Card" ${state.checkoutPayment === "Card" ? "checked" : ""}><span class="payment-title">Cards</span><span class="payment-copy">Razorpay handles card collection. Card secrets never enter SRP server code.</span></label>
-                    <label class="payment-option"><input type="radio" name="pay" value="Net Banking" ${state.checkoutPayment === "Net Banking" ? "checked" : ""}><span class="payment-title">Net Banking</span><span class="payment-copy">Supported bank methods are presented by Razorpay Checkout.</span></label>
-                    <label class="payment-option"><input type="radio" name="pay" value="Wallet" ${state.checkoutPayment === "Wallet" ? "checked" : ""}><span class="payment-title">Wallet</span><span class="payment-copy">Supported wallets are provided through Razorpay Checkout.</span></label>
-                    <div class="data-item"><strong>UPI ID reference</strong><small>${escapeHtml(vpa)} <button class="btn btn-outline" style="padding:4px 8px;margin-left:5px" onclick="navigator.clipboard?.writeText('${escapeHtml(vpa)}');toast('UPI ID copied. Payment is still verified through Razorpay.','info')">Copy</button></small></div>
-                    <div class="data-item"><strong>Hosted Razorpay payment link</strong><small><a href="${escapeHtml(PRODUCTION.config?.razorpayPaymentLink || "https://rzp.io/rzp/juTBnc4Q")}" target="_blank" rel="noopener noreferrer" style="text-decoration:underline">Open provided Razorpay link</a><br>That link is not used for dynamic cart orders because SRP must bind the exact cart total to a server-created Razorpay order.</small></div>
-                    <label>Coupon code<div style="display:flex;gap:7px"><input id="couponInput" class="input" value="${escapeHtml(state.checkoutCoupon)}" placeholder="WELCOME10"><button class="btn btn-outline" onclick="checkout.applyCoupon()">Apply</button></div></label>
-                    <div style="display:flex;gap:8px"><button class="btn btn-outline" onclick="state.checkoutStep=1;checkout.render()">Back</button><button class="btn btn-primary" onclick="checkout.nextPayment()" ${live?"":"disabled"}>Review order</button></div>
-                </div>`;
-        };
-        checkout.applyCoupon = async function(){
-            const code=el("couponInput")?.value.trim() || "";
-            if(!code){toast("Enter a coupon code.","error");return;}
-            try{
-                const quote=await prodApi("/checkout/quote",{method:"POST",body:{couponCode:code}});
-                if(!quote.coupon){toast("Coupon is invalid or the minimum order is not met.","error");return;}
-                state.checkoutCoupon=code.toUpperCase();
-                state.serverQuote=quote;
-                toast(`Coupon ${state.checkoutCoupon} applied.`,"success");
-                checkout.render();
-            }catch(error){toast(error.message,"error");}
-        };
-        checkout.reviewStep = function(){
-            const a=state.checkoutAddress;
-            const quote=state.serverQuote || checkout.totals();
-            return `<div class="form"><div><span class="eyebrow">FINAL REVIEW</span><h2 style="margin:3px 0 0;font-size:18px">Payment required before order creation</h2></div><div class="notice-box">Clicking <strong>Pay securely with Razorpay</strong> opens the live payment gateway. SRP creates the actual order only after the Razorpay payment signature and captured amount are verified by the server. Closing or failing payment creates no order.</div><div class="data-item"><strong>Delivery</strong><small>${escapeHtml(a.name)} · ${escapeHtml(a.phone)}<br>${escapeHtml(a.line1)}${a.line2?`<br>${escapeHtml(a.line2)}`:""}<br>${escapeHtml(a.city)}, ${escapeHtml(a.state)} — ${escapeHtml(a.pincode)}</small></div><div class="data-item"><strong>Payment method</strong><small>${escapeHtml(state.checkoutPayment)} via Razorpay</small></div><div class="data-item"><strong>Total payable</strong><small style="font-size:16px;font-weight:950;color:var(--brand)">${money(quote.total)}</small></div><div style="display:flex;gap:8px"><button class="btn btn-outline" onclick="state.checkoutStep=2;checkout.render()">Back</button><button class="btn btn-accent" onclick="checkout.placeOrder()">Pay securely with Razorpay</button></div></div>`;
-        };
-        checkout.placeOrder = createRazorpayPayment;
-    }
-
-    function patchOrdersInSellerAndAdmin(){
-        if(typeof seller !== "undefined" && seller.updateOrder){
-            seller.updateOrder = async function(id,status){
-                if(!status || !requireProductionLogin("update seller orders")) return;
-                try{
-                    const trackingNumber = status === "shipped" ? (prompt("AWB / tracking number (optional)","") || "") : "";
-                    const order=await prodApi("/seller/orders/"+encodeURIComponent(id)+"/status",{method:"PATCH",body:{status,trackingNumber}});
-                    syncLocalOrderFromServer(order);
-                    router.renderSellerPage();
-                    toast("Server order status updated.","success");
-                }catch(error){toast(error.message,"error");}
-            };
-        }
-        if(typeof admin !== "undefined" && admin.updateOrder){
-            admin.updateOrder = async function(id,status){
-                if(!status || !user || user.role!=="admin"){toast("Admin login required.","error");return;}
-                try{
-                    const order=await prodApi("/seller/orders/"+encodeURIComponent(id)+"/status",{method:"PATCH",body:{status}});
-                    syncLocalOrderFromServer(order);
-                    router.renderAdminPage();
-                    toast("Server order status updated.","success");
-                }catch(error){toast(error.message,"error");}
-            };
+            state.production.gatewayBusy=false;
+            closeModal();
+            openProductionOrderSuccess(localOrder,verified.order);
+        }catch(error){
+            state.production.gatewayBusy=false;
+            toast(error.message||'Payment verification failed. The order was not placed.','error');
         }
     }
 
-    function patchSellerImageGallery(){
-        if(typeof seller === "undefined" || !seller.productForm || !seller.saveProduct) return;
-        const originalForm = seller.productForm.bind(seller);
-        seller.productForm = function(id=""){
-            const result = originalForm(id);
-            setTimeout(addProductionGalleryInput, 0);
-            return result;
-        };
-        const originalSave = seller.saveProduct.bind(seller);
-        seller.saveProduct = async function(id){
-            const fileInput = document.getElementById("sellerProductImageFiles");
-            if(fileInput && fileInput.files.length){
-                try{
-                    const urls = await uploadSellerImages();
-                    const textarea = document.getElementById("sellerProductImages");
-                    if(textarea) textarea.value = [textarea.value, ...urls].filter(Boolean).join("\n");
-                    toast(`${urls.length} gallery image(s) uploaded to the SRP server.`,"success");
-                }catch(error){
-                    toast(error.message,"error");
-                    return;
-                }
+    function showProductionPaymentSetupError(){
+        openModal(`<div class="modal-head"><h2 class="modal-title">Payment gateway not configured</h2><button class="close" onclick="closeModal()">×</button></div><div class="modal-body"><div class="notice-box">SRP Shopping is fail-closed: an order cannot be created from this browser until the server has valid Razorpay Live API credentials and webhook secret configured. No payment means no order.</div><div class="production-payment-card"><strong>Merchant UPI</strong><small>${escapeHtml(state.production.config.merchantUpiId||'8233615852@ptaxis')} is used as the merchant reference. Manual UPI transfers are not accepted as payment proof.</small><div class="production-payment-actions"><a class="btn btn-outline" href="${escapeHtml(state.production.config.paymentLinkUrl||'https://rzp.io/rzp/juTBnc4Q')}" target="_blank" rel="noopener noreferrer">Open Razorpay payment link</a></div></div></div>`,true);
+    }
+
+    function openProductionOrderSuccess(localOrder,serverOrder){
+        const shipment=(serverOrder?.shipments||[])[0];
+        openModal(`<div class="modal-head"><h2 class="modal-title">Payment verified · Order confirmed</h2><button class="close" onclick="closeModal();router.go('account')">×</button></div><div class="modal-body"><div class="empty"><div class="empty-icon">✓</div><div class="empty-title">${escapeHtml(localOrder.orderNumber)}</div><div class="empty-copy">Razorpay returned a captured payment and the server verified it before the order was created. ${shipment?.awb?`AWB ${escapeHtml(shipment.awb)} is assigned.`:'Shipping assignment is processing on the server.'}</div><div style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:13px"><button class="btn btn-primary" onclick="closeModal();account.showOrder('${escapeHtml(localOrder.id)}')">Live tracking</button><button class="btn btn-outline" onclick="closeModal();account.orders()">My orders</button></div></div></div>`,true);
+    }
+
+    function liveTrackingHtml(order){
+        const shipments=order.shipments||[];
+        if(!shipments.length) return `<div class="production-live-status warning">Shipping is being prepared. The server has not assigned an AWB yet.</div>`;
+        const shipment=shipments[0];
+        const raw=shipment.tracking||shipment.tracking_json||{};
+        const scans=raw?.tracking_data?.shipment_track_activities || raw?.tracking_data?.scans || raw?.scans || [];
+        const current=shipment.status||raw?.tracking_data?.shipment_status||'Awaiting carrier update';
+        return `<div class="production-live-status">Live carrier status: ${escapeHtml(current)}${shipment.awb?` · AWB ${escapeHtml(shipment.awb)}`:''}${shipment.courier_name?` · ${escapeHtml(shipment.courier_name)}`:''}</div><div class="data-item"><strong>Last server sync</strong><small>${escapeHtml(shipment.last_synced_at||'Not synced yet')}</small></div>${scans.length?`<div class="data-list" style="margin-top:10px">${scans.slice(0,12).map(scan=>`<div class="production-scan"><span class="production-scan-dot"></span><div><strong>${escapeHtml(scan['activity']||scan.activity||scan.status||'Tracking update')}</strong><small>${escapeHtml(scan.location||scan.location_name||'')}${scan.date?` · ${escapeHtml(scan.date)}`:''}${scan.time?` ${escapeHtml(scan.time)}`:''}</small></div></div>`).join('')}</div>`:'<div class="section-copy" style="margin-top:10px">Carrier scan events are not available yet.</div>'}`;
+    }
+
+    async function openServerOrder(id){
+        try{
+            const order=await prodFetch('/orders/'+encodeURIComponent(id));
+            mirrorLocalOrder(order);
+            openModal(`<div class="modal-head"><h2 class="modal-title">Live tracking · ${escapeHtml(order.order_number)}</h2><button class="close" onclick="closeModal()">×</button></div><div class="modal-body"><div class="data-item"><strong>Payment</strong><small>Razorpay · ${escapeHtml(order.payment_status)}</small></div><div style="margin-top:12px">${liveTrackingHtml(order)}</div><div class="hero-actions"><button class="btn btn-primary" onclick="refreshServerOrder('${escapeHtml(order.id)}')">Refresh live tracking</button><button class="btn btn-outline" onclick="window.open('${escapeHtml(order.shipments?.[0]?.awb?`https://www.shiprocket.in/shipment-tracking/`: '#')}','_blank')" ${order.shipments?.[0]?.awb?'':'disabled'}>Carrier tracking</button></div></div>`,true);
+            if(state.production.trackingTimer) clearInterval(state.production.trackingTimer);
+            if(order.shipments?.[0]?.awb) state.production.trackingTimer=setInterval(()=>refreshServerOrder(id,true),60000);
+        }catch(error){toast(error.message,'error');}
+    }
+    async function refreshServerOrder(id,silent=false){
+        try{
+            const order=await prodFetch('/orders/'+encodeURIComponent(id));
+            mirrorLocalOrder(order);
+            if(!silent) openServerOrder(id);
+        }catch(error){if(!silent)toast(error.message,'error');}
+    }
+
+    function injectGalleryField(textareaId, previewId){
+        const input=el(textareaId);
+        if(!input || document.getElementById('galleryInput_'+textareaId)) return;
+        const currentValue=input.value;
+        if(input.tagName.toLowerCase()==='input'){
+            const area=document.createElement('textarea');
+            area.className='input';area.id=textareaId;area.value=currentValue;area.rows=4;
+            input.replaceWith(area);
+        }
+        const host=document.createElement('div');
+        host.className='production-gallery-tools';
+        host.innerHTML=`<input id="galleryInput_${textareaId}" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple class="hidden"><button type="button" class="btn btn-outline" id="galleryButton_${textareaId}">Choose from device gallery</button><span class="section-copy">Selected images are compressed and stored in this browser with the product.</span></div><div id="galleryPreview_${textareaId}" class="production-gallery-preview"></div>`;
+        el(textareaId).insertAdjacentElement('afterend',host);
+        const fileInput=document.getElementById('galleryInput_'+textareaId);
+        document.getElementById('galleryButton_'+textareaId).onclick=()=>fileInput.click();
+        fileInput.onchange=async()=>{
+            const dataUrls=[];
+            for(const file of [...fileInput.files].slice(0,8)){
+                try{dataUrls.push(await compressImageFile(file));}catch(error){toast(`Could not read ${file.name}.`,'error');}
             }
-            return originalSave(id);
+            const existing=el(textareaId).value.split(/\n+/).map(v=>v.trim()).filter(Boolean);
+            const merged=[...existing,...dataUrls].slice(0,8);
+            el(textareaId).value=merged.join('\n');
+            renderGalleryPreview(textareaId,merged);
         };
+        renderGalleryPreview(textareaId,currentValue.split(/\n+/).map(v=>v.trim()).filter(Boolean));
     }
 
-    function hookFirstVisit(){
-        setTimeout(firstVisitGate, 500);
+    function renderGalleryPreview(id,images){
+        const preview=document.getElementById('galleryPreview_'+id);
+        if(!preview) return;
+        preview.innerHTML=images.slice(0,8).map(src=>`<img src="${escapeHtml(src)}" alt="Selected product image">`).join('');
     }
 
-    async function productionBoot(){
-        if(PRODUCTION.booted) return;
-        PRODUCTION.booted = true;
+    function compressImageFile(file){
+        return new Promise((resolve,reject)=>{
+            const reader=new FileReader();
+            reader.onerror=()=>reject(reader.error||new Error('File read failed'));
+            reader.onload=()=>{
+                const img=new Image();
+                img.onload=()=>{
+                    const max=1400;
+                    const scale=Math.min(1,max/Math.max(img.width,img.height));
+                    const canvas=document.createElement('canvas');
+                    canvas.width=Math.max(1,Math.round(img.width*scale));
+                    canvas.height=Math.max(1,Math.round(img.height*scale));
+                    const ctx=canvas.getContext('2d');
+                    ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);
+                    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+                    resolve(canvas.toDataURL('image/jpeg',0.82));
+                };
+                img.onerror=()=>reject(new Error('Image decode failed'));
+                img.src=reader.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function withFirstVisit(fn){
+        return function(){ localStorage.setItem(FIRST_VISIT_KEY,'1'); return fn.apply(this,arguments); };
+    }
+
+    // Real server authentication overrides the previous single-file credential simulation.
+    const originalLogin=account.submitLogin.bind(account);
+    account.submitLogin=async function(){
+        const email=el('loginEmail')?.value.trim().toLowerCase();
+        const password=el('loginPassword')?.value||'';
+        if(!email || !password){toast('Enter email and password.','error');return;}
+        try{
+            const data=await prodFetch('/auth/login',{method:'POST',body:{email,password}});
+            state.production.token=data.token;PROD_SESSION.set(data.token);
+            user=ensureLocalMirror(data.user);
+            localStorage.setItem(FIRST_VISIT_KEY,'1');
+            closeModal();updateHeader();await loadProductionConfig();
+            toast(`Welcome ${escapeHtml(user.name)}.`,'success');
+            router.go('home');
+        }catch(error){
+            toast(error.message,'error');
+        }
+    };
+    const originalRegister=account.submitRegister.bind(account);
+    account.submitRegister=async function(){
+        const name=el('registerName')?.value.trim();
+        const email=el('registerEmail')?.value.trim().toLowerCase();
+        const password=el('registerPassword')?.value||'';
+        const confirm=el('registerConfirm')?.value||'';
+        if(!name || !/^\S+@\S+\.\S+$/.test(email) || password.length<6 || password!==confirm){toast('Enter valid account details and matching password.','error');return;}
+        try{
+            const data=await prodFetch('/auth/register',{method:'POST',body:{name,email,password}});
+            state.production.token=data.token;PROD_SESSION.set(data.token);
+            user=ensureLocalMirror(data.user);
+            localStorage.setItem(FIRST_VISIT_KEY,'1');
+            closeModal();updateHeader();await loadProductionConfig();
+            toast('Account created successfully.','success');router.go('home');
+        }catch(error){toast(error.message,'error');}
+    };
+    const originalLogout=account.logout.bind(account);
+    account.logout=function(){state.production.token='';PROD_SESSION.set('');return originalLogout();};
+
+    // Admin login is also server-backed and password protected.
+    admin.login=function(){
+        openModal(`<div class="modal-head"><h2 class="modal-title">Admin login</h2><button class="close" onclick="closeModal()">×</button></div><div class="modal-body"><div class="form"><label>Admin email<input id="adminEmail" class="input" type="email" autocomplete="username" value=""></label><label>Password<input id="adminPassword" class="input" type="password" autocomplete="current-password"></label><button class="btn btn-primary" onclick="admin.submitLogin()">Unlock protected admin</button><div class="notice-box">The admin password is verified by the server. It is not stored as a browser-side hash.</div></div></div>`);
+        prodFetch('/payments/config').catch(()=>{});
+    };
+    admin.submitLogin=async function(){
+        const email=el('adminEmail')?.value.trim().toLowerCase();const password=el('adminPassword')?.value||'';
+        if(!email||!password){toast('Admin email and password are required.','error');return;}
+        try{
+            const data=await prodFetch('/auth/login',{method:'POST',body:{email,password}});
+            if(data.user.role!=='admin') throw new Error('This account does not have administrator privileges.');
+            state.production.token=data.token;PROD_SESSION.set(data.token);user=ensureLocalMirror(data.user);
+            state.adminLoggedIn=true;sessionStorage.setItem('srp-admin-unlocked','1');localStorage.setItem(FIRST_VISIT_KEY,'1');
+            closeModal();router.go('admin');toast('Admin dashboard unlocked.','success');
+        }catch(error){toast(error.message,'error');}
+    };
+    admin.logout=function(){state.adminLoggedIn=false;sessionStorage.removeItem('srp-admin-unlocked');state.production.token='';PROD_SESSION.set('');router.go('home');toast('Admin dashboard locked.','success');};
+    admin.allowed=function(){return state.adminLoggedIn && Boolean(sessionStorage.getItem('srp-admin-unlocked')) && state.production.token!=='';};
+    admin.ensure=function(){if(!admin.allowed()){admin.login();return false;}return true;};
+
+    // Mandatory authentication for purchase/cart actions.
+    const originalAddToCart=store.addToCart.bind(store);
+    store.addToCart=async function(id,quantity=1){
+        if(!(await requireProductionAuth())) return;
+        const result=originalAddToCart(id,quantity);
+        return result;
+    };
+    store.buyNow=async function(id){
+        if(!(await requireProductionAuth())) return;
+        originalAddToCart(id,1);
+        setTimeout(()=>router.go('cart'),120);
+    };
+    checkout.open=async function(){
+        if(!(await requireProductionAuth())) return;
+        if(!getCart().length){toast('Your cart is empty.','error');router.go('home');return;}
+        state.checkoutStep=1;state.checkoutPayment='UPI';
+        const saved=state.db.addresses[user.id]||[];
+        state.checkoutAddress=saved.find(a=>a.default)||saved[0]||{};
+        state.checkoutCoupon='';
+        checkout.render();
         await loadProductionConfig();
-        await syncCatalog();
-        await serverRefreshSession();
-        patchAccount();
-        patchStore();
-        patchCart();
-        patchCheckout();
-        patchOrdersInSellerAndAdmin();
-        patchSellerImageGallery();
-        renderProductionStatus();
-        hookFirstVisit();
+    };
+
+    const originalPaymentStep=checkout.paymentStep.bind(checkout);
+    checkout.paymentStep=function(){
+        const source=originalPaymentStep();
+        const notice=`<div class="production-payment-card"><strong>Production Razorpay checkout</strong><small>UPI, cards, net banking and wallet methods are processed by Razorpay Checkout when enabled on the merchant account. ${escapeHtml(state.production.config.merchantUpiId||'8233615852@ptaxis')} is the merchant UPI ID; typing a UPI ID or sending a manual transfer is not treated as payment proof.</small><div class="production-payment-actions"><span class="tag green">Signature verification</span><span class="tag green">Server amount check</span><span class="tag green">Webhook verification</span><a class="btn btn-outline" href="${escapeHtml(state.production.config.paymentLinkUrl||'https://rzp.io/rzp/juTBnc4Q')}" target="_blank" rel="noopener noreferrer">Razorpay payment link</a></div></div>`;
+        return source.replace('<div class="form">','<div class="form">'+notice);
+    };
+    checkout.reviewStep=function(){
+        const a=state.checkoutAddress;
+        const t=checkout.totals();
+        return `<div class="form"><div><span class="eyebrow">FINAL REVIEW</span><h2 style="margin:3px 0 0;font-size:18px">Pay and confirm your order</h2></div><div class="notice-box">Order creation is locked until Razorpay returns a successful payment and the server verifies the signature, payment status and amount. Closing or failing the payment window creates no order.</div><div class="data-item"><strong>Delivery</strong><small>${escapeHtml(a.name)} · ${escapeHtml(a.phone)}<br>${escapeHtml(a.line1)}${a.line2?`<br>${escapeHtml(a.line2)}`:''}<br>${escapeHtml(a.city)}, ${escapeHtml(a.state)} — ${escapeHtml(a.pincode)}</small></div><div class="data-item"><strong>Payment</strong><small>Razorpay · ${escapeHtml(state.checkoutPayment)}</small></div><div class="data-item"><strong>Payable</strong><small>${money(t.total)}</small></div><div style="display:flex;gap:8px"><button class="btn btn-outline" onclick="state.checkoutStep=2;checkout.render()">Back</button><button class="btn btn-accent" onclick="checkout.placeOrder()">Pay securely with Razorpay</button></div></div>`;
+    };
+    checkout.placeOrder=async function(){ await startRazorpayCheckout(); };
+
+    // Seller registration is mirrored to the server. Local UX remains intact.
+    const originalSellerSubmit=seller.submitApplication.bind(seller);
+    seller.submitApplication=async function(){
+        if(!user){account.login();return;}
+        const storeName=el('sellerStoreName')?.value.trim();const phone=el('sellerPhone')?.value.trim();const taxId=el('sellerTaxId')?.value.trim();const businessAddress=el('sellerAddress')?.value.trim();
+        if(!storeName||!phone||!businessAddress){toast('Complete the seller registration fields.','error');return;}
+        try{
+            if(state.production.token){
+                const remote=await prodFetch('/seller/apply',{method:'POST',body:{storeName,phone,taxId,businessAddress}});
+                const beforeCount=state.db.sellers.length;
+                originalSellerSubmit();
+                const local=state.db.sellers.slice(0,beforeCount+1).find(s=>s.ownerUserId===user.id) || state.db.sellers.find(s=>s.ownerUserId===user.id);
+                if(local){local.serverSellerId=remote.id;persist();}
+            }else{
+                originalSellerSubmit();
+            }
+        }catch(error){toast(error.message,'error');}
+    };
+
+    // Seller product changes also synchronize with the server catalog.
+    const originalSellerSaveProduct=seller.saveProduct.bind(seller);
+    seller.saveProduct=async function(id){
+        originalSellerSaveProduct(id);
+        const product=id?productById(id):state.db.products[state.db.products.length-1];
+        if(state.production.token && product){
+            try{
+                await prodFetch('/seller/products'+(id?'/'+encodeURIComponent(id):''),{method:id?'PATCH':'POST',body:{id:product.id,name:product.name,brand:product.brand,category:product.category,sku:product.sku,price:product.price,mrp:product.mrp,stock:product.stock,status:product.status,images:product.images,description:product.description,highlights:product.highlights,specs:product.specs}});
+                toast('Product saved and synchronized with the server catalog.','success');
+            }catch(error){toast('Local product saved, but server catalog sync failed: '+error.message,'warning');}
+        }
+    };
+    const originalAdminSaveProduct=admin.saveProduct.bind(admin);
+    admin.saveProduct=async function(id){
+        originalAdminSaveProduct(id);
+        const product=id?productById(id):state.db.products[state.db.products.length-1];
+        if(state.production.token && product){
+            try{
+                await prodFetch('/seller/products'+(id?'/'+encodeURIComponent(id):''),{method:id?'PATCH':'POST',body:{id:product.id,name:product.name,brand:product.brand,category:product.category,sku:product.sku,price:product.price,mrp:product.mrp,stock:product.stock,status:product.status,images:product.images,description:product.description,highlights:product.highlights,specs:product.specs}});
+                toast('Admin product synchronized with the server catalog.','success');
+            }catch(error){toast('Local admin catalog saved; server sync failed: '+error.message,'warning');}
+        }
+    };
+
+    // Server-backed seller/admin order status changes.
+    const originalSellerUpdate=seller.updateOrder.bind(seller);
+    seller.updateOrder=async function(id,status){
+        if(!state.production.token){originalSellerUpdate(id,status);return;}
+        try{await prodFetch('/seller/orders/'+encodeURIComponent(id)+'/status',{method:'PATCH',body:{status}});originalSellerUpdate(id,status);}catch(error){toast(error.message,'error');}
+    };
+    const originalAdminSellerStatus=admin.sellerStatus.bind(admin);
+    admin.sellerStatus=async function(id,status){
+        const record=sellerById(id);
+        if(state.production.token && record?.serverSellerId){
+            try{
+                await prodFetch('/admin/sellers/'+encodeURIComponent(record.serverSellerId)+'/status',{method:'POST',body:{status}});
+                originalAdminSellerStatus(id,status);
+                toast('Seller status synchronized with server.','success');
+            }catch(error){toast(error.message,'error');}
+            return;
+        }
+        originalAdminSellerStatus(id,status);
+    };
+
+    const originalAdminUpdate=admin.updateOrder.bind(admin);
+    admin.updateOrder=async function(id,status){
+        if(!state.production.token){originalAdminUpdate(id,status);return;}
+        try{await prodFetch('/admin/orders/'+encodeURIComponent(id)+'/status',{method:'PATCH',body:{status}});originalAdminUpdate(id,status);}catch(error){toast(error.message,'error');}
+    };
+
+    // Live server order details override the old local-only tracker when possible.
+    const originalShowOrder=account.showOrder.bind(account);
+    account.showOrder=async function(id){
+        if(state.production.token){
+            const local=state.db.orders.find(order=>order.id===id || order.serverOrderId===id);
+            if(local?.serverOrderId || local?.paymentStatus==='captured') { await openServerOrder(local.serverOrderId||local.id); return; }
+        }
+        originalShowOrder(id);
+    };
+
+    // Local browser gallery support for both seller and admin product editors.
+    const originalSellerProductForm=seller.productForm.bind(seller);
+    seller.productForm=function(id=''){
+        originalSellerProductForm(id);
+        setTimeout(()=>injectGalleryField('sellerProductImages'),0);
+    };
+    const originalAdminProductForm=admin.productForm.bind(admin);
+    admin.productForm=function(id=''){
+        originalAdminProductForm(id);
+        setTimeout(()=>injectGalleryField('adminProductImages'),0);
+    };
+
+    // When the user closes a modal, stop polling.
+    const originalCloseModal=window.closeModal.bind(window);
+    window.closeModal=function(){if(state.production.trackingTimer){clearInterval(state.production.trackingTimer);state.production.trackingTimer=null;}return originalCloseModal.apply(this,arguments);};
+
+    // Fill seller filter options after existing local seed has loaded.
+    function scheduleServerProductRefresh(){
+        if(!state.production.token) return;
+        // Keep local marketplace UX authoritative for all existing features; server catalog is authoritative at payment time.
+        loadProductionConfig();
     }
 
-    window.SRPProduction = {api:prodApi,config:()=>PRODUCTION.config,createRazorpayPayment,serverRefreshSession};
-    if(document.readyState === "loading") document.addEventListener("DOMContentLoaded",productionBoot,{once:true}); else productionBoot();
+    document.addEventListener('DOMContentLoaded',async function(){
+        await restoreProductionSession();
+        await loadProductionConfig();
+        firstVisitGate();
+        scheduleServerProductRefresh();
+        if(location.hash==='#admin' && !admin.allowed()) setTimeout(()=>admin.login(),0);
+        // Make direct gallery buttons resilient when dynamic editor modals are rendered later.
+        document.addEventListener('input',function(event){
+            if(event.target.id==='sellerProductImages' || event.target.id==='adminProductImages'){
+                const values=event.target.value.split(/\n+/).map(v=>v.trim()).filter(Boolean).slice(0,8);
+                renderGalleryPreview(event.target.id,values);
+            }
+        });
+    });
+
+    window.srpProduction={
+        config:()=>state.production.config,
+        payment:()=>startRazorpayCheckout(),
+        tracking:(id)=>openServerOrder(id),
+        refreshTracking:(id)=>refreshServerOrder(id,false),
+        requireLogin:()=>requireProductionAuth(),
+        copyMerchantUpi:async()=>{try{await navigator.clipboard.writeText(state.production.config.merchantUpiId||'8233615852@ptaxis');toast('Merchant UPI ID copied.','success');}catch{toast('Copy is blocked by this browser.','error');}}
+    };
 })();
 </script>
-
 </body>
 </html>
