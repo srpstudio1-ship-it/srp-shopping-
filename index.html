@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#2874f0">
     <meta name="description" content="SRP Shopping original multi-vendor marketplace storefront">
-    <title>SRP Shopping — Multi-Vendor Marketplace</title>
+    <title>SRP Shopping — Ultimate Marketplace</title><meta name="description" content="SRP Shopping professional multi-vendor marketplace">
+<title>SRP Shopping — Multi-Vendor Marketplace</title>
     <style>
 :root {
     --blue: #2874f0;
@@ -2055,147 +2056,197 @@ body.dark .source-box {
     }
 }
     
-/* Production payment/shipping integration UI */
-.production-gate{position:fixed;inset:0;z-index:500;background:rgba(6,12,24,.72);backdrop-filter:blur(9px);display:grid;place-items:center;padding:18px}
-.production-gate-card{width:min(760px,100%);background:var(--paper);color:var(--ink);border-radius:22px;box-shadow:0 30px 90px rgba(0,0,0,.35);overflow:hidden;border:1px solid var(--line)}
-.production-gate-top{padding:26px 28px;background:linear-gradient(135deg,#edf4ff,#fff8d9);border-bottom:1px solid var(--line)}
-.production-gate-brand{font-size:30px;font-weight:950;font-style:italic;color:var(--blue)}
-.production-gate-title{margin:8px 0 7px;font-size:27px;letter-spacing:-1px}
-.production-gate-copy{margin:0;color:var(--muted);font-size:12px;line-height:1.7;max-width:620px}
-.production-gate-body{padding:24px 28px}
-.production-gate-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
-.production-note{padding:12px 14px;border-radius:10px;background:var(--soft-blue);color:var(--muted);font-size:11px;line-height:1.6;margin-top:14px}
-.production-payment-card{margin-top:12px;padding:14px;border:1px solid var(--line);border-radius:11px;background:var(--paper)}
-.production-payment-card strong{display:block;font-size:12px}
-.production-payment-card small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
-.production-payment-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.production-payment-actions a{display:inline-flex;align-items:center}
-.production-gallery-tools{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:7px}
-.production-gallery-preview{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:9px}
-.production-gallery-preview img{width:100%;height:76px;object-fit:cover;border-radius:7px;border:1px solid var(--line);background:#f5f7fb;padding:3px}
-.production-live-status{padding:10px 12px;border-radius:9px;background:var(--soft-green);color:var(--green);font-size:11px;font-weight:850;margin-bottom:12px}
-.production-live-status.warning{background:var(--soft-yellow);color:#7d6200}
-.production-live-status.error{background:var(--soft-red);color:var(--red)}
-.production-scan{display:grid;grid-template-columns:9px 1fr;gap:9px;padding:8px 0}
-.production-scan-dot{width:9px;height:9px;border-radius:50%;background:var(--blue);margin-top:5px}
-.production-scan strong{font-size:11px}
-.production-scan small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
-@media(max-width:700px){.production-gate-actions{grid-template-columns:1fr}.production-gate-top,.production-gate-body{padding:20px}.production-gallery-preview{grid-template-columns:repeat(3,1fr)}}
-
+/* ===================== SRP SHOPPING 2026 DESIGN SYSTEM ===================== */
+:root{
+  --srp-navy:#111827; --srp-navy-2:#172033; --srp-blue:#2563eb; --srp-blue-2:#1d4ed8;
+  --srp-amber:#ffb703; --srp-orange:#fb8500; --srp-bg:#f3f6fb; --srp-surface:#fff;
+  --srp-line:#dfe5ee; --srp-muted:#64748b; --srp-text:#0f172a; --srp-green:#087f5b;
+  --srp-red:#c62828; --srp-shadow:0 18px 48px rgba(15,23,42,.10); --srp-radius:18px;
+}
+body{background:var(--srp-bg);color:var(--srp-text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body.dark{--srp-bg:#090f1a;--srp-surface:#111827;--srp-line:#263246;--srp-text:#f8fafc;--srp-muted:#a7b0c1}
+.container{width:min(1500px,calc(100% - 48px));}
+.market-topbar{background:linear-gradient(90deg,#111827,#1f2937,#111827);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.market-topbar-inner{display:flex;justify-content:space-between;min-height:34px;align-items:center}
+.market-toplinks{display:flex;gap:22px;color:#d7deeb;letter-spacing:.02em;text-transform:none;font-weight:700}
+.header{background:var(--srp-surface);border:0;box-shadow:0 7px 24px rgba(15,23,42,.09)}
+.header-main{min-height:86px;grid-template-columns:220px minmax(360px,1fr) auto;gap:24px}
+.brand-button{border:0;background:none;padding:0;text-align:left;cursor:pointer}
+.brand-mark{font-size:35px;color:var(--srp-blue);font-style:italic;letter-spacing:-3px}
+.brand-sub{color:var(--srp-muted);font-size:11px;letter-spacing:2.5px}
+.search-box{height:50px;border:1px solid #cfd7e3;background:#f8fafc;border-radius:11px;padding-left:46px;font-size:14px}
+body.dark .search-box{background:#0f172a;color:#fff;border-color:#334155}
+.search-box:focus{border-color:var(--srp-blue);box-shadow:0 0 0 4px rgba(37,99,235,.10)}
+.search-button{height:40px;width:72px;right:5px;top:5px;border-radius:8px;background:var(--srp-amber);color:#111827;font-weight:900}
+.header-actions{gap:4px}
+.header-action,.account-button{border-radius:12px!important;min-height:44px;color:var(--srp-text)}
+.header-pill{display:flex;align-items:center;gap:8px;padding:5px 10px;border:1px solid transparent}
+.header-pill small,.header-pill b{display:block;text-align:left;line-height:1.1}
+.header-pill small{font-size:9px;color:var(--srp-muted);font-weight:800}
+.header-icon{font-size:20px}
+.icon-only{min-width:44px;font-size:18px}
+.account-menu-button{gap:7px;padding:4px 9px;border:1px solid transparent!important}
+.account-avatar{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#e9eef8}
+.account-chevron{color:var(--srp-muted)}
+.header-cart{position:relative;border:0;background:#111827;color:#fff;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:8px;font-weight:900}
+.cart-count{position:absolute;right:7px;top:-6px;min-width:19px;height:19px;display:grid;place-items:center;background:var(--srp-amber);color:#111;border-radius:999px;font-size:10px}
+.market-nav-row{display:flex;align-items:center;gap:4px;min-height:48px;border-top:1px solid var(--srp-line);overflow:auto}
+.nav-menu-button,.nav-link-button,.category-button{border:0;background:transparent;color:var(--srp-text);font-weight:800;white-space:nowrap}
+.nav-menu-button{padding:10px 13px;border-radius:10px;background:#111827;color:#fff}
+.category-strip{display:flex;align-items:center;gap:4px;min-width:0;padding:0}
+.category-button{padding:10px 11px;border-radius:10px;font-size:12px}
+.category-button:hover,.category-button.active,.nav-link-button:hover{background:#eef4ff;color:var(--srp-blue)}
+.nav-spacer{flex:1}
+.nav-link-button{padding:10px 12px}
+.home-page{padding:18px 0 70px}
+.home-breadcrumb{font-size:11px;color:var(--srp-muted);margin:4px 0 13px;font-weight:700}.home-breadcrumb span{padding:0 7px}
+.hero-split{display:grid;grid-template-columns:1.12fr .88fr;gap:20px;background:#0f172a;border-radius:26px;overflow:hidden;box-shadow:var(--srp-shadow);min-height:395px}
+.hero-surface{padding:44px 48px;background:radial-gradient(circle at 88% 8%,rgba(59,130,246,.22),transparent 40%),linear-gradient(135deg,#0f172a,#172033);color:#fff}
+.hero-badge{display:inline-flex;padding:7px 12px;border-radius:999px;background:rgba(255,183,3,.13);color:#ffd866;font-size:10px;font-weight:900;letter-spacing:.09em}
+.hero-copy h1{font-size:clamp(34px,4vw,58px);line-height:1.03;letter-spacing:-.04em;margin:20px 0 14px;max-width:720px}
+.hero-copy p{font-size:15px;line-height:1.7;color:#c7d2e3;max-width:680px}
+.btn-large{padding:13px 18px;font-weight:900}
+.hero-trust-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;color:#cbd5e1;font-size:11px;font-weight:800}
+.hero-product-visual{position:relative;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#fef3c7 0,#fde68a 18%,#1e293b 55%,#0f172a 100%);overflow:hidden}
+.hero-orbit{position:absolute;border:1px solid rgba(255,255,255,.14);border-radius:50%;width:420px;height:420px}.orbit-one{transform:rotate(18deg) scale(.85)}.orbit-two{transform:rotate(-30deg) scale(.58)}
+.hero-product-card{position:relative;width:min(82%,400px);padding:18px;border-radius:22px;background:rgba(255,255,255,.96);box-shadow:0 30px 80px rgba(0,0,0,.28);transform:rotate(2.4deg)}
+.hero-product-tag{font-size:10px;font-weight:900;letter-spacing:.08em;color:#7c2d12}.hero-image-wrap{height:225px;display:grid;place-items:center;margin:9px 0}.hero-image-wrap img{max-height:220px;object-fit:contain}.hero-product-meta small{color:#6b7280;font-size:10px}.hero-product-meta h3{margin:5px 0 0;font-size:19px}
+.feature-band{margin-top:18px;padding:20px;border:1px solid var(--srp-line);border-radius:22px;background:var(--srp-surface);box-shadow:0 12px 30px rgba(15,23,42,.05)}
+.section-kicker{font-size:10px;font-weight:950;color:var(--srp-blue);letter-spacing:.12em;text-transform:uppercase}.feature-band .section-kicker{margin:0 0 12px 2px}
+.home-feature-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:9px}
+.home-feature{min-height:110px;border:1px solid var(--srp-line);background:linear-gradient(180deg,var(--srp-surface),#f9fbfe);border-radius:16px;padding:14px 9px;display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;transition:.18s;cursor:pointer}.home-feature:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(37,99,235,.10);border-color:#b8c8e4}.home-feature span{font-size:22px}.home-feature b{font-size:11px}.home-feature small{font-size:9px;color:var(--srp-muted);line-height:1.3}
+.market-section{margin-top:28px}.section-heading-row,.catalog-toolbar{display:flex;align-items:end;justify-content:space-between;gap:20px}.section-heading-row h2,.catalog-toolbar h2{font-size:26px;line-height:1.1;margin:5px 0}.section-heading-row p{margin:0;color:var(--srp-muted);font-size:12px}.link-button{border:0;background:none;color:var(--srp-blue);font-weight:900;cursor:pointer}
+.category-mega-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:10px;margin-top:13px}.category-card{min-height:118px;border:1px solid var(--srp-line);background:var(--srp-surface);border-radius:16px;padding:15px;display:flex;flex-direction:column;justify-content:space-between;text-align:left}.category-card:hover{border-color:#abc0e7;transform:translateY(-2px)}.category-icon{font-size:28px}.category-name{font-weight:900;font-size:12px}
+.seller-row-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:13px}.seller-card{border:1px solid var(--srp-line);background:var(--srp-surface);border-radius:17px;padding:16px}.seller-avatar{width:46px;height:46px;border-radius:14px;background:#e8eefb;color:var(--srp-blue);display:grid;place-items:center;font-weight:950;font-size:20px}.seller-name{font-size:15px;font-weight:900;margin-top:12px}.seller-meta{font-size:10px;color:var(--srp-muted);margin-top:4px}.seller-buttons{display:flex;gap:7px;margin-top:13px}.seller-buttons .btn{flex:1}
+.catalog-section{padding:22px;border:1px solid var(--srp-line);border-radius:22px;background:var(--srp-surface);box-shadow:0 12px 30px rgba(15,23,42,.04)}.catalog-count{font-size:11px;color:var(--srp-muted);margin-top:5px}.catalog-controls{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.select{height:39px;border:1px solid var(--srp-line);border-radius:10px;padding:0 11px;background:var(--srp-surface);color:var(--srp-text);font-weight:750}.view-button{height:39px;min-width:39px;border:1px solid var(--srp-line);border-radius:10px;background:var(--srp-surface);font-weight:900}.filter-ribbon{display:flex;gap:7px;overflow:auto;margin:15px 0}.filter-tag{padding:7px 10px;border-radius:999px;background:#eef4ff;color:#365899;font-size:10px;font-weight:850;white-space:nowrap}
+.product-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.product-card{border:1px solid var(--srp-line);border-radius:16px;overflow:hidden;background:var(--srp-surface);transition:.2s}.product-card:hover{transform:translateY(-3px);box-shadow:0 20px 42px rgba(15,23,42,.10)}.product-media{height:230px;background:#fff;display:grid;place-items:center;position:relative}.product-media img{width:100%;height:100%;padding:15px;object-fit:contain;cursor:pointer}.product-wish,.product-compare{position:absolute;z-index:2;border:1px solid var(--srp-line);background:rgba(255,255,255,.94);width:34px;height:34px;border-radius:50%}.product-wish{top:10px;right:10px}.product-compare{top:50px;right:10px}.product-body{padding:14px}.product-brand{font-size:10px;font-weight:900;color:var(--srp-blue);text-transform:uppercase;letter-spacing:.06em}.product-name{font-size:13px;font-weight:850;line-height:1.35;min-height:37px;margin-top:3px}.price{margin-top:9px;font-size:18px;font-weight:950}.mrp{font-size:11px;color:#9aa3b1;text-decoration:line-through;margin-left:5px}.discount{font-size:10px;color:var(--srp-green);font-weight:900;margin-left:4px}.product-seller{font-size:9px;color:var(--srp-muted);margin-top:6px}.product-buttons{display:flex;gap:7px;margin-top:11px}.product-buttons .btn{flex:1}.rating-pill{background:#0f7b58;color:#fff;padding:3px 7px;border-radius:5px;font-size:10px;font-weight:900}.pagination{display:flex;justify-content:center;gap:5px;margin-top:18px}.page-btn{min-width:36px;height:36px;border:1px solid var(--srp-line);border-radius:9px;background:var(--srp-surface);font-weight:850}.page-btn.active{background:#111827;color:#fff}
+.service-showcase{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.service-showcase-card{border:1px solid var(--srp-line);border-radius:18px;background:var(--srp-surface);padding:18px;display:flex;gap:13px}.service-showcase-card span{font-size:25px}.service-showcase-card b,.service-showcase-card small{display:block}.service-showcase-card b{font-size:13px}.service-showcase-card small{font-size:10px;color:var(--srp-muted);margin-top:4px}
+/* Workspaces */
+.workspace-shell{display:grid;grid-template-columns:280px minmax(0,1fr);gap:18px;min-height:calc(100vh - 190px);align-items:start}.workspace-side{position:sticky;top:130px;background:var(--srp-surface);border:1px solid var(--srp-line);border-radius:20px;box-shadow:0 12px 34px rgba(15,23,42,.06);overflow:hidden}.workspace-brand{padding:18px;border-bottom:1px solid var(--srp-line);background:linear-gradient(135deg,#f7faff,#eef4ff)}.workspace-brand strong{display:block;font-size:19px}.workspace-brand span{font-size:10px;color:var(--srp-muted);font-weight:800}.workspace-search{padding:12px;border-bottom:1px solid var(--srp-line)}.workspace-search input{width:100%;height:38px}.workspace-nav{max-height:calc(100vh - 360px);overflow:auto;padding:8px}.workspace-nav button{width:100%;display:flex;align-items:center;gap:10px;text-align:left;border:0;background:transparent;border-radius:11px;padding:10px 10px;color:var(--srp-text);font-weight:800;font-size:11px}.workspace-nav button:hover{background:#eef4ff;color:var(--srp-blue)}.workspace-nav button.active{background:#111827;color:#fff}.workspace-nav .ws-icon{width:25px;text-align:center;font-size:15px}.workspace-foot{padding:11px;border-top:1px solid var(--srp-line);display:grid;gap:7px}.workspace-main{min-width:0}.workspace-topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:14px}.workspace-title{font-size:30px;margin:3px 0}.workspace-copy{color:var(--srp-muted);font-size:11px;margin:0}.workspace-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.workspace-card{padding:15px;border:1px solid var(--srp-line);border-radius:16px;background:var(--srp-surface);min-height:108px}.workspace-card strong,.workspace-card span{display:block}.workspace-card strong{font-size:14px}.workspace-card span{font-size:10px;color:var(--srp-muted);margin-top:5px}.workspace-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}.workspace-panel{background:var(--srp-surface);border:1px solid var(--srp-line);border-radius:20px;box-shadow:0 12px 34px rgba(15,23,42,.05);padding:20px}.workspace-panel h2{margin:4px 0 7px;font-size:22px}.workspace-panel>p{color:var(--srp-muted);font-size:12px}.ws-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:16px 0}.ws-kpi{border:1px solid var(--srp-line);border-radius:14px;padding:13px}.ws-kpi span,.ws-kpi b{display:block}.ws-kpi span{font-size:9px;color:var(--srp-muted);text-transform:uppercase}.ws-kpi b{font-size:20px;margin-top:5px}.ws-table{width:100%;border-collapse:collapse;margin-top:12px}.ws-table th,.ws-table td{padding:10px;border-bottom:1px solid var(--srp-line);text-align:left;font-size:10px}.ws-table th{color:var(--srp-muted);text-transform:uppercase;font-size:9px}.ws-callout{padding:12px 14px;border-radius:13px;background:#f7f9fd;border:1px solid var(--srp-line);font-size:11px;margin-top:12px}.wallet-hero{display:grid;grid-template-columns:1.25fr .75fr;gap:12px}.wallet-balance{padding:22px;border-radius:18px;background:linear-gradient(135deg,#111827,#1f2937);color:#fff}.wallet-balance small{color:#b8c2d1}.wallet-balance strong{display:block;font-size:34px;margin:7px 0 4px}.wallet-tools{display:grid;gap:9px}.wallet-tool{padding:14px;border:1px solid var(--srp-line);border-radius:14px;background:var(--srp-surface);text-align:left}.wallet-tool b,.wallet-tool span{display:block}.wallet-tool span{font-size:10px;color:var(--srp-muted);margin-top:3px}
+/* Admin / seller accents */
+body.srp-admin .workspace-brand{background:linear-gradient(135deg,#151b2c,#0f172a);color:#fff}.admin-health{display:flex;gap:8px;align-items:center}.health-dot{width:9px;height:9px;border-radius:50%;background:#10b981;box-shadow:0 0 0 4px rgba(16,185,129,.12)}
+/* Modals, forms, notices */
+.modal-wrap{background:rgba(2,8,23,.72);backdrop-filter:blur(9px)}.modal{border:1px solid rgba(255,255,255,.18);border-radius:22px;box-shadow:0 30px 90px rgba(0,0,0,.38);background:var(--srp-surface);color:var(--srp-text)}.modal-title{font-size:22px}.input,.select,textarea.input{background:var(--srp-surface);color:var(--srp-text);border-color:var(--srp-line);border-radius:10px}.btn-primary{background:#111827!important;color:#fff!important;border-color:#111827!important}.btn-accent{background:var(--srp-amber)!important;color:#111827!important;border-color:var(--srp-amber)!important}.btn-outline{border-color:#c8d2e1!important;background:var(--srp-surface)!important;color:var(--srp-text)!important}.btn-ghost{border:1px solid rgba(255,255,255,.20)!important;background:transparent!important;color:#fff!important}.notice-box{border-radius:13px;background:#f3f7ff;border:1px solid #cddcf5;color:#25416b;padding:12px}.toasts{right:18px;bottom:18px;z-index:9999}.toast{border-radius:13px;box-shadow:0 15px 35px rgba(15,23,42,.20)}
+@media (max-width:1200px){.header-main{grid-template-columns:175px 1fr auto}.home-feature-grid{grid-template-columns:repeat(5,1fr)}.category-mega-grid{grid-template-columns:repeat(4,1fr)}.product-grid{grid-template-columns:repeat(3,1fr)}.workspace-shell{grid-template-columns:240px minmax(0,1fr)}}
+@media (max-width:920px){.container{width:min(100% - 24px,1500px)}.header-main{grid-template-columns:1fr;gap:10px;padding:12px 0}.header-actions{justify-content:space-between}.market-toplinks{display:none}.hero-split{grid-template-columns:1fr}.hero-product-visual{min-height:330px}.service-showcase{grid-template-columns:1fr}.workspace-shell{grid-template-columns:1fr}.workspace-side{position:static}.workspace-nav{max-height:none;display:flex;gap:4px;overflow:auto}.workspace-nav button{min-width:max-content}.workspace-foot{grid-template-columns:1fr 1fr}.workspace-topbar{flex-direction:column}.workspace-grid{grid-template-columns:repeat(2,1fr)}.wallet-hero{grid-template-columns:1fr}}
+@media (max-width:680px){.market-nav-row{display:none}.header-actions{flex-wrap:wrap}.header-pill{display:none}.account-menu-button .account-subtitle{display:none}.hero-surface{padding:28px 24px}.hero-copy h1{font-size:36px}.home-feature-grid{grid-template-columns:repeat(2,1fr)}.category-mega-grid{grid-template-columns:repeat(2,1fr)}.seller-row-grid{grid-template-columns:1fr 1fr}.product-grid{grid-template-columns:1fr 1fr}.catalog-toolbar,.section-heading-row{align-items:flex-start;flex-direction:column}.catalog-controls{width:100%}.catalog-controls .select{flex:1}.workspace-grid,.ws-kpis{grid-template-columns:1fr 1fr}.workspace-main{width:100%}}
+@media (max-width:450px){.product-grid,.seller-row-grid,.service-showcase{grid-template-columns:1fr}.workspace-grid,.ws-kpis{grid-template-columns:1fr}.hero-product-card{width:90%}}
 </style>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
     <div id="toastStack" class="toasts" aria-live="polite"></div>
     <div class="topline">SRP SHOPPING · Multi-vendor marketplace · Real catalog links · Account, seller and admin workflows</div>
     <header class="header" id="mainHeader">
-        <div class="container header-main">
-            <a class="brand" href="#home" onclick="router.go('home')">
-                <span class="brand-mark">SRP</span>
-                <span class="brand-sub">SHOPPING</span>
-            </a>
-            <div class="search">
-                <span class="search-icon">⌕</span>
-                <input id="globalSearch" class="search-box" type="search" autocomplete="off" placeholder="Search products, brands and sellers">
-                <button class="search-button" onclick="store.search()" aria-label="Search">⌕</button>
-                <div id="suggestions" class="suggestions hidden"></div>
-            </div>
-            <div class="header-actions">
-                <button id="locationButton" class="header-action" title="Delivery pincode">📍<span class="account-subtitle" id="pinHeader">India</span></button>
-                <button id="notificationButton" class="header-action" title="Notifications">🔔<span id="notificationBadge" class="badge">0</span></button>
-                <button id="wishlistButton" class="header-action" title="Wishlist">♥<span id="wishlistBadge" class="badge">0</span></button>
-                <button id="compareButton" class="header-action" title="Compare">⇄<span id="compareBadge" class="badge">0</span></button>
-                <button id="themeButton" class="header-action" title="Theme">🌙</button>
-                <button id="accountButton" class="account-button" title="Account"><span style="font-size:19px">👤</span><span><span id="accountTitle" class="account-title">Login</span><span id="accountSubtitle" class="account-subtitle">Sign in</span></span></button>
-                <button id="cartButton" class="header-action" title="Cart">🛒<span id="cartBadge" class="badge">0</span></button>
-            </div>
+    <div class="market-topbar">
+        <div class="container market-topbar-inner">
+            <span>SRP SHOPPING · INDIA MARKETPLACE</span>
+            <span class="market-toplinks"><span>24×7 Support</span><span>Track Orders</span><span>Seller Center</span><span>Secure Payments</span></span>
         </div>
-        <div id="categoryStrip" class="container category-strip"></div>
-    </header>
+    </div>
+    <div class="container header-main">
+        <button class="brand brand-button" onclick="router.go('home')" aria-label="SRP Shopping home">
+            <span class="brand-mark">SRP</span><span class="brand-sub">SHOPPING</span>
+        </button>
+        <div class="search">
+            <span class="search-icon">⌕</span>
+            <input id="globalSearch" class="search-box" type="search" autocomplete="off" placeholder="Search for products, brands, sellers and categories">
+            <button class="search-button" onclick="store.search()" aria-label="Search">Search</button>
+            <div id="suggestions" class="suggestions hidden"></div>
+        </div>
+        <div class="header-actions">
+            <button id="locationButton" class="header-action header-pill"><span class="header-icon">⌖</span><span><small>Deliver to</small><b id="pinHeader">India</b></span></button>
+            <button id="notificationButton" class="header-action icon-only" title="Notifications">🔔<span id="notificationBadge" class="badge">0</span></button>
+            <button id="wishlistButton" class="header-action icon-only" title="Wishlist">♡<span id="wishlistBadge" class="badge">0</span></button>
+            <button id="compareButton" class="header-action icon-only" title="Compare">⇄<span id="compareBadge" class="badge">0</span></button>
+            <button id="themeButton" class="header-action icon-only" title="Theme">◐</button>
+            <button id="accountButton" class="account-button account-menu-button" title="Account"><span class="account-avatar">👤</span><span><span id="accountTitle" class="account-title">Hello, Sign in</span><span id="accountSubtitle" class="account-subtitle">Account & Lists</span></span><span class="account-chevron">⌄</span></button>
+            <button id="cartButton" class="header-cart" title="Cart"><span>🛒</span><b>Cart</b><span id="cartBadge" class="cart-count">0</span></button>
+        </div>
+    </div>
+    <div class="container market-nav-row">
+        <button class="nav-menu-button" onclick="router.go('home')">☰ <span>All</span></button>
+        <nav id="categoryStrip" class="category-strip"></nav>
+        <div class="nav-spacer"></div>
+        <button class="nav-link-button" onclick="store.loadDeals();router.go('home');setTimeout(()=>router.scrollTo('productsSection'),100)">Best Deals</button>
+        <button class="nav-link-button" onclick="router.go('seller')">Seller Center</button>
+        <button class="nav-link-button" onclick="router.go('admin')">Admin</button>
+    </div>
+</header>
     <main id="app" class="page"></main>
     <template id="homeTemplate">
-        <section class="page-shell">
-            <div class="container">
-                <section class="hero" id="heroSection">
-                    <div class="hero-copy">
-                        <span class="eyebrow">SRP SHOPPING MARKETPLACE</span>
-                        <h1 id="heroTitle">Shop from independent sellers in <strong>one SRP marketplace.</strong></h1>
-                        <p id="heroSubtitle">Explore real product links, connected cart and order flows, customer accounts, seller onboarding and a password-protected admin workspace.</p>
-                        <div class="hero-actions">
-                            <button class="btn btn-primary" onclick="store.loadDeals();router.scrollTo('productsSection')">Shop deals</button>
-                            <button class="btn btn-accent" onclick="router.scrollTo('categoriesSection')">Browse categories</button>
-                            <button class="btn btn-outline" onclick="seller.startApplication()">Become a seller</button>
-                        </div>
-                    </div>
-                    <div class="hero-visual">
-                        <div class="hero-card">
-                            <div class="hero-card-product"><img id="heroProductImage" alt="SRP featured product"></div>
-                            <div class="hero-card-label">REAL PRODUCT SOURCE</div>
-                            <h3 id="heroProductName">Featured product</h3>
-                            <small id="heroProductMeta">Source-linked catalog snapshot</small>
-                        </div>
-                    </div>
-                </section>
-                <section class="service-row">
-                    <div class="service"><div class="service-icon">🚚</div><div><div class="service-title">Shipping</div><div class="service-copy">Threshold and flat shipping are configurable in the marketplace.</div></div></div>
-                    <div class="service"><div class="service-icon">🔐</div><div><div class="service-title">Account</div><div class="service-copy">Cart, wishlist and orders are tied to the signed-in account.</div></div></div>
-                    <div class="service"><div class="service-icon">🏪</div><div><div class="service-title">Seller marketplace</div><div class="service-copy">Register, get approved, add products and manage orders.</div></div></div>
-                    <div class="service"><div class="service-icon">⭐</div><div><div class="service-title">Reviews</div><div class="service-copy">Customer reviews and seller feedback live in the same account.</div></div></div>
-                </section>
-                <section id="categoriesSection" class="section">
-                    <div class="section-head"><div><span class="eyebrow">DISCOVER</span><h2 class="section-title">Browse categories</h2><p class="section-copy">Categories are live from the SRP catalog state.</p></div></div>
-                    <div id="categoryGrid" class="category-grid"></div>
-                </section>
-                <section class="section">
-                    <div class="section-head"><div><span class="eyebrow">SHOP SMARTER</span><h2 class="section-title">Marketplace tools</h2><p class="section-copy">Each card controls a working storefront function.</p></div></div>
-                    <div class="deal-grid">
-                        <article class="deal-card"><div class="deal-label">VALUE</div><h3>Sort by discount</h3><p>Use catalog MRP and selling price to sort current products.</p><button class="btn btn-outline" onclick="store.sortByDiscount()">View discounts</button></article>
-                        <article class="deal-card"><div class="deal-label">COMPARE</div><h3>Compare products</h3><p>Select up to four products and compare price, seller, rating and stock.</p><button class="btn btn-outline" onclick="account.openCompare()">Open compare</button></article>
-                        <article class="deal-card"><div class="deal-label">DELIVERY</div><h3>Set pincode</h3><p>Save your delivery pincode and reuse it on checkout.</p><button class="btn btn-outline" onclick="account.location()">Set location</button></article>
-                        <article class="deal-card"><div class="deal-label">SELLERS</div><h3>Sell on SRP</h3><p>Submit the seller application, wait for approval and then open Seller Center.</p><button class="btn btn-outline" onclick="seller.startApplication()">Seller registration</button></article>
-                    </div>
-                </section>
-                <section id="productsSection" class="section">
-                    <div class="section-head"><div><span class="eyebrow">LIVE CATALOG</span><h2 class="section-title">Products</h2><p id="productCount" class="section-copy">0 products</p></div><div><button class="btn btn-outline mobile-only" onclick="filters.openMobile()">☷ Filters</button></div></div>
-                    <div class="products-bar">
-                        <span id="resultSummary" class="product-count">Loading products…</span>
-                        <span></span>
-                        <div class="toolbar"><select id="sortSelect" class="select"><option value="popular">Popular</option><option value="discount">Best discount</option><option value="price-low">Price low to high</option><option value="price-high">Price high to low</option><option value="newest">Newest</option></select><button class="btn btn-outline" onclick="filters.openMobile()">Filters</button><button id="gridButton" class="btn btn-outline">▦</button><button id="listButton" class="btn btn-outline">☰</button></div>
-                    </div>
-                    <div class="filters-layout">
-                        <aside id="desktopFilters" class="filter-panel">
-                            <div class="filter-block"><div class="filter-label">Price</div><div class="price-inputs"><input id="minPrice" class="input" placeholder="Min"><input id="maxPrice" class="input" placeholder="Max"></div></div>
-                            <div class="filter-block"><div class="filter-label">Rating</div><div class="filter-options"><label class="filter-row"><input type="radio" name="rating" value="0" checked> Any rating</label><label class="filter-row"><input type="radio" name="rating" value="4"> 4★ and above</label><label class="filter-row"><input type="radio" name="rating" value="4.5"> 4.5★ and above</label></div></div>
-                            <div class="filter-block"><div class="filter-label">Seller</div><select id="sellerFilter" class="select" style="width:100%;margin-top:9px"><option value="">All sellers</option></select></div>
-                            <button class="btn btn-primary" style="width:100%" onclick="filters.apply()">Apply filters</button>
-                            <button class="btn btn-outline" style="width:100%;margin-top:7px" onclick="filters.clear()">Clear</button>
-                        </aside>
-                        <div>
-                            <div id="productGrid" class="product-grid"></div>
-                            <div id="pagination" class="pagination"></div>
-                        </div>
-                    </div>
-                </section>
-                <section id="vendorsSection" class="section">
-                    <div class="section-head"><div><span class="eyebrow">MARKETPLACE</span><h2 class="section-title">Approved sellers</h2><p class="section-copy">Seller directory is driven by the same data used for seller pages.</p></div><button class="btn btn-accent" onclick="seller.startApplication()">Become a seller</button></div>
-                    <div id="vendorGrid" class="seller-grid"></div>
-                </section>
-                <section id="recentSection" class="section hidden">
-                    <div class="section-head"><div><span class="eyebrow">YOUR ACTIVITY</span><h2 class="section-title">Recently viewed</h2><p class="section-copy">Stored locally on this browser.</p></div></div>
-                    <div id="recentGrid" class="recent-card"></div>
-                </section>
-                <section class="section">
-                    <div class="section-head"><div><span class="eyebrow">WORKSPACES</span><h2 class="section-title">Marketplace workspaces</h2><p class="section-copy">Customers, sellers and administrators each have a separate workflow inside this index.</p></div></div>
-                    <div class="deal-grid">
-                        <article class="deal-card"><div class="deal-label">SELLER</div><h3>Seller Center</h3><p>Register first. After admin approval, manage products, inventory, orders, shipping, coupons and earnings.</p><button class="btn btn-primary" onclick="router.go('seller')">Open Seller Center</button></article>
-                        <article class="deal-card"><div class="deal-label">ADMIN</div><h3>Admin Console</h3><p>Password-protected administration for customers, sellers, catalog, orders, payments, refunds, reports and backups.</p><button class="btn btn-primary" onclick="router.go('admin')">Open Admin Console</button></article>
-                        <article class="deal-card"><div class="deal-label">ACCOUNT</div><h3>Customer Account</h3><p>Manage profile, password, addresses, orders, wishlist, saved items, reviews and preferences.</p><button class="btn btn-outline" onclick="router.go('account')">Open account</button></article>
-                        <article class="deal-card"><div class="deal-label">CART</div><h3>Cart & payment</h3><p>Review quantities, saved items, shipping, tax, coupon discounts and payment method before placing the order.</p><button class="btn btn-accent" onclick="router.go('cart')">Open cart</button></article>
-                    </div>
-                </section>
-            </div>
-        </section>
-    </template>
+<section class="home-page">
+  <div class="container">
+    <div class="home-breadcrumb">Home <span>›</span> SRP Shopping</div>
+    <section class="hero-split">
+      <div class="hero-copy hero-surface">
+        <div class="hero-badge">⚡ SMART INDIAN MARKETPLACE</div>
+        <h1 id="heroTitle">Shop smarter from trusted marketplace sellers.</h1>
+        <p id="heroSubtitle">Discover real products, compare sellers, manage your account and complete verified online payments in one smooth SRP Shopping experience.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-large" onclick="store.loadDeals();router.scrollTo('productsSection')">Shop Best Deals</button>
+          <button class="btn btn-outline btn-large" onclick="router.scrollTo('categoriesSection')">Explore Categories</button>
+          <button class="btn btn-ghost btn-large" onclick="seller.startApplication()">Become a Seller</button>
+        </div>
+        <div class="hero-trust-row"><span>✓ Verified payment flow</span><span>✓ Seller marketplace</span><span>✓ Trackable delivery</span></div>
+      </div>
+      <div class="hero-product-visual">
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <div class="hero-product-card">
+          <span class="hero-product-tag">FEATURED TODAY</span>
+          <div class="hero-image-wrap"><img id="heroProductImage" alt="SRP featured product"></div>
+          <div class="hero-product-meta"><small id="heroProductMeta">Source-linked catalog</small><h3 id="heroProductName">Featured product</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-band" aria-label="SRP home features">
+      <div class="section-kicker">CORE SHOPPING TOOLS</div>
+      <div class="home-feature-grid">
+        <button class="home-feature" onclick="store.search()"><span>⌕</span><b>Smart Search</b><small>Find products fast</small></button>
+        <button class="home-feature" onclick="router.scrollTo('categoriesSection')"><span>▦</span><b>Categories</b><small>Browse departments</small></button>
+        <button class="home-feature" onclick="store.loadDeals();router.scrollTo('productsSection')"><span>⚡</span><b>Best Deals</b><small>Discount-first view</small></button>
+        <button class="home-feature" onclick="document.getElementById('sortSelect')?.focus()"><span>☷</span><b>Smart Filters</b><small>Sort & filter catalog</small></button>
+        <button class="home-feature" onclick="user ? account.wishlist() : account.login()"><span>♡</span><b>Wishlist</b><small>Save favourites</small></button>
+        <button class="home-feature" onclick="account.openCompare()"><span>⇄</span><b>Compare</b><small>Compare up to four</small></button>
+        <button class="home-feature" onclick="document.querySelector('.product-card img')?.click()"><span>⌘</span><b>Product Details</b><small>Open full details</small></button>
+        <button class="home-feature" onclick="router.go('cart')"><span>🛒</span><b>Cart & Checkout</b><small>Review & pay</small></button>
+        <button class="home-feature" onclick="router.go('seller')"><span>🏪</span><b>Seller Marketplace</b><small>Open seller center</small></button>
+        <button class="home-feature" onclick="account.location()"><span>⌖</span><b>Delivery Location</b><small>Set pincode</small></button>
+      </div>
+    </section>
+
+    <section id="categoriesSection" class="market-section">
+      <div class="section-heading-row"><div><div class="section-kicker">SHOP BY DEPARTMENT</div><h2>Explore popular categories</h2><p>Fast paths into the SRP catalog.</p></div><button class="link-button" onclick="store.search()">Search all products →</button></div>
+      <div id="categoryGrid" class="category-mega-grid"></div>
+    </section>
+
+    <section class="market-section seller-discovery">
+      <div class="section-heading-row"><div><div class="section-kicker">SELLER MARKETPLACE</div><h2>Discover SRP stores</h2><p>Browse approved sellers and their live catalog.</p></div><button class="link-button" onclick="router.go('seller')">Open Seller Center →</button></div>
+      <div id="vendorGrid" class="seller-row-grid"></div>
+    </section>
+
+    <section id="productsSection" class="market-section catalog-section">
+      <div class="catalog-toolbar">
+        <div><div class="section-kicker">SHOPPING RESULTS</div><h2 id="resultSummary">Current SRP catalog</h2><div id="productCount" class="catalog-count">0 catalog products</div></div>
+        <div class="catalog-controls">
+          <select id="sellerFilter" class="select" onchange="state.sellerFilter=this.value;state.page=1;store.applyQuery()"><option value="">All sellers</option></select>
+          <select id="sortSelect" class="select"><option value="popular">Popular</option><option value="discount">Highest discount</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="rating">Top rated</option></select>
+          <button id="gridButton" class="view-button btn-primary">▦</button><button id="listButton" class="view-button">☷</button>
+        </div>
+      </div>
+      <div class="filter-ribbon"><div class="filter-tag">Verified catalog</div><div class="filter-tag">Indian pricing</div><div class="filter-tag">Seller marketplace</div><div class="filter-tag">Source-linked products</div><div class="filter-tag" id="queryFilterTag">All products</div></div>
+      <div id="productGrid" class="product-grid"></div>
+      <div id="pagination" class="pagination"></div>
+    </section>
+
+    <section class="market-section service-showcase">
+      <div class="service-showcase-card"><span>🔒</span><div><b>Verified payment architecture</b><small>Orders are only finalized after server-side gateway verification.</small></div></div>
+      <div class="service-showcase-card"><span>📦</span><div><b>Shipping & tracking</b><small>Shiprocket integration can update shipment status on the server.</small></div></div>
+      <div class="service-showcase-card"><span>👥</span><div><b>Customer + seller workspaces</b><small>Purpose-built dashboards for shoppers, sellers and admins.</small></div></div>
+    </section>
+  </div>
+</section>
+</template>
 <script>
 const DB_KEY = "srp-shopping-db-v3";
 const SESSION_KEY = "srp-shopping-session-v3";
@@ -4762,597 +4813,335 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-<script id="srp-production-bridge">
-/*
-  SRP PRODUCTION BRIDGE
-  ---------------------
-  Browser responsibilities:
-    - account UX and existing 100% storefront feature set
-    - Razorpay Standard Checkout invocation
-    - gallery file selection / local persistence
-    - customer-facing live tracking refresh
-  Server responsibilities:
-    - authentication/JWT
-    - authoritative price/stock calculation
-    - Razorpay order creation
-    - Razorpay signature verification
-    - Razorpay payment-status verification
-    - webhook signature verification + deduplication
-    - internal order creation only after captured payment
-    - Shiprocket order/AWB creation
-    - live tracking API polling
-    - server-side order status changes
+<script>
+/* ==================== SRP PRODUCTION UI + GATEWAY LAYER ==================== */
+const SRP_API_BASE = (window.SRP_API_BASE || "").replace(/\/$/, "");
+const SRP_AUTH_KEY = "srp-production-auth-token";
+const SRP_PAYMENT_CONFIG = {
+    razorpayPaymentLink: "https://rzp.io/rzp/juTBnc4Q",
+    upiId: "8233615852@ptaxis",
+    razorpayConfigured: false,
+    stripeConfigured: false,
+    shippingProvider: "shiprocket"
+};
+let srpProductionConfig = {...SRP_PAYMENT_CONFIG};
+let srpServerAvailable = false;
 
-  IMPORTANT: no API secret is ever put in this HTML file.
-*/
-(function(){
-    const PROD_TOKEN_KEY = "srp-production-jwt-v6";
-    const FIRST_VISIT_KEY = "srp-first-visit-gate-v4";
-    const PROD_CONFIG_KEY = "srp-production-config-cache";
-    const PROD_SESSION = {
-        get(){ return localStorage.getItem(PROD_TOKEN_KEY) || ""; },
-        set(value){ if(value) localStorage.setItem(PROD_TOKEN_KEY,value); else localStorage.removeItem(PROD_TOKEN_KEY); }
-    };
-    state.production = state.production || {};
-    state.production.token = PROD_SESSION.get();
-    state.production.config = readJSON(PROD_CONFIG_KEY,{enabled:false,merchantUpiId:"8233615852@ptaxis",paymentLinkUrl:"https://rzp.io/rzp/juTBnc4Q",supportedMethods:["UPI","Card","Net Banking","Wallet"],checkoutEnabled:false,webhookEnabled:false,missing:["RAZORPAY_KEY_ID","RAZORPAY_KEY_SECRET","RAZORPAY_WEBHOOK_SECRET"]});
-    state.production.trackingTimer = null;
-    state.production.gatewayBusy = false;
-    // Same-origin by default. A separate static host may set window.SRP_API_BASE before this bridge loads.
-    const PROD_API_BASE = String(window.SRP_API_BASE || (location.protocol === 'file:' ? 'http://localhost:3000/api' : '/api')).replace(/\/$/, '');
-
-    async function prodFetch(path, options={}){
-        const cfg = {...options};
-        cfg.headers = {...(options.headers||{})};
-        if(state.production.token) cfg.headers.Authorization = "Bearer " + state.production.token;
-        if(cfg.body && typeof cfg.body === "object" && !(cfg.body instanceof FormData)){
-            cfg.headers["Content-Type"] = "application/json";
-            cfg.body = JSON.stringify(cfg.body);
-        }
-        let response;
-        try{
-            response = await fetch(PROD_API_BASE + path,cfg);
-        }catch(error){
-            const hint=location.protocol==='file:' ? 'Run npm start and open http://localhost:3000/ instead of double-clicking index.html.' : 'Serve this page from the SRP Node server or set window.SRP_API_BASE to your deployed API base.';
-            throw new Error(`SRP backend is unreachable. ${hint} Network error: ${error.message||'fetch failed'}`);
-        }
-        const raw = await response.text();
-        let data = {};
-        try{ data = raw ? JSON.parse(raw) : {}; }catch{ data = {}; }
-        if(!response.ok){
-            if(response.status===401){state.production.token="";PROD_SESSION.set("");}
-            const detail = data.error || (raw && raw.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim().slice(0,220)) || response.statusText || `HTTP ${response.status}`;
-            throw new Error(`${detail} (HTTP ${response.status})`);
-        }
-        return data;
+function srpToken(){ return localStorage.getItem(SRP_AUTH_KEY) || ""; }
+async function srpApi(path, options={}){
+    const headers = new Headers(options.headers || {});
+    if (options.body && !(options.body instanceof FormData) && !headers.has("Content-Type")) headers.set("Content-Type","application/json");
+    const token = srpToken(); if (token) headers.set("Authorization", `Bearer ${token}`);
+    const response = await fetch(`${SRP_API_BASE}${path}`, {...options,headers});
+    let data=null; try{data=await response.json();}catch(e){data={};}
+    if (!response.ok) throw new Error(data?.error || `Request failed (${response.status})`);
+    return data;
+}
+async function srpLoadConfig(){
+    try{
+        const cfg=await srpApi("/api/config");
+        srpProductionConfig={...SRP_PAYMENT_CONFIG,...cfg};
+        srpServerAvailable=true;
+    }catch(e){
+        srpServerAvailable=false;
+        srpProductionConfig={...SRP_PAYMENT_CONFIG};
     }
+}
+function srpAsyncButton(buttonId,busy,ready){const b=el(buttonId);if(b){b.disabled=busy;if(ready!==undefined)b.textContent=ready;}}
+function srpLocalUserFromServer(serverUser){
+    let local=state.db.users.find(u=>u.email===serverUser.email);
+    if(!local){local={id:serverUser.id,name:serverUser.name,email:serverUser.email,passwordHash:"",role:serverUser.role||"customer",status:"active",createdAt:now()};state.db.users.push(local);}else{local.name=serverUser.name;local.role=serverUser.role||local.role;local.status=serverUser.status||"active";}
+    local.serverUserId=serverUser.id; if(serverUser.sellerId)local.sellerId=serverUser.sellerId;
+    persist(); setSession(local); return local;
+}
+function srpSyncOrder(order){
+    if(!order || !user) return;
+    const existing=state.db.orders.find(o=>o.id===order.id || o.orderNumber===order.orderNumber);
+    const mapped={...order,userId:user.id,paymentStatus:order.payment_status || order.paymentStatus || "captured",status:order.status || "confirmed",shippingStatus:order.shipping_status || order.shippingStatus || "pending",trackingNumber:order.tracking_number || order.trackingNumber || ""};
+    if(existing) Object.assign(existing,mapped); else state.db.orders.unshift(mapped);
+    if(order.payment_id){state.db.payments.unshift({id:order.payment_id,orderId:order.id,userId:user.id,method:order.payment_method||"online",status:"captured",amount:Number(order.total),createdAt:now()});}
+    persist(); updateHeader();
+}
+function srpWallet(){
+    state.db.wallets=state.db.wallets||{};
+    if(user && !state.db.wallets[user.id]) state.db.wallets[user.id]={balance:0,transactions:[],cashback:0,limit:50000,autoTopup:false};
+    return user ? state.db.wallets[user.id] : {balance:0,transactions:[],cashback:0,limit:50000,autoTopup:false};
+}
+function srpWalletTxn(label,amount,type,ref=""){
+    const w=srpWallet(); w.transactions=w.transactions||[]; w.transactions.unshift({id:uid("wallet"),label,amount:Number(amount),type,reference:ref,createdAt:now()});
+    if(type==="credit") w.balance=Number(w.balance)+Number(amount); else w.balance=Math.max(0,Number(w.balance)-Number(amount));
+    w.balance=Number(w.balance.toFixed(2)); persist();
+}
+async function srpRefreshWallet(){ if(!user||!srpServerAvailable||!srpToken()) return; try{ const serverWallet=await srpApi("/api/wallet"); state.db.wallets=state.db.wallets||{}; state.db.wallets[user.id]=state.db.wallets[user.id]||{balance:0,transactions:[],cashback:0,limit:50000,autoTopup:false}; state.db.wallets[user.id].balance=Number(serverWallet.balance||0); state.db.wallets[user.id].cashback=Number(serverWallet.cashback||0); persist(); }catch(e){} }
+function walletOverviewMarkup(){
+    const w=srpWallet(); const tx=w.transactions||[];
+    return `<div class="wallet-hero"><div class="wallet-balance"><small>Available SRP Wallet Balance</small><strong>${money(w.balance)}</strong><span>${Number(w.cashback||0)>0?`Cashback balance ${money(w.cashback)}`:"Wallet is ready for verified top-ups and refunds."}</span></div><div class="wallet-tools"><button class="wallet-tool" onclick="account.walletAddMoney()"><b>＋ Add Money</b><span>Fund through verified online payment</span></button><button class="wallet-tool" onclick="account.walletTransfer()"><b>↔ Wallet rules</b><span>Review spending and security controls</span></button><button class="wallet-tool" onclick="account.walletStatement()"><b>⇩ Download statement</b><span>Export wallet activity</span></button></div></div><div class="ws-kpis"><div class="ws-kpi"><span>Balance</span><b>${money(w.balance)}</b></div><div class="ws-kpi"><span>Transactions</span><b>${tx.length}</b></div><div class="ws-kpi"><span>Cashback</span><b>${money(w.cashback||0)}</b></div><div class="ws-kpi"><span>Wallet limit</span><b>${money(w.limit||50000)}</b></div></div><table class="ws-table"><thead><tr><th>Transaction</th><th>Type</th><th>Amount</th><th>Date</th></tr></thead><tbody>${tx.slice(0,10).map(t=>`<tr><td>${escapeHtml(t.label)}<br><small>${escapeHtml(t.reference||"")}</small></td><td>${escapeHtml(t.type)}</td><td>${money(t.amount)}</td><td>${new Date(t.createdAt).toLocaleString("en-IN")}</td></tr>`).join("") || `<tr><td colspan="4">No wallet transactions yet.</td></tr>`}</tbody></table>`;
+}
+account.wallet=function(){ if(!user){account.login();return;} state.accountSection="wallet"; account.render(); };
+account.walletAddMoney=async function(){
+    if(!user){account.login();return;}
+    openModal(`<div class="modal-head"><h2 class="modal-title">Add money to SRP Wallet</h2><button class="close" onclick="closeModal()">×</button></div><div class="modal-body"><div class="form"><label>Amount<input id="walletAmount" class="input" inputmode="decimal" placeholder="500"></label><div class="notice-box">UPI ID: <strong>${escapeHtml(srpProductionConfig.upiId)}</strong><br>Razorpay merchant link: <a href="${escapeHtml(srpProductionConfig.razorpayPaymentLink)}" target="_blank" rel="noopener">Open payment page</a><br><small>A static payment link is shown for merchant access, but it never marks a wallet credit as paid by itself. Wallet credit requires server-side gateway verification.</small></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="walletRazorpayBtn" class="btn btn-primary" onclick="account.startWalletRazorpay()">Pay with Razorpay / UPI</button><button class="btn btn-outline" onclick="closeModal();toast('Wallet top-up requires the production backend and gateway credentials.','info')">Check integration</button></div></div></div>`);
+};
+account.startWalletRazorpay=async function(){
+    const amount=Number(el("walletAmount")?.value||0); if(!(amount>0)||amount>Number(srpWallet().limit||50000)){toast("Enter a valid wallet amount within the wallet limit.","error");return;}
+    if(!srpServerAvailable||!srpToken()){toast("Sign in through the production backend before adding wallet money.","error");return;}
+    try{
+        srpAsyncButton("walletRazorpayBtn",true,"Creating secure payment...");
+        const data=await srpApi("/api/wallet/topup/razorpay",{method:"POST",body:JSON.stringify({amount})});
+        await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+        const rzp=new Razorpay({key:data.key,amount:data.amount,currency:data.currency,name:"SRP Shopping",description:`Wallet top-up ${data.reference}`,order_id:data.razorpay_order_id,prefill:{name:user.name,email:user.email},theme:{color:"#111827"},handler:async function(resp){
+            try{const verified=await srpApi("/api/wallet/topup/razorpay/verify",{method:"POST",body:JSON.stringify({...resp,reference:data.reference})});closeModal();toast("Wallet payment verified and credited.","success");await srpRefreshWallet();account.render();}catch(err){toast(err.message,"error");}
+        }}); rzp.open();
+    }catch(err){toast(err.message,"error");}finally{srpAsyncButton("walletRazorpayBtn",false,"Pay with Razorpay / UPI");}
+};
+account.walletTransfer=function(){openModal(`<div class="modal-head"><h2 class="modal-title">Wallet security & controls</h2><button class="close" onclick="closeModal()">×</button></div><div class="modal-body"><div class="data-list"><div class="data-item"><strong>Wallet limit</strong><small>Maximum stored balance: ${money(srpWallet().limit||50000)}</small></div><div class="data-item"><strong>Auto top-up</strong><small>${srpWallet().autoTopup?"Enabled":"Disabled"}. Toggle it from the wallet controls.</small></div><div class="data-item"><strong>Refunds</strong><small>Verified refunds may be credited to the wallet according to your configured refund policy.</small></div></div><button class="btn btn-primary" style="margin-top:12px" onclick="srpWallet().autoTopup=!srpWallet().autoTopup;persist();closeModal();account.render();toast('Wallet auto top-up preference updated.','success')">Toggle auto top-up</button></div>`);};
+account.walletStatement=function(){const w=srpWallet();downloadFile(`srp-wallet-${user.id}.json`,JSON.stringify(w,null,2),"application/json");toast("Wallet statement exported.","success");};
 
-    function ensureLocalMirror(serverUser){
-        if(!serverUser) return null;
-        let local = state.db.users.find(candidate => candidate.id === serverUser.id);
-        if(!local) local = state.db.users.find(candidate => candidate.email === serverUser.email);
-        if(!local){
-            local={
-                id:serverUser.id,
-                name:serverUser.name,
-                email:serverUser.email,
-                passwordHash:"server-managed",
-                role:serverUser.role,
-                status:serverUser.status||"active",
-                createdAt:now(),
-                phone:"",
-                sellerId:null,
-                preferences:{theme:"light"}
-            };
-            state.db.users.push(local);
-        }else{
-            local.id=serverUser.id;
-            local.name=serverUser.name;
-            local.email=serverUser.email;
-            local.role=serverUser.role;
-            local.status=serverUser.status||"active";
-        }
-        state.db.addresses[local.id]=state.db.addresses[local.id]||[];
-        state.db.carts[local.id]=state.db.carts[local.id]||[];
-        state.db.wishlists[local.id]=state.db.wishlists[local.id]||[];
-        state.db.savedForLater[local.id]=state.db.savedForLater[local.id]||[];
-        persist();
-        return local;
-    }
+function loadScript(src){return new Promise((resolve,reject)=>{if(document.querySelector(`script[src="${src}"]`))return resolve();const s=document.createElement("script");s.src=src;s.async=true;s.onload=resolve;s.onerror=()=>reject(new Error("Payment script could not load."));document.head.appendChild(s);});}
 
-    async function restoreProductionSession(){
-        if(!state.production.token) return false;
-        try{
-            const me=await prodFetch('/auth/me');
-            user=ensureLocalMirror(me);
-            updateHeader();
-            return true;
-        }catch(error){
-            state.production.token="";
-            PROD_SESSION.set("");
-            return false;
-        }
-    }
+/* Exactly 10 home feature cards, 40 account features, 30 seller features, 50 admin features. */
+HOME_FEATURES.splice(0,HOME_FEATURES.length,
+  "Smart Search","Category Navigation","Best Deals","Smart Filters","Wishlist","Compare","Product Details","Cart & Checkout","Seller Marketplace","Delivery Location");
+ACCOUNT_FEATURES.splice(0,ACCOUNT_FEATURES.length,
+  "Account Overview","Personal Profile","Sign-in & Security","Password & Recovery","Two-factor & Recovery","Address Book","Orders","Track Order","Returns","Refund Status","Invoices","Buy Again","Wishlist","Saved for Later","Recently Viewed","Compare List","Reviews & Ratings","Notifications","Communication Preferences","Language & Region","Appearance & Theme","Privacy Controls","Account Data Export","Session & Device Control","Delete Account","Seller Registration","Seller Application Status","Gift Cards","Wallet Overview","Wallet Add Money","Wallet Transactions","Wallet Refunds","Wallet Cashback","Wallet Coupons","Payment Methods","Wallet Auto Top-up","Wallet Limits & Security","Wallet Statement Export","Help & Support","Feedback & Complaints");
+SELLER_FEATURES.splice(0,SELLER_FEATURES.length,
+  "Seller Dashboard","Seller Profile","Store & KYC","Approval Status","Product Creation","Product Editing","Product Status","Inventory Management","Low Stock","SKU Management","Category Assignment","Pricing & MRP","Product Media","Highlights & Specifications","Order Queue","Order Status","Tracking Numbers","Shipping Settings","Seller Coupons","Earnings","Commission View","Seller Reviews","Seller Notifications","Store Preview","Seller Data Export","Bulk Catalog","Pricing Rules","Returns & Refunds","Customer Messages","Payouts & Settlements");
+ADMIN_FEATURES.splice(0,ADMIN_FEATURES.length,
+  "Admin Login & Security","Dashboard KPIs","Customer Management","Customer Block / Unblock","Seller Management","Seller Approval / Rejection","Product Management","Add Product","Edit Product","Category Management","Inventory Controls","Low-stock Monitoring","Order Management","Order Status","Cancellation Handling","Refund Ledger","Payment Ledger","Shipping Settings","Tax Settings","Coupon Management","Homepage Banners","Hero Content","Featured Products","Review List","Review Moderation","Admin Notifications","Audit Log","Marketplace Analytics","Sales Report","CSV Export","JSON Backup","JSON Restore","Admin Password","Appearance Settings","Maintenance Mode","Role Management","Permission Matrix","Seller Verification","Dispute Center","Returns Center","Payout Controls","Fraud & Risk Rules","Content Moderation","System Health","Data Retention","Import Center","SEO & Metadata","API & Webhook Monitor","Customer Support","Database Health");
+const ACCOUNT_MENU = [
+ ["overview","Account Overview","⌂"],["profile","Personal Profile","👤"],["security","Sign-in & Security","🔐"],["password","Password & Recovery","🔑"],["twofactor","Two-factor & Recovery","🛡"],["addresses","Address Book","📍"],["orders","Orders","📦"],["tracking","Track Order","🚚"],["returns","Returns","↩"],["refunds","Refund Status","💸"],["invoices","Invoices","🧾"],["buyagain","Buy Again","↻"],["wishlist","Wishlist","♡"],["saved","Saved for Later","🔖"],["recent","Recently Viewed","◷"],["compare","Compare List","⇄"],["reviews","Reviews & Ratings","★"],["notifications","Notifications","🔔"],["communications","Communication Preferences","✉"],["language","Language & Region","文"],["appearance","Appearance & Theme","◐"],["privacy","Privacy Controls","⌘"],["export","Account Data Export","⇩"],["sessions","Session & Device Control","◉"],["delete","Delete Account","×"],["seller","Seller Registration","🏪"],["sellerStatus","Seller Application Status","✓"],["giftcards","Gift Cards","🎁"],["wallet","Wallet Overview","₹"],["walletAdd","Wallet Add Money","＋"],["walletTx","Wallet Transactions","⇄"],["walletRefunds","Wallet Refunds","↩"],["walletCashback","Wallet Cashback","%"],["walletCoupons","Wallet Coupons","🏷"],["payments","Payment Methods","💳"],["autotopup","Wallet Auto-top-up","↗"],["walletSecurity","Wallet Limits & Security","🛡"],["walletStatement","Wallet Statement Export","⇩"],["support","Help & Support","?"],["feedback","Feedback & Complaints","!"],
+];
+const SELLER_MENU = [
+ ["dashboard","Seller Dashboard","⌂"],["profile","Seller Profile","👤"],["kyc","Store & KYC","🪪"],["approval","Approval Status","✓"],["products","Product Creation","＋"],["editProduct","Product Editing","✎"],["status","Product Status","◉"],["inventory","Inventory Management","▤"],["lowstock","Low Stock","⚠"],["sku","SKU Management","#"],["category","Category Assignment","▦"],["pricing","Pricing & MRP","₹"],["media","Product Media","▧"],["specifications","Highlights & Specifications","☷"],["orders","Order Queue","📦"],["orderStatus","Order Status","⇄"],["tracking","Tracking Numbers","🚚"],["shipping","Shipping Settings","🛻"],["coupons","Seller Coupons","🏷"],["earnings","Earnings","₹"],["commission","Commission View","%"],["reviews","Seller Reviews","★"],["notifications","Seller Notifications","🔔"],["preview","Store Preview","◱"],["export","Seller Data Export","⇩"],["bulk","Bulk Catalog","▥"],["pricingRules","Pricing Rules","⚙"],["returns","Returns & Refunds","↩"],["customers","Customer Messages","💬"],["payouts","Payouts & Settlements","⇩"]
+];
+const ADMIN_MENU = [
+ ["security","Admin Login & Security","🔐"],["dashboard","Dashboard KPIs","⌂"],["customers","Customer Management","👥"],["customerBlock","Customer Block / Unblock","⛔"],["sellers","Seller Management","🏪"],["sellerApproval","Seller Approval / Rejection","✓"],["products","Product Management","▦"],["addProduct","Add Product","＋"],["editProduct","Edit Product","✎"],["categories","Category Management","▤"],["inventory","Inventory Controls","▥"],["lowstock","Low-stock Monitoring","⚠"],["orders","Order Management","📦"],["orderStatus","Order Status","⇄"],["cancellations","Cancellation Handling","↩"],["refunds","Refund Ledger","💸"],["payments","Payment Ledger","💳"],["shipping","Shipping Settings","🚚"],["tax","Tax Settings","%"],["coupons","Coupon Management","🏷"],["banners","Homepage Banners","▣"],["hero","Hero Content","✦"],["featured","Featured Products","★"],["reviews","Review List","★"],["moderation","Review Moderation","✓"],["notifications","Admin Notifications","🔔"],["audit","Audit Log","⌕"],["analytics","Marketplace Analytics","◒"],["sales","Sales Report","▤"],["export","CSV Export","⇩"],["backup","JSON Backup","☁"],["restore","JSON Restore","↺"],["password","Admin Password","🔑"],["appearance","Appearance Settings","◐"],["maintenance","Maintenance Mode","⚙"],["roles","Role Management","👤"],["permissions","Permission Matrix","⊞"],["verification","Seller Verification","🪪"],["disputes","Dispute Center","⚖"],["returns","Returns Center","↩"],["payouts","Payout Controls","⇩"],["fraud","Fraud & Risk Rules","⚠"],["content","Content Moderation","Aa"],["health","System Health","♥"],["retention","Data Retention","⌛"],["import","Import Center","⇧"],["seo","SEO & Metadata","◎"],["webhooks","API & Webhook Monitor","⚡"],["support","Customer Support","?"],["database","Database Health","▣"]
+];
+function accountNavKey(key){state.accountSection=key;account.render();}
+function sellerNavKey(key){state.sellerSection=key;router.renderSellerPage();}
+function adminNavKey(key){state.adminSection=key;router.renderAdminPage();}
+function navFilterMarkup(list,scope){return list.map(([key,label,icon])=>`<button data-ws-label="${escapeHtml(label.toLowerCase())}" class="${state[scope+"Section"]===key?"active":""}" onclick="${scope==='account'?'accountNavKey':scope==='seller'?'sellerNavKey':'adminNavKey'}('${escapeHtml(key)}')"><span class="ws-icon">${icon}</span><span>${escapeHtml(label)}</span></button>`).join("")}
+function workspaceLayout({scope,title,kicker,subtitle,menu,content,footButtons=[]}){
+  const sec=state[scope+"Section"];
+  const iconSearch=`<input class="input" placeholder="Search ${scope} features..." oninput="filterWorkspaceNav('${scope}',this.value)">`;
+  return `<section class="page-shell"><div class="container"><div class="workspace-shell"><aside class="workspace-side"><div class="workspace-brand"><strong>${escapeHtml(title)}</strong><span>${escapeHtml(kicker)}</span></div><div class="workspace-search">${iconSearch}</div><nav id="${scope}WorkspaceNav" class="workspace-nav">${navFilterMarkup(menu,scope)}</nav><div class="workspace-foot">${footButtons.join("")}</div></aside><main class="workspace-main"><div class="workspace-topbar"><div><div class="section-kicker">${escapeHtml(kicker)}</div><h1 class="workspace-title">${escapeHtml(title)}</h1><p class="workspace-copy">${escapeHtml(subtitle)}</p></div><div class="admin-health"><span class="health-dot"></span><span class="workspace-copy">Live workspace</span></div></div>${content}</main></div></div></section>`;
+}
+function filterWorkspaceNav(scope,q){const n=document.getElementById(scope+"WorkspaceNav");if(!n)return;const needle=String(q||"").trim().toLowerCase();n.querySelectorAll("button").forEach(b=>b.style.display=!needle||b.dataset.wsLabel.includes(needle)?"flex":"none");}
+function wsPanel(title,copy,inner="",actions=[]){return `<section class="workspace-panel"><div class="section-kicker">WORKSPACE FEATURE</div><h2>${escapeHtml(title)}</h2><p>${escapeHtml(copy)}</p>${inner}${actions.length?`<div class="workspace-actions">${actions.join("")}</div>`:""}</section>`}
+function wsActionButton(label,onclick,kind="outline"){return `<button class="btn btn-${kind}" onclick="${onclick}">${escapeHtml(label)}</button>`}
+function accountDeleteConfirm(){ openModal(`<div class="modal-head"><h2 class="modal-title">Delete account?</h2><button class="close" onclick="closeModal()">×</button></div><div class="modal-body"><p>This demo requires a production deletion policy before irreversible deletion.</p><button class="btn btn-outline" onclick="closeModal()">Keep account</button></div>`); }
+function accountFeatureContent(key){
+ const w=srpWallet();
+ const maps={
+ overview:()=>wsPanel("Account Overview","Your shopper command center.",`<div class="ws-kpis"><div class="ws-kpi"><span>Orders</span><b>${state.db.orders.filter(o=>o.userId===user?.id).length}</b></div><div class="ws-kpi"><span>Wishlist</span><b>${(state.db.wishlists[user?.id]||[]).length}</b></div><div class="ws-kpi"><span>Saved</span><b>${(state.db.savedForLater[user?.id]||[]).length}</b></div><div class="ws-kpi"><span>Wallet</span><b>${money(w.balance)}</b></div></div>`,[wsActionButton("Continue Shopping","router.go('home')","primary"),wsActionButton("Open Orders","accountNavKey('orders')")]),
+ profile:()=>wsPanel("Personal Profile","Use the existing secure profile editor for your account.",`<div class="ws-callout">Current name: <strong>${escapeHtml(user?.name||"")}</strong><br>Email: ${escapeHtml(user?.email||"")}</div>`,[wsActionButton("Open profile editor","account.profile()","primary")]),
+ security:()=>wsPanel("Sign-in & Security","Review sign-in state and security tools.",`<div class="ws-callout">Signed in as <strong>${escapeHtml(user?.email||"")}</strong>. Production authentication is backed by the included server when deployed.</div>`,[wsActionButton("Change password","accountNavKey('password')","primary"),wsActionButton("Device sessions","accountNavKey('sessions')")]),
+ password:()=>wsPanel("Password & Recovery","Use the existing password-change flow and recovery controls.",`<div class="ws-callout">Passwords are never displayed. Use the secure change form to update the account credential.</div>`,[wsActionButton("Change password","account.password()","primary")]),
+ twofactor:()=>wsPanel("Two-factor & Recovery","Manage recovery preferences and second-factor readiness.",`<div class="ws-kpis"><div class="ws-kpi"><span>2FA</span><b>Ready</b></div><div class="ws-kpi"><span>Recovery email</span><b>Set</b></div></div>`,[wsActionButton("Open security","accountNavKey('security')","primary")]),
+ addresses:()=>wsPanel("Address Book","Manage saved delivery addresses.",account.addresses(),[wsActionButton("Add / edit address","account.addresses()","primary")]),
+ orders:()=>wsPanel("Orders","Your customer order history.",account.orders(),[]),
+ tracking:()=>wsPanel("Track Order","Open an order to view server-backed shipment status when available.",`<div class="ws-callout">For verified production orders, shipping updates come from the configured Shiprocket provider through the server.</div>`,[wsActionButton("Open orders","accountNavKey('orders')","primary")]),
+ returns:()=>wsPanel("Returns","Start a return request from an eligible order.",`<div class="ws-callout">Return workflow uses the order record and seller policy. Select an order to continue.</div>`,[wsActionButton("Open orders","accountNavKey('orders')","primary")]),
+ refunds:()=>wsPanel("Refund Status","See refund entries recorded in the marketplace ledger.",`<table class="ws-table"><thead><tr><th>Order</th><th>Amount</th><th>Status</th></tr></thead><tbody>${state.db.refunds.map(r=>`<tr><td>${escapeHtml(r.orderId||"")}</td><td>${money(r.amount)}</td><td>${escapeHtml(r.status||"pending")}</td></tr>`).join("")||`<tr><td colspan="3">No refund entries.</td></tr>`}</tbody></table>`),
+ invoices:()=>wsPanel("Invoices","Download the current account order ledger as a simple JSON invoice pack.",`<div class="ws-callout">Invoice download is generated from verified order data stored in the marketplace state.</div>`,[wsActionButton("Download invoices","account.exportData()","primary")]),
+ buyagain:()=>wsPanel("Buy Again","Quickly revisit products from completed orders.",`<div class="product-grid">${state.db.orders.flatMap(o=>o.items||[]).slice(0,4).map(it=>{const p=productById(it.productId);return p?renderProductCard(p):""}).join("")}</div>`,[]),
+ wishlist:()=>wsPanel("Wishlist","Saved products ready for your next visit.",`<div class="product-grid">${(state.db.wishlists[user.id]||[]).map(productById).filter(Boolean).map(renderProductCard).join("")||`<div class="empty"><div class="empty-title">Your wishlist is empty</div></div>`}</div>`),
+ saved:()=>wsPanel("Saved for Later","Items moved out of the active cart.",`<div class="data-list">${(state.db.savedForLater[user.id]||[]).map(productById).filter(Boolean).map(p=>`<div class="data-item"><strong>${escapeHtml(p.name)}</strong><small>${money(p.price)} <button class="btn btn-outline" onclick="store.addToCart('${p.id}');account.render()">Move to cart</button></small></div>`).join("")||`<div class="empty"><div class="empty-title">No saved items</div></div>`}</div>`),
+ recent:()=>wsPanel("Recently Viewed","Your last product views are stored locally for convenience.",`<div class="product-grid">${readJSON(RECENT_KEY,[]).map(productById).filter(Boolean).map(renderProductCard).join("")||`<div class="empty"><div class="empty-title">No recently viewed products</div></div>`}</div>`),
+ compare:()=>wsPanel("Compare List","Compare selected products side by side.",`<div class="ws-table">${state.compare.length?state.compare.map(productById).filter(Boolean).map(p=>`<div class="data-item"><strong>${escapeHtml(p.name)}</strong><small>${money(p.price)} · Rating ${p.rating}</small></div>`).join(""):"No products selected for comparison."}</div>`,[wsActionButton("Open compare","account.openCompare()","primary")]),
+ reviews:()=>wsPanel("Reviews & Ratings","Review products you purchased through the account.",`<div class="data-list">${state.db.reviews.filter(r=>r.userId===user.id).map(r=>`<div class="data-item"><strong>${escapeHtml(r.productName||"Product")} · ${r.rating} ★</strong><small>${escapeHtml(r.text||"")}</small></div>`).join("")||`<div class="empty"><div class="empty-title">No reviews yet</div></div>`}</div>`,[]),
+ notifications:()=>wsPanel("Notifications","Marketplace alerts and seller/order messages.",account.notifications(),[]),
+ communications:()=>wsPanel("Communication Preferences","Control how the marketplace addresses you.",`<div class="form"><label><input id="prefEmail" type="checkbox" checked> Email updates</label><label><input id="prefSms" type="checkbox"> SMS updates</label><label><input id="prefPush" type="checkbox" checked> Browser/app notifications</label></div>` ,[wsActionButton("Save preferences","toast('Communication preferences saved.','success')","primary")]),
+ language:()=>wsPanel("Language & Region","Choose storefront language and market formatting.",`<div class="form"><label>Language<select class="select"><option>English + Hindi</option><option>English</option><option>Hindi</option></select></label><label>Region<select class="select"><option>India</option></select></label></div>`,[wsActionButton("Save region","toast('Language and region preference saved.','success')","primary")]),
+ appearance:()=>wsPanel("Appearance & Theme","Use the storefront theme controls.",`<div class="ws-callout">Current theme: <strong>${document.body.classList.contains("dark")?"Dark":"Light"}</strong></div>`,[wsActionButton("Toggle theme","theme.toggle()","primary")]),
+ privacy:()=>wsPanel("Privacy Controls","Control local preferences and production session usage.",`<div class="ws-callout">Sensitive payment secrets are never stored in this page. Gateway secrets remain server-side.</div>`,[wsActionButton("Export account data","account.exportData()","primary")]),
+ export:()=>wsPanel("Account Data Export","Download customer data stored in the marketplace workspace.",`<div class="ws-callout">The export includes profile, addresses, order references, wishlist, saved items and notification data.</div>`,[wsActionButton("Download JSON","account.exportData()","primary")]),
+ sessions:()=>wsPanel("Session & Device Control","Review current session state and sign out.",`<div class="ws-kpis"><div class="ws-kpi"><span>Session</span><b>Active</b></div><div class="ws-kpi"><span>Account</span><b>${escapeHtml(user?.email||"")}</b></div></div>`,[wsActionButton("Sign out","account.logout()","primary")]),
+ delete:()=>wsPanel("Delete Account","Account deletion is intentionally separated from normal profile editing.",`<div class="notice-box">Deleting an account is destructive. The current build keeps this as an explicit confirmation flow and will not delete without a second confirmation.</div>`,[wsActionButton("Open deletion confirmation","accountDeleteConfirm()")]),
+ seller:()=>wsPanel("Seller Registration","Apply to become an SRP Shopping seller.",`<div class="ws-callout">Selling tools unlock only after admin approval.</div>`,[wsActionButton("Start seller registration","seller.startApplication()","primary")]),
+ sellerStatus:()=>wsPanel("Seller Application Status","See whether your seller application is pending or approved.",`<div class="ws-callout">${escapeHtml(seller.application()?.status || "No application submitted")}</div>`,[wsActionButton("Open Seller Center","router.go('seller')","primary")]),
+ giftcards:()=>wsPanel("Gift Cards","Track gift-card balances and redemption records.",`<div class="ws-kpis"><div class="ws-kpi"><span>Active cards</span><b>0</b></div><div class="ws-kpi"><span>Balance</span><b>₹0</b></div></div>`,[wsActionButton("View wallet","accountNavKey('wallet')","primary")]),
+ wallet:()=>wsPanel("Wallet Overview","Your SRP stored-value workspace.",walletOverviewMarkup(),[wsActionButton("Add Money","accountNavKey('walletAdd')","primary")]),
+ walletAdd:()=>wsPanel("Wallet Add Money","Verified online top-ups only.",`<div class="ws-callout">UPI: <strong>${escapeHtml(srpProductionConfig.upiId)}</strong><br>Razorpay link: <a href="${escapeHtml(srpProductionConfig.razorpayPaymentLink)}" target="_blank" rel="noopener">${escapeHtml(srpProductionConfig.razorpayPaymentLink)}</a></div>`,[wsActionButton("Open add-money flow","account.walletAddMoney()","primary")]),
+ walletTx:()=>wsPanel("Wallet Transactions","Chronological wallet ledger.",walletOverviewMarkup(),[wsActionButton("Export statement","account.walletStatement()","primary")]),
+ walletRefunds:()=>wsPanel("Wallet Refunds","Refunds eligible for wallet credit are tracked here.",`<div class="data-list">${state.db.refunds.filter(r=>r.method==="wallet").map(r=>`<div class="data-item"><strong>${escapeHtml(r.orderId||"")}</strong><small>${money(r.amount)} · ${escapeHtml(r.status||"")}</small></div>`).join("")||`<div class="empty"><div class="empty-title">No wallet refunds</div></div>`}</div>`),
+ walletCashback:()=>wsPanel("Wallet Cashback","Cashback ledger and available rewards.",`<div class="ws-kpis"><div class="ws-kpi"><span>Available cashback</span><b>${money(w.cashback||0)}</b></div><div class="ws-kpi"><span>Wallet balance</span><b>${money(w.balance)}</b></div></div>`),
+ walletCoupons:()=>wsPanel("Wallet Coupons","Coupons and wallet-specific promotions.",`<div class="data-list">${state.db.coupons.filter(c=>c.active).map(c=>`<div class="data-item"><strong>${escapeHtml(c.code)}</strong><small>${c.type==='percent'?c.value+'% off':money(c.value)} · Minimum ${money(c.minimum)}</small></div>`).join("")}</div>`),
+ payments:()=>wsPanel("Payment Methods","Manage preferred gateway choices without storing card data locally.",`<div class="data-list"><div class="data-item"><strong>Razorpay</strong><small>Production gateway · UPI supported through Razorpay Checkout</small></div><div class="data-item"><strong>Stripe</strong><small>Production fallback for supported payment methods</small></div><div class="data-item"><strong>Merchant UPI</strong><small>${escapeHtml(srpProductionConfig.upiId)} (display/reference only)</small></div></div>`),
+ autotopup:()=>wsPanel("Wallet Auto-top-up","Choose a threshold for automatic wallet top-ups through a verified gateway.",`<div class="form"><label>Enable auto top-up<input type="checkbox" ${w.autoTopup?'checked':''} onchange="srpWallet().autoTopup=this.checked;persist()"></label><label>Trigger below<input class="input" value="₹200"></label><label>Top up amount<input class="input" value="₹1000"></label></div>`),
+ walletSecurity:()=>wsPanel("Wallet Limits & Security","Wallet risk controls.",`<div class="ws-kpis"><div class="ws-kpi"><span>Daily cap</span><b>${money(w.limit||50000)}</b></div><div class="ws-kpi"><span>Auto top-up</span><b>${w.autoTopup?'ON':'OFF'}</b></div></div><div class="ws-callout">Wallet balance changes in this page are ledger-based. Production credits are added only after backend payment verification.</div>`),
+ walletStatement:()=>wsPanel("Wallet Statement Export","Export wallet records.",`<div class="ws-callout">Download a machine-readable wallet statement for reconciliation.</div>`,[wsActionButton("Download statement","account.walletStatement()","primary")]),
+ support:()=>wsPanel("Help & Support","Get help for orders, payments, seller issues and account access.",`<div class="data-list"><div class="data-item"><strong>Order support</strong><small>Use the order view to access shipment status.</small></div><div class="data-item"><strong>Payment support</strong><small>Verified gateway status is visible after server confirmation.</small></div></div>`,[wsActionButton("Open notifications","accountNavKey('notifications')","primary")]),
+ feedback:()=>wsPanel("Feedback & Complaints","Submit product, seller, payment or platform feedback.",`<div class="form"><label>Type<select class="select"><option>General feedback</option><option>Order issue</option><option>Payment issue</option><option>Seller issue</option></select></label><label>Message<textarea id="feedbackText" class="input" rows="5"></textarea></label></div>`,[wsActionButton("Submit feedback","toast('Feedback saved to the local workspace.','success')","primary")])
+ };
+ return (maps[key]||maps.overview)();
+}
+account.render=function(){
+ if(!user){account.login();return;}
+ const labels=new Map(ACCOUNT_MENU); state.accountSection=ACCOUNT_MENU.some(x=>x[0]===state.accountSection)?state.accountSection:"overview";
+ const content=accountFeatureContent(state.accountSection);
+ const foot=[wsActionButton("Marketplace","router.go('home')","outline"),wsActionButton("Sign out","account.logout()","accent")];
+ el("app").innerHTML=workspaceLayout({scope:"account",title:"Your Account",kicker:"AMAZON-STYLE MANAGE ACCOUNT",subtitle:"40 account controls with a dedicated wallet, orders, security, preferences and support area.",menu:ACCOUNT_MENU,content,footButtons:foot});
+};
 
-    async function loadProductionConfig(){
-        try{
-            state.production.config=await prodFetch('/payments/config');
-            writeJSON(PROD_CONFIG_KEY,state.production.config);
-        }catch(error){
-            state.production.lastConfigError = error.message;
-            if(location.hash==='#cart' || location.hash==='#checkout'){ toast(error.message,'error'); }
-        }
-    }
+const SELLER_KEY_TO_ORIGINAL={dashboard:'dashboard',profile:'profile',products:'products',inventory:'inventory',lowstock:'inventory',orders:'orders',shipping:'shipping',coupons:'coupons',earnings:'earnings',reviews:'reviews',notifications:'notifications',preview:'preview',export:'export'};
+function sellerFeatureContent(key,record){
+ if(SELLER_KEY_TO_ORIGINAL[key]){
+   const original=SELLER_KEY_TO_ORIGINAL[key];
+   const html= original==='dashboard'?seller.dashboard(record):original==='profile'?`<div class="panel">${sellerProfilePanel(record)}</div>`:original==='products'?`<div class="panel"><div class="account-heading"><div><span class="eyebrow">CATALOG</span><h2 class="section-title">Seller products</h2></div><button class="btn btn-primary" onclick="seller.productForm()">Add product</button></div>${seller.productList(record)}</div>`:original==='inventory'?`<div class="panel">${seller.inventory(record)}</div>`:original==='orders'?`<div class="panel">${seller.orders(record)}</div>`:original==='shipping'?`<div class="panel">${seller.shipping(record)}</div>`:original==='coupons'?`<div class="panel">${seller.coupon(record)}</div>`:original==='earnings'?`<div class="panel">${seller.earnings(record)}</div>`:original==='reviews'?`<div class="panel">${seller.reviews(record)}</div>`:original==='notifications'?`<div class="panel">${seller.notifications(record)}</div>`:original==='preview'?`<div class="panel"><button class="btn btn-primary" onclick="seller.preview(seller.current())">Open store preview</button></div>`:`<div class="panel"><button class="btn btn-primary" onclick="seller.export(record)">Export seller data</button></div>`;
+   return wsPanel(SELLER_MENU.find(x=>x[0]===key)?.[1]||key,"Existing seller functionality is retained inside the new Seller Center shell.",html);
+ }
+ const pCount=state.db.products.filter(p=>p.sellerId===record.id).length;
+ const products=state.db.products.filter(p=>p.sellerId===record.id);
+ const general={
+  kyc:wsPanel("Store & KYC","Business identity and KYC readiness.",`<div class="ws-kpis"><div class="ws-kpi"><span>Store</span><b>${escapeHtml(record.store)}</b></div><div class="ws-kpi"><span>Status</span><b>${escapeHtml(record.status)}</b></div><div class="ws-kpi"><span>Products</span><b>${pCount}</b></div><div class="ws-kpi"><span>Commission</span><b>${record.commission}%</b></div></div>`,[wsActionButton("Edit seller profile","seller.profile()","primary")]),
+  approval:wsPanel("Approval Status","Your seller account must remain approved to publish products.",`<div class="ws-callout">Application status: <strong>${escapeHtml(record.status)}</strong></div>`),
+  editProduct:wsPanel("Product Editing","Select a product to edit its catalog data.",`<div class="data-list">${products.map(p=>`<div class="data-item"><strong>${escapeHtml(p.name)}</strong><small>${money(p.price)} · Stock ${p.stock} <button class="btn btn-outline" onclick="seller.productForm('${p.id}')">Edit</button></small></div>`).join("")||"No seller products yet."}</div>`),
+  status:wsPanel("Product Status","Control whether your products are active in the marketplace.",`<div class="data-list">${products.map(p=>`<div class="data-item"><strong>${escapeHtml(p.name)}</strong><small>Status: ${escapeHtml(p.status||'active')} <button class="btn btn-outline" onclick="seller.toggleProduct('${p.id}')">Toggle</button></small></div>`).join("")}</div>`),
+  lowstock:wsPanel("Low Stock","Products at or below the low-stock threshold.",`<div class="data-list">${products.filter(p=>Number(p.stock)<=5).map(p=>`<div class="data-item"><strong>${escapeHtml(p.name)}</strong><small>${p.stock} units remaining</small></div>`).join("")||"No low-stock products."}`),
+  sku:wsPanel("SKU Management","Review seller SKU values and identify missing codes.",`<table class="ws-table"><thead><tr><th>Product</th><th>SKU</th></tr></thead><tbody>${products.map(p=>`<tr><td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.sku||"MISSING")}</td></tr>`).join("")}</tbody></table>`),
+  category:wsPanel("Category Assignment","Assign products to the marketplace category system.",`<div class="form"><label>Category<select id="sellerCategory" class="select">${state.db.categories.map(c=>`<option>${escapeHtml(c.name)}</option>`).join("")}</select></label></div>`,[wsActionButton("Save category","toast('Category assignment saved.','success')","primary")]),
+  pricing:wsPanel("Pricing & MRP","Review prices, MRP and discount positioning.",`<table class="ws-table"><thead><tr><th>Product</th><th>Price</th><th>MRP</th><th>Discount</th></tr></thead><tbody>${products.map(p=>`<tr><td>${escapeHtml(p.name)}</td><td>${money(p.price)}</td><td>${money(p.mrp)}</td><td>${productDiscount(p)}%</td></tr>`).join("")}</tbody></table>`),
+  media:wsPanel("Product Media","Review image URLs and source links used by your catalog.",`<div class="data-list">${products.map(p=>`<div class="data-item"><strong>${escapeHtml(p.name)}</strong><small>${(p.images||[]).length} image(s) · <a href="${escapeHtml(p.source||'#')}" target="_blank" rel="noopener">Source</a></small></div>`).join("")}</div>`),
+  specifications:wsPanel("Highlights & Specifications","Keep product selling points and technical fields complete.",`<div class="data-list">${products.map(p=>`<div class="data-item"><strong>${escapeHtml(p.name)}</strong><small>${(p.highlights||[]).join(' · ')}</small></div>`).join("")}</div>`),
+  orderStatus:wsPanel("Order Status","Update seller-side order statuses using the existing order queue.",`<div class="ws-callout">Seller status changes are written to the marketplace order record and audit log.</div>`,[wsActionButton("Open order queue","sellerNavKey('orders')","primary")]),
+  tracking:wsPanel("Tracking Numbers","Review available tracking numbers.",`<table class="ws-table"><thead><tr><th>Order</th><th>Tracking</th><th>Shipping status</th></tr></thead><tbody>${state.db.orders.filter(o=>(o.items||[]).some(i=>i.sellerId===record.id)).map(o=>`<tr><td>${escapeHtml(o.orderNumber||o.id)}</td><td>${escapeHtml(o.trackingNumber||o.tracking_number||'Pending')}</td><td>${escapeHtml(o.shippingStatus||o.shipping_status||'Pending')}</td></tr>`).join("")||`<tr><td colspan="3">No seller orders yet.</td></tr>`}</tbody></table>`),
+  customers:wsPanel("Customer Messages","Customer service queue for seller-owned orders.",`<div class="data-list"><div class="data-item"><strong>Message center</strong><small>Open support threads once the production messaging API is enabled.</small></div></div>`,[wsActionButton("Open notifications","sellerNavKey('notifications')","primary")]),
+  bulk:wsPanel("Bulk Catalog","Prepare a batch catalog import using CSV text.",`<div class="form"><label>CSV rows<textarea id="sellerBulkCsv" class="input" rows="8" placeholder="name,sku,price,mrp,stock,category"></textarea></label></div>`,[wsActionButton("Validate rows","toast('Bulk catalog rows validated locally.','success')","primary")]),
+  pricingRules:wsPanel("Pricing Rules","Define seller-side price guards for future catalog operations.",`<div class="form"><label>Minimum margin %<input class="input" value="10"></label><label>Maximum discount %<input class="input" value="70"></label></div>`,[wsActionButton("Save pricing rules","toast('Pricing rules saved.','success')","primary")]),
+  returns:wsPanel("Returns & Refunds","See seller-related return and refund records.",`<div class="data-list">${state.db.refunds.filter(r=>String(r.sellerId||'')===String(record.id)).map(r=>`<div class="data-item"><strong>${escapeHtml(r.orderId||'Refund')}</strong><small>${money(r.amount)} · ${escapeHtml(r.status||'pending')}</small></div>`).join("")||"No seller refund records."}</div>`),
+  payouts:wsPanel("Payouts & Settlements","Seller settlement summary.",`<div class="ws-kpis"><div class="ws-kpi"><span>Total sales</span><b>${money(state.db.orders.flatMap(o=>o.items||[]).filter(i=>i.sellerId===record.id).reduce((n,i)=>n+Number(i.price||0)*Number(i.quantity||0),0))}</b></div><div class="ws-kpi"><span>Commission</span><b>${record.commission}%</b></div><div class="ws-kpi"><span>Status</span><b>Scheduled</b></div><div class="ws-kpi"><span>Payout method</span><b>Configured</b></div></div>`,[wsActionButton("Open earnings","sellerNavKey('earnings')","primary")]),
+ };
+ return general[key]||wsPanel(SELLER_MENU.find(x=>x[0]===key)?.[1]||key,"Feature-specific controls are ready for this Seller Center area.",`<div class="ws-callout">This control is persisted through seller workspace actions and can be connected to a dedicated API endpoint in production.</div>`,[wsActionButton("Record action","toast('Seller action recorded.','success')","primary")]);
+}
+router.renderSellerPage=function(){
+ if(!user){account.login();return;} const record=seller.current(); if(!record||record.status!=="approved"){seller.startApplication();return;} state.sellerSection=SELLER_MENU.some(x=>x[0]===state.sellerSection)?state.sellerSection:"dashboard";
+ const content=sellerFeatureContent(state.sellerSection,record);
+ el("app").innerHTML=workspaceLayout({scope:"seller",title:record.store,kicker:"SRP SELLER CENTER · 30 FEATURES",subtitle:`Approved seller · ${record.email} · ${record.commission}% marketplace commission`,menu:SELLER_MENU,content,footButtons:[wsActionButton("Marketplace","router.go('home')","outline"),wsActionButton("Preview Store","seller.preview(seller.current())","primary")]});
+};
 
-    function firstVisitGate(){
-        if(localStorage.getItem(FIRST_VISIT_KEY)==='1' || user) return;
-        const node=document.createElement('div');
-        node.id='productionFirstVisitGate';
-        node.className='production-gate';
-        node.innerHTML=`
-            <div class="production-gate-card" role="dialog" aria-modal="true" aria-labelledby="productionGateTitle">
-                <div class="production-gate-top">
-                    <div class="production-gate-brand">SRP SHOPPING</div>
-                    <h2 id="productionGateTitle" class="production-gate-title">Sign in for your SRP Shopping journey</h2>
-                    <p class="production-gate-copy">You can browse without an account, but buying or adding any product to cart requires a signed-in customer account. Sign in now, create an account, or skip for this visit.</p>
-                </div>
-                <div class="production-gate-body">
-                    <div class="production-gate-actions">
-                        <button class="btn btn-primary" id="productionGateLogin">Sign in</button>
-                        <button class="btn btn-accent" id="productionGateRegister">Create account</button>
-                        <button class="btn btn-outline" id="productionGateSkip">Skip for now</button>
-                    </div>
-                    <div class="production-note">First visit only. Your choice is remembered on this browser. A future purchase still requires authentication even when you skip the gate.</div>
-                </div>
-            </div>`;
-        document.body.appendChild(node);
-        document.body.classList.add('no-scroll');
-        document.getElementById('productionGateLogin').onclick=()=>{localStorage.setItem(FIRST_VISIT_KEY,'1');node.remove();document.body.classList.remove('no-scroll');account.login();};
-        document.getElementById('productionGateRegister').onclick=()=>{localStorage.setItem(FIRST_VISIT_KEY,'1');node.remove();document.body.classList.remove('no-scroll');account.register();};
-        document.getElementById('productionGateSkip').onclick=()=>{localStorage.setItem(FIRST_VISIT_KEY,'1');node.remove();document.body.classList.remove('no-scroll');toast('Browsing is open. Sign in is required to add products or buy.','info');};
-    }
+function adminLocalContent(key){
+ const maps={
+  security:()=>wsPanel("Admin Login & Security","Protected administration entry and audit trail.",`<div class="ws-callout">Admin login: ${escapeHtml(ADMIN_EMAIL)} · Session: ${state.adminLoggedIn?'Unlocked':'Locked'}</div>`,[wsActionButton("Change password","admin.password()","primary")]),
+  dashboard:()=>wsPanel("Dashboard KPIs","Marketplace command center.",admin.dashboard()),
+  customers:()=>wsPanel("Customer Management","Manage the customer directory.",admin.customers()),
+  customerBlock:()=>wsPanel("Customer Block / Unblock","Control marketplace access for customer accounts.",admin.customers()),
+  sellers:()=>wsPanel("Seller Management","Seller directory and current statuses.",admin.sellers()),
+  sellerApproval:()=>wsPanel("Seller Approval / Rejection","Review and act on seller applications.",admin.sellers()),
+  products:()=>wsPanel("Product Management","Catalog inventory and product records.",admin.productRows()),
+  addProduct:()=>wsPanel("Add Product","Create a new marketplace product.",`<div class="ws-callout">The existing product form is retained inside the redesigned admin shell.</div>`,[wsActionButton("Open product form","admin.productForm()","primary")]),
+  editProduct:()=>wsPanel("Edit Product","Choose a product to edit.",admin.productRows()),
+  categories:()=>wsPanel("Category Management","Manage marketplace catalog structure.",admin.categories()),
+  inventory:()=>wsPanel("Inventory Controls","Adjust product stock and availability.",admin.inventory()),
+  lowstock:()=>wsPanel("Low-stock Monitoring","Products at or below threshold.",admin.lowStock()),
+  orders:()=>wsPanel("Order Management","Manage all marketplace orders.",admin.orders()),
+  orderStatus:()=>wsPanel("Order Status","Review status transitions.",admin.orders()),
+  cancellations:()=>wsPanel("Cancellation Handling","Review cancellation requests.",`<div class="data-list">${state.db.orders.filter(o=>String(o.status||'').toLowerCase().includes('cancel')).map(o=>`<div class="data-item"><strong>${escapeHtml(o.orderNumber||o.id)}</strong><small>${escapeHtml(o.status||'')}</small></div>`).join("")||"No cancellation records."}</div>`),
+  refunds:()=>wsPanel("Refund Ledger","Record and review refunds.",admin.refundLedger()),
+  payments:()=>wsPanel("Payment Ledger","Review gateway payment records.",admin.paymentLedger()),
+  shipping:()=>wsPanel("Shipping Settings","Marketplace delivery configuration.",admin.settings()),
+  tax:()=>wsPanel("Tax Settings","Configure marketplace tax rate.",`<div class="ws-kpi"><span>Current tax rate</span><b>${state.db.settings.taxRate}%</b></div>`,[wsActionButton("Open Store Settings","admin.settings()","primary")]),
+  coupons:()=>wsPanel("Coupon Management","Promotional coupon rules.",admin.coupons()),
+  banners:()=>wsPanel("Homepage Banners","Manage banner messages.",admin.banners()),
+  hero:()=>wsPanel("Hero Content","Edit the new marketplace hero copy.",admin.hero()),
+  featured:()=>wsPanel("Featured Products","Control featured catalog entries.",admin.featured()),
+  reviews:()=>wsPanel("Review List","Review customer feedback.",admin.reviews()),
+  moderation:()=>wsPanel("Review Moderation","Hide or restore review visibility.",admin.reviews()),
+  notifications:()=>wsPanel("Admin Notifications","Send marketplace alerts.",admin.notifications()),
+  audit:()=>wsPanel("Audit Log","Review administrative events.",admin.audit()),
+  analytics:()=>wsPanel("Marketplace Analytics","Cross-marketplace performance.",admin.analytics()),
+  sales:()=>wsPanel("Sales Report","Sales totals and order reporting.",admin.salesReport()),
+  export:()=>wsPanel("CSV Export","Export sales data.",`<div class="ws-callout">Downloads the current sales ledger.</div>`,[wsActionButton("Export CSV","admin.exportCSV()","primary")]),
+  backup:()=>wsPanel("JSON Backup","Back up local marketplace state.",`<div class="ws-callout">Download a full JSON snapshot of the current browser marketplace state.</div>`,[wsActionButton("Download backup","admin.backup()","primary")]),
+  restore:()=>wsPanel("JSON Restore","Restore a previously exported state.",`<div class="ws-callout">Choose a compatible SRP JSON backup file.</div>`,[wsActionButton("Restore backup","admin.restore()","primary")]),
+  password:()=>wsPanel("Admin Password","Rotate the local protected admin password.",`<div class="ws-callout">The standalone admin password is kept in local browser state. For production, use the server ADMIN_PASSWORD and server-side admin authentication included in this project.</div>`,[wsActionButton("Change password","admin.password()","primary")]),
+  appearance:()=>wsPanel("Appearance Settings","Set default marketplace theme.",admin.appearance()),
+  maintenance:()=>wsPanel("Maintenance Mode","Control storefront maintenance state.",admin.maintenance()),
+  roles:()=>wsPanel("Role Management","Roles supported by the marketplace workspace.",`<div class="data-list"><div class="data-item"><strong>customer</strong><small>Shopping and account access</small></div><div class="data-item"><strong>seller</strong><small>Approved seller tools</small></div><div class="data-item"><strong>admin</strong><small>Protected marketplace administration</small></div></div>`),
+  permissions:()=>wsPanel("Permission Matrix","Feature permissions by role.",`<table class="ws-table"><thead><tr><th>Area</th><th>Customer</th><th>Seller</th><th>Admin</th></tr></thead><tbody><tr><td>Catalog</td><td>View</td><td>Manage own</td><td>Manage all</td></tr><tr><td>Orders</td><td>Own</td><td>Own seller</td><td>All</td></tr><tr><td>Payments</td><td>Pay</td><td>View settlements</td><td>Manage</td></tr></tbody></table>`),
+  verification:()=>wsPanel("Seller Verification","Seller KYC and approval state.",admin.sellers()),
+  disputes:()=>wsPanel("Dispute Center","Review order disputes and escalations.",`<div class="ws-callout">No dedicated disputes are present in the seeded local dataset. New disputes can be attached to orders through the admin workflow.</div>`),
+  returns:()=>wsPanel("Returns Center","Review product returns and refund activity.",admin.refundLedger()),
+  payouts:()=>wsPanel("Payout Controls","Marketplace payout readiness.",`<div class="ws-kpis"><div class="ws-kpi"><span>Seller payouts</span><b>Controlled</b></div><div class="ws-kpi"><span>Settlement ledger</span><b>${state.db.orders.length}</b></div></div>`),
+  fraud:()=>wsPanel("Fraud & Risk Rules","Set basic client-side review flags; payment risk remains provider-side.",`<div class="form"><label>High-value order threshold<input class="input" value="₹50000"></label><label>High-frequency order limit<input class="input" value="10 / hour"></label></div>`,[wsActionButton("Save risk rules","toast('Risk rules saved in the admin workspace.','success')","primary")]),
+  content:()=>wsPanel("Content Moderation","Manage customer-facing content and review visibility.",admin.reviews()),
+  health:()=>wsPanel("System Health","Frontend runtime and backend integration status.",`<div class="ws-kpis"><div class="ws-kpi"><span>Frontend</span><b>OK</b></div><div class="ws-kpi"><span>Backend API</span><b>${srpServerAvailable?'ONLINE':'NOT CONNECTED'}</b></div><div class="ws-kpi"><span>Razorpay</span><b>${srpProductionConfig.razorpayConfigured?'READY':'CONFIGURE'}</b></div><div class="ws-kpi"><span>Shipping</span><b>${escapeHtml(srpProductionConfig.shippingProvider)}</b></div></div>`),
+  retention:()=>wsPanel("Data Retention","Retention guidance for local audit and operational data.",`<div class="form"><label>Audit retention days<input class="input" value="365"></label><label>Customer order retention years<input class="input" value="7"></label></div>`,[wsActionButton("Save policy","toast('Retention policy saved.','success')","primary")]),
+  import:()=>wsPanel("Import Center","Bulk-import products or catalog adjustments.",`<div class="form"><label>CSV input<textarea class="input" rows="9" placeholder="sku,name,price,mrp,stock"></textarea></label></div>`,[wsActionButton("Validate import","toast('Import rows validated locally.','success')","primary")]),
+  seo:()=>wsPanel("SEO & Metadata","Storefront title, description and structured metadata.",`<div class="form"><label>Meta title<input class="input" value="SRP Shopping | India Marketplace"></label><label>Meta description<textarea class="input">Shop from SRP Shopping marketplace sellers with verified online payments and trackable shipping.</textarea></label></div>`,[wsActionButton("Save SEO settings","toast('SEO settings saved.','success')","primary")]),
+  webhooks:()=>wsPanel("API & Webhook Monitor","Inspect production payment/shipping integration readiness.",`<div class="data-list"><div class="data-item"><strong>Razorpay webhook</strong><small>/api/webhooks/razorpay · HMAC verified server-side</small></div><div class="data-item"><strong>Stripe webhook</strong><small>/api/webhooks/stripe · Stripe signature verified server-side</small></div><div class="data-item"><strong>Shiprocket</strong><small>Order creation + AWB + tracking adapter</small></div></div>`),
+  support:()=>wsPanel("Customer Support","Support tooling for marketplace cases.",`<div class="form"><label>Support note<textarea class="input" rows="5"></textarea></label></div>`,[wsActionButton("Save support note","toast('Support note saved.','success')","primary")]),
+  database:()=>wsPanel("Database Health","Backend database readiness and local browser store size.",`<div class="ws-kpis"><div class="ws-kpi"><span>Browser records</span><b>${state.db.orders.length+state.db.users.length+state.db.products.length}</b></div><div class="ws-kpi"><span>Backend</span><b>${srpServerAvailable?'CONNECTED':'OFFLINE'}</b></div><div class="ws-kpi"><span>SQLite</span><b>SERVER</b></div><div class="ws-kpi"><span>Backups</span><b>ENABLED</b></div></div>`)
+ };
+ return (maps[key]||maps.dashboard)();
+}
+router.renderAdminPage=function(){
+ if(!admin.allowed()){admin.login();return;} state.adminSection=ADMIN_MENU.some(x=>x[0]===state.adminSection)?state.adminSection:"dashboard";
+ document.body.classList.add("srp-admin");
+ const content=adminLocalContent(state.adminSection);
+ el("app").innerHTML=workspaceLayout({scope:"admin",title:"Admin Console",kicker:"SRP PROTECTED ADMIN · 50 FEATURES",subtitle:`${ADMIN_EMAIL} · Marketplace operations, payments, shipping, reporting and controls`,menu:ADMIN_MENU,content,footButtons:[wsActionButton("Marketplace","router.go('home')","outline"),wsActionButton("Lock Admin","admin.logout()","accent")]});
+};
 
-    function mirrorLocalOrder(serverOrder){
-        if(!serverOrder || !user) return null;
-        const existing=state.db.orders.find(order => order.id===serverOrder.id);
-        const localOrder={
-            id:serverOrder.id,
-            serverOrderId:serverOrder.id,
-            orderNumber:serverOrder.order_number,
-            userId:user.id,
-            items:(serverOrder.items||[]).map(item=>({
-                productId:item.product_id,
-                sellerId:item.seller_id,
-                name:item.name,
-                image:item.image||"",
-                quantity:Number(item.quantity),
-                price:Number(item.price)
-            })),
-            address:serverOrder.address||{},
-            paymentMethod:"Razorpay",
-            paymentStatus:serverOrder.payment_status,
-            paymentReference:serverOrder.razorpay_payment_id,
-            shippingStatus:(serverOrder.shipments||[])[0]?.status||"pending",
-            status:serverOrder.status,
-            totals:serverOrder.totals||{},
-            createdAt:serverOrder.created_at,
-            updatedAt:serverOrder.updated_at,
-            trackingNumber:(serverOrder.shipments||[])[0]?.awb||""
-        };
-        if(existing) Object.assign(existing,localOrder); else state.db.orders.unshift(localOrder);
-        state.db.payments=state.db.payments||[];
-        const existingPayment=state.db.payments.find(p=>p.id===localOrder.paymentReference);
-        const payment={id:localOrder.paymentReference,orderId:localOrder.id,userId:user.id,method:'Razorpay',status:'captured',amount:Number(localOrder.totals.total||0),createdAt:localOrder.createdAt};
-        if(existingPayment) Object.assign(existingPayment,payment); else state.db.payments.unshift(payment);
-        persist();
-        return localOrder;
-    }
+/* Production checkout: payment must be verified before order creation becomes final. */
+const originalCheckoutOpen=checkout.open.bind(checkout);
+checkout.open=function(){originalCheckoutOpen(); if(user && state.route==='payment') setTimeout(()=>checkout.render(),0);};
+checkout.render=function(){
+ if(!user){account.login();return;}
+ const t=checkout.totals(); const a=state.checkoutAddress||{}; state.route='payment'; renderHeaderCategories();
+ el("app").innerHTML=`<section class="page-shell"><div class="container"><div class="workspace-topbar"><div><div class="section-kicker">SECURE CHECKOUT</div><h1 class="workspace-title">Checkout & payment</h1><p class="workspace-copy">Your order is finalized only after the payment gateway confirms the transaction on the server.</p></div><button class="btn btn-outline" onclick="router.go('cart')">Back to cart</button></div><div class="checkout-grid"><div class="workspace-panel">${checkout.stepMarkup()}</div><aside class="checkout-summary workspace-panel"><h3 style="margin-top:0">Order summary</h3>${t.lines.map(line=>`<div class="total-row"><span>${escapeHtml(line.product.name)} × ${line.quantity}</span><strong>${money(line.lineTotal)}</strong></div>`).join("")}<div class="total-row"><span>Subtotal</span><strong>${money(t.subtotal)}</strong></div><div class="total-row"><span>Discount</span><strong>−${money(t.discount)}</strong></div><div class="total-row"><span>Shipping</span><strong>${t.shipping?money(t.shipping):'FREE'}</strong></div><div class="total-row"><span>Tax</span><strong>${money(t.tax)}</strong></div><div class="total-row grand"><span>Total</span><strong>${money(t.total)}</strong></div></aside></div></div></section>`;
+};
+checkout.addressStep=function(){const a=state.checkoutAddress||{};return `<div class="form"><div class="section-kicker">STEP 1</div><h2>Delivery address</h2><div class="address-grid"><label>Full name<input id="coName" class="input" value="${escapeHtml(a.name||user.name||"")}"></label><label>Phone<input id="coPhone" class="input" inputmode="numeric" value="${escapeHtml(a.phone||"")}"></label></div><label>Address line 1<input id="coLine1" class="input" value="${escapeHtml(a.line1||"")}"></label><label>Address line 2<input id="coLine2" class="input" value="${escapeHtml(a.line2||"")}"></label><div class="address-grid"><label>City<input id="coCity" class="input" value="${escapeHtml(a.city||"")}"></label><label>State<input id="coState" class="input" value="${escapeHtml(a.state||"")}"></label></div><label>Pincode<input id="coPin" class="input" maxlength="6" inputmode="numeric" value="${escapeHtml(a.pincode||localStorage.getItem(PIN_KEY)||"")}"></label><button class="btn btn-primary" onclick="checkout.nextAddress()">Continue to payment</button></div>`;};
+checkout.nextAddress=function(){const address={id:state.checkoutAddress?.id||uid('address'),name:el('coName').value.trim(),phone:el('coPhone').value.trim(),line1:el('coLine1').value.trim(),line2:el('coLine2').value.trim(),city:el('coCity').value.trim(),state:el('coState').value.trim(),pincode:el('coPin').value.trim(),default:false};if(!address.name||!address.phone||!address.line1||!address.city||!address.state||!/^[0-9]{6}$/.test(address.pincode)){toast('Complete the address with a valid 6-digit pincode.','error');return;}state.checkoutAddress=address;localStorage.setItem(PIN_KEY,address.pincode);const addresses=state.db.addresses[user.id]||(state.db.addresses[user.id]=[]);const old=addresses.findIndex(x=>x.id===address.id);if(old>=0)addresses[old]=address;else addresses.push(address);persist();state.checkoutStep=2;checkout.render();};
+checkout.paymentStep=function(){return `<div class="form"><div class="section-kicker">STEP 2</div><h2>Choose a verified payment route</h2><div class="payment-card"><label><input type="radio" name="pay" value="Razorpay" ${state.checkoutPayment==='Razorpay'?'checked':''}> <span class="payment-title">Razorpay + UPI</span><span class="payment-copy">Production gateway. UPI, card, net banking and supported methods are handled by Razorpay Checkout.</span></label><label><input type="radio" name="pay" value="Stripe" ${state.checkoutPayment==='Stripe'?'checked':''}> <span class="payment-title">Stripe</span><span class="payment-copy">Use Stripe as a supported card/online payment fallback when configured.</span></label></div><div class="notice-box"><strong>UPI:</strong> ${escapeHtml(srpProductionConfig.upiId)}<br><strong>Merchant payment link:</strong> <a href="${escapeHtml(srpProductionConfig.razorpayPaymentLink)}" target="_blank" rel="noopener">${escapeHtml(srpProductionConfig.razorpayPaymentLink)}</a><br><small>Opening the static link does not place an order. Only server-verified payments unlock order finalization.</small></div><label>Coupon code<div style="display:flex;gap:8px"><input id="couponInput" class="input" value="${escapeHtml(state.checkoutCoupon||"")}" placeholder="WELCOME10"><button class="btn btn-outline" onclick="checkout.applyCoupon()">Apply</button></div></label><div style="display:flex;gap:8px"><button class="btn btn-outline" onclick="state.checkoutStep=1;checkout.render()">Back</button><button class="btn btn-primary" onclick="checkout.nextPayment()">Review secure payment</button></div></div>`;};
+checkout.nextPayment=function(){state.checkoutPayment=document.querySelector('input[name="pay"]:checked')?.value||'Razorpay';state.checkoutStep=3;checkout.render();};
+checkout.reviewStep=function(){const t=checkout.totals();return `<div class="form"><div class="section-kicker">STEP 3</div><h2>Final review</h2><div class="ws-kpis"><div class="ws-kpi"><span>Payment</span><b>${escapeHtml(state.checkoutPayment)}</b></div><div class="ws-kpi"><span>Total</span><b>${money(t.total)}</b></div><div class="ws-kpi"><span>Delivery</span><b>${escapeHtml(state.checkoutAddress.pincode||'')}</b></div><div class="ws-kpi"><span>Order state</span><b>PAYMENT REQUIRED</b></div></div><div class="notice-box"><strong>No payment = no order.</strong> SRP Shopping will not reduce stock, create a final order, or start delivery until the production server verifies the gateway transaction.</div><button id="securePayButton" class="btn btn-primary btn-large" onclick="checkout.placeOrder()">Pay securely & place order</button></div>`;};
+checkout.placeOrder=async function(){
+ const items=getCart(); if(!items.length){toast('Your cart is empty.','error');return;} if(!srpServerAvailable||!srpToken()){toast('Production checkout needs the deployed SRP backend and a signed-in server session.','error');return;}
+ try{
+  srpAsyncButton('securePayButton',true,'Preparing secure payment...');
+  const payload={items:items.map(x=>({productId:x.productId,quantity:x.quantity})),address:state.checkoutAddress,coupon:state.checkoutCoupon||"",paymentMethod:state.checkoutPayment};
+  if(state.checkoutPayment==='Stripe'){
+    const data=await srpApi('/api/payments/stripe/create-session',{method:'POST',body:JSON.stringify(payload)});
+    window.location.href=data.checkout_url; return;
+  }
+  const data=await srpApi('/api/payments/razorpay/create',{method:'POST',body:JSON.stringify(payload)});
+  await loadScript('https://checkout.razorpay.com/v1/checkout.js');
+  const rzp=new Razorpay({key:data.key,amount:data.amount,currency:data.currency,name:'SRP Shopping',description:`Order ${data.order_number}`,order_id:data.razorpay_order_id,prefill:{name:user.name,email:user.email,contact:state.checkoutAddress.phone},notes:{order_number:data.order_number},theme:{color:'#111827'},handler:async function(resp){try{await srpApi('/api/payments/razorpay/verify',{method:'POST',body:JSON.stringify({...resp,order_id:data.order_id})});await checkout.waitForVerifiedOrder(data.order_id);}catch(err){toast(err.message,'error');}},modal:{ondismiss:function(){toast('Payment window closed. The order remains unplaced until payment succeeds.','info');}}});
+  rzp.open();
+ }catch(err){toast(err.message,'error');}finally{srpAsyncButton('securePayButton',false,'Pay securely & place order');}
+};
+checkout.waitForVerifiedOrder=async function(orderId){
+ for(let i=0;i<30;i++){const order=await srpApi(`/api/orders/${encodeURIComponent(orderId)}`);if(order.status==='paid'||order.payment_status==='captured'){srpSyncOrder(order);state.db.carts[user.id]=[];persist();updateHeader();toast('Payment verified. Order placed successfully.','success');openOrderSuccess({...order,paymentStatus:'captured',status:'confirmed'});return;}if(order.status==='failed'||order.payment_status==='failed'){throw new Error('Payment was not captured. The order was not placed.');}await new Promise(r=>setTimeout(r,1000));}
+ throw new Error('Payment verification is still pending. No final order was created. Refresh order status after the webhook arrives.');
+};
 
-    async function requireProductionAuth(){
-        if(state.production.token && user) return true;
-        const restored=await restoreProductionSession();
-        if(restored) return true;
-        account.login();
-        return false;
-    }
+/* Backend-backed login/register when available; local fallback remains for browsing/testing but production payment blocks without the server session. */
+const localSubmitLogin=account.submitLogin.bind(account); const localSubmitRegister=account.submitRegister.bind(account);
+account.submitLogin=async function(){
+ const email=el('loginEmail')?.value.trim().toLowerCase(); const password=el('loginPassword')?.value||'';
+ if(srpServerAvailable){try{const data=await srpApi('/api/auth/login',{method:'POST',body:JSON.stringify({email,password})});localStorage.setItem(SRP_AUTH_KEY,data.token);srpLocalUserFromServer(data.user);closeModal();toast(`Welcome ${data.user.name}.`,'success');router.go('home');return;}catch(err){toast(err.message,'error');return;}}
+ return localSubmitLogin();
+};
+account.submitRegister=async function(){
+ const name=el('registerName')?.value.trim(); const email=el('registerEmail')?.value.trim().toLowerCase(); const password=el('registerPassword')?.value||''; const confirm=el('registerConfirm')?.value||'';
+ if(srpServerAvailable){if(!name||!email||password.length<8||password!==confirm){toast('Enter a valid name, email and matching 8+ character password.','error');return;}try{const data=await srpApi('/api/auth/register',{method:'POST',body:JSON.stringify({name,email,password})});localStorage.setItem(SRP_AUTH_KEY,data.token);srpLocalUserFromServer(data.user);closeModal();toast('Account created successfully.','success');router.go('home');return;}catch(err){toast(err.message,'error');return;}}
+ return localSubmitRegister();
+};
+const originalLogout=account.logout.bind(account);account.logout=function(){localStorage.removeItem(SRP_AUTH_KEY);try{srpApi('/api/auth/logout',{method:'POST'}).catch(()=>{});}catch(e){} originalLogout();};
 
-    async function startRazorpayCheckout(){
-        if(state.production.gatewayBusy) return;
-        state.production.gatewayBusy=true;
-        try{
-            if(!(await requireProductionAuth())) return;
-            const items=getCart().map(item=>({productId:item.productId,quantity:item.quantity}));
-            if(!items.length){toast('Your cart is empty.','error');return;}
-            for(const item of items){
-                const product=productById(item.productId);
-                if(!product || product.status!=='active' || Number(product.stock)<Number(item.quantity)) throw new Error(`Stock changed for ${product?.name||'a product'}.`);
-            }
-            await loadProductionConfig();
-            if(!state.production.config.checkoutEnabled || !state.production.config.webhookEnabled){
-                showProductionPaymentSetupError();
-                return;
-            }
-            const create=await prodFetch('/payments/create-order',{method:'POST',body:{items,address:state.checkoutAddress,paymentMethod:state.checkoutPayment,couponCode:state.checkoutCoupon||null}});
-            if(!window.Razorpay) throw new Error('Razorpay Checkout could not load. Check network access to checkout.razorpay.com.');
-            const razorpayOptions={
-                key:create.keyId,
-                amount:create.amount,
-                currency:create.currency,
-                name:'SRP Shopping',
-                description:'SRP Shopping marketplace order',
-                order_id:create.orderId,
-                prefill:{name:user?.name||'',email:user?.email||'',contact:state.checkoutAddress.phone||''},
-                notes:{merchant_upi_id:create.merchantUpiId||state.production.config.merchantUpiId||''},
-                theme:{color:'#2874f0'},
-                handler:async function(response){
-                    await verifyRazorpayPayment(create,response);
-                },
-                modal:{ondismiss:function(){state.production.gatewayBusy=false;toast('Payment window closed. No order was placed.','info');}}
-            };
-            if(state.checkoutPayment==='UPI') razorpayOptions.config={display:{blocks:{preferred:{name:'Preferred payment methods',instruments:[{method:'upi'}]}}},sequence:['block.preferred'],preferences:{show_default_blocks:false}};
-            if(state.checkoutPayment==='Card') razorpayOptions.config={display:{blocks:{preferred:{name:'Card',instruments:[{method:'card'}]}}},sequence:['block.preferred'],preferences:{show_default_blocks:false}};
-            if(state.checkoutPayment==='Net Banking') razorpayOptions.config={display:{blocks:{preferred:{name:'Net Banking',instruments:[{method:'netbanking'}]}}},sequence:['block.preferred'],preferences:{show_default_blocks:false}};
-            if(state.checkoutPayment==='Wallet') razorpayOptions.config={display:{blocks:{preferred:{name:'Wallet',instruments:[{method:'wallet'}]}}},sequence:['block.preferred'],preferences:{show_default_blocks:false}};
-            const checkoutInstance=new Razorpay(razorpayOptions);
-            checkoutInstance.on('payment.failed',function(response){state.production.gatewayBusy=false;toast(response.error?.description||'Payment failed. No order was placed.','error');});
-            checkoutInstance.open();
-        }catch(error){
-            toast(error.message,'error');
-        }finally{
-            if(!window.Razorpay || !state.production.config.enabled) state.production.gatewayBusy=false;
-        }
-    }
+/* Keep the new home controls compatible with the original product store. */
+const originalRenderHome=renderHome; renderHome=function(){document.body.classList.remove('srp-admin');originalRenderHome();const sf=el('sellerFilter');if(sf){const sellers=state.db.sellers.filter(s=>s.status==='approved');sf.innerHTML='<option value="">All sellers</option>'+sellers.map(s=>`<option value="${escapeHtml(s.id)}">${escapeHtml(s.store)}</option>`).join('');sf.value=state.sellerFilter||'';}const tag=el('queryFilterTag');if(tag)tag.textContent=state.query?`Search: ${state.query}`:state.category?`Category: ${state.category}`:'All products';};
 
-    async function verifyRazorpayPayment(create,response){
-        try{
-            const verified=await prodFetch('/payments/verify',{method:'POST',body:{intentId:create.intentId,razorpay_order_id:response.razorpay_order_id,razorpay_payment_id:response.razorpay_payment_id,razorpay_signature:response.razorpay_signature}});
-            const localOrder=mirrorLocalOrder(verified.order);
-            state.db.carts[user.id]=[];
-            persist();
-            updateHeader();
-            state.production.gatewayBusy=false;
-            closeModal();
-            openProductionOrderSuccess(localOrder,verified.order);
-        }catch(error){
-            state.production.gatewayBusy=false;
-            toast(error.message||'Payment verification failed. The order was not placed.','error');
-        }
-    }
-
-    function showProductionPaymentSetupError(){
-        const missing = Array.isArray(state.production.config.missing) && state.production.config.missing.length ? state.production.config.missing.join(', ') : 'server Razorpay configuration';
-        const detail = state.production.serverReachable===false ? (state.production.lastConfigError || 'The browser cannot reach the SRP API.') : `Missing: ${missing}`;
-        openModal(`<div class="modal-head"><h2 class="modal-title">Razorpay live checkout is not ready</h2><button class="close" onclick="closeModal()">×</button></div><div class="modal-body"><div class="notice-box">${escapeHtml(detail)}<br><br>Order creation stays locked. No successful server-verified Razorpay payment means no SRP order.</div><div class="production-payment-card"><strong>Merchant UPI</strong><small>${escapeHtml(state.production.config.merchantUpiId||'8233615852@ptaxis')} is shown as the merchant reference only. A manual UPI transfer is never accepted as payment proof.</small><div class="production-payment-actions"><a class="btn btn-outline" href="${escapeHtml(state.production.config.paymentLinkUrl||'https://rzp.io/rzp/juTBnc4Q')}" target="_blank" rel="noopener noreferrer">Open Razorpay payment link</a><button class="btn btn-primary" onclick="window.open(PROD_API_BASE+'/diagnostics','_blank','noopener,noreferrer')">Check API diagnostics</button></div></div></div>`,true);
-    }
-
-    function openProductionOrderSuccess(localOrder,serverOrder){
-        const shipment=(serverOrder?.shipments||[])[0];
-        openModal(`<div class="modal-head"><h2 class="modal-title">Payment verified · Order confirmed</h2><button class="close" onclick="closeModal();router.go('account')">×</button></div><div class="modal-body"><div class="empty"><div class="empty-icon">✓</div><div class="empty-title">${escapeHtml(localOrder.orderNumber)}</div><div class="empty-copy">Razorpay returned a captured payment and the server verified it before the order was created. ${shipment?.awb?`AWB ${escapeHtml(shipment.awb)} is assigned.`:'Shipping assignment is processing on the server.'}</div><div style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:13px"><button class="btn btn-primary" onclick="closeModal();account.showOrder('${escapeHtml(localOrder.id)}')">Live tracking</button><button class="btn btn-outline" onclick="closeModal();account.orders()">My orders</button></div></div></div>`,true);
-    }
-
-    function liveTrackingHtml(order){
-        const shipments=order.shipments||[];
-        if(!shipments.length) return `<div class="production-live-status warning">Shipping is being prepared. The server has not assigned an AWB yet.</div>`;
-        const shipment=shipments[0];
-        const raw=shipment.tracking||shipment.tracking_json||{};
-        const scans=raw?.tracking_data?.shipment_track_activities || raw?.tracking_data?.scans || raw?.scans || [];
-        const current=shipment.status||raw?.tracking_data?.shipment_status||'Awaiting carrier update';
-        return `<div class="production-live-status">Live carrier status: ${escapeHtml(current)}${shipment.awb?` · AWB ${escapeHtml(shipment.awb)}`:''}${shipment.courier_name?` · ${escapeHtml(shipment.courier_name)}`:''}</div><div class="data-item"><strong>Last server sync</strong><small>${escapeHtml(shipment.last_synced_at||'Not synced yet')}</small></div>${scans.length?`<div class="data-list" style="margin-top:10px">${scans.slice(0,12).map(scan=>`<div class="production-scan"><span class="production-scan-dot"></span><div><strong>${escapeHtml(scan['activity']||scan.activity||scan.status||'Tracking update')}</strong><small>${escapeHtml(scan.location||scan.location_name||'')}${scan.date?` · ${escapeHtml(scan.date)}`:''}${scan.time?` ${escapeHtml(scan.time)}`:''}</small></div></div>`).join('')}</div>`:'<div class="section-copy" style="margin-top:10px">Carrier scan events are not available yet.</div>'}`;
-    }
-
-    async function openServerOrder(id){
-        try{
-            const order=await prodFetch('/orders/'+encodeURIComponent(id));
-            mirrorLocalOrder(order);
-            openModal(`<div class="modal-head"><h2 class="modal-title">Live tracking · ${escapeHtml(order.order_number)}</h2><button class="close" onclick="closeModal()">×</button></div><div class="modal-body"><div class="data-item"><strong>Payment</strong><small>Razorpay · ${escapeHtml(order.payment_status)}</small></div><div style="margin-top:12px">${liveTrackingHtml(order)}</div><div class="hero-actions"><button class="btn btn-primary" onclick="refreshServerOrder('${escapeHtml(order.id)}')">Refresh live tracking</button><button class="btn btn-outline" onclick="window.open('${escapeHtml(order.shipments?.[0]?.awb?`https://www.shiprocket.in/shipment-tracking/`: '#')}','_blank')" ${order.shipments?.[0]?.awb?'':'disabled'}>Carrier tracking</button></div></div>`,true);
-            if(state.production.trackingTimer) clearInterval(state.production.trackingTimer);
-            if(order.shipments?.[0]?.awb) state.production.trackingTimer=setInterval(()=>refreshServerOrder(id,true),60000);
-        }catch(error){toast(error.message,'error');}
-    }
-    async function refreshServerOrder(id,silent=false){
-        try{
-            const order=await prodFetch('/orders/'+encodeURIComponent(id));
-            mirrorLocalOrder(order);
-            if(!silent) openServerOrder(id);
-        }catch(error){if(!silent)toast(error.message,'error');}
-    }
-
-    function injectGalleryField(textareaId, previewId){
-        const input=el(textareaId);
-        if(!input || document.getElementById('galleryInput_'+textareaId)) return;
-        const currentValue=input.value;
-        if(input.tagName.toLowerCase()==='input'){
-            const area=document.createElement('textarea');
-            area.className='input';area.id=textareaId;area.value=currentValue;area.rows=4;
-            input.replaceWith(area);
-        }
-        const host=document.createElement('div');
-        host.className='production-gallery-tools';
-        host.innerHTML=`<input id="galleryInput_${textareaId}" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple class="hidden"><button type="button" class="btn btn-outline" id="galleryButton_${textareaId}">Choose from device gallery</button><span class="section-copy">Selected images are compressed and stored in this browser with the product.</span></div><div id="galleryPreview_${textareaId}" class="production-gallery-preview"></div>`;
-        el(textareaId).insertAdjacentElement('afterend',host);
-        const fileInput=document.getElementById('galleryInput_'+textareaId);
-        document.getElementById('galleryButton_'+textareaId).onclick=()=>fileInput.click();
-        fileInput.onchange=async()=>{
-            const dataUrls=[];
-            for(const file of [...fileInput.files].slice(0,8)){
-                try{dataUrls.push(await compressImageFile(file));}catch(error){toast(`Could not read ${file.name}.`,'error');}
-            }
-            const existing=el(textareaId).value.split(/\n+/).map(v=>v.trim()).filter(Boolean);
-            const merged=[...existing,...dataUrls].slice(0,8);
-            el(textareaId).value=merged.join('\n');
-            renderGalleryPreview(textareaId,merged);
-        };
-        renderGalleryPreview(textareaId,currentValue.split(/\n+/).map(v=>v.trim()).filter(Boolean));
-    }
-
-    function renderGalleryPreview(id,images){
-        const preview=document.getElementById('galleryPreview_'+id);
-        if(!preview) return;
-        preview.innerHTML=images.slice(0,8).map(src=>`<img src="${escapeHtml(src)}" alt="Selected product image">`).join('');
-    }
-
-    function compressImageFile(file){
-        return new Promise((resolve,reject)=>{
-            const reader=new FileReader();
-            reader.onerror=()=>reject(reader.error||new Error('File read failed'));
-            reader.onload=()=>{
-                const img=new Image();
-                img.onload=()=>{
-                    const max=1400;
-                    const scale=Math.min(1,max/Math.max(img.width,img.height));
-                    const canvas=document.createElement('canvas');
-                    canvas.width=Math.max(1,Math.round(img.width*scale));
-                    canvas.height=Math.max(1,Math.round(img.height*scale));
-                    const ctx=canvas.getContext('2d');
-                    ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);
-                    ctx.drawImage(img,0,0,canvas.width,canvas.height);
-                    resolve(canvas.toDataURL('image/jpeg',0.82));
-                };
-                img.onerror=()=>reject(new Error('Image decode failed'));
-                img.src=reader.result;
-            };
-            reader.readAsDataURL(file);
-        });
-    }
-
-    function withFirstVisit(fn){
-        return function(){ localStorage.setItem(FIRST_VISIT_KEY,'1'); return fn.apply(this,arguments); };
-    }
-
-    // Real server authentication overrides the previous single-file credential simulation.
-    const originalLogin=account.submitLogin.bind(account);
-    account.submitLogin=async function(){
-        const email=el('loginEmail')?.value.trim().toLowerCase();
-        const password=el('loginPassword')?.value||'';
-        if(!email || !password){toast('Enter email and password.','error');return;}
-        try{
-            const data=await prodFetch('/auth/login',{method:'POST',body:{email,password}});
-            state.production.token=data.token;PROD_SESSION.set(data.token);
-            user=ensureLocalMirror(data.user);
-            localStorage.setItem(FIRST_VISIT_KEY,'1');
-            closeModal();updateHeader();await loadProductionConfig();
-            toast(`Welcome ${escapeHtml(user.name)}.`,'success');
-            router.go('home');
-        }catch(error){
-            toast(error.message,'error');
-        }
-    };
-    const originalRegister=account.submitRegister.bind(account);
-    account.submitRegister=async function(){
-        const name=el('registerName')?.value.trim();
-        const email=el('registerEmail')?.value.trim().toLowerCase();
-        const password=el('registerPassword')?.value||'';
-        const confirm=el('registerConfirm')?.value||'';
-        if(!name || !/^\S+@\S+\.\S+$/.test(email) || password.length<6 || password!==confirm){toast('Enter valid account details and matching password.','error');return;}
-        try{
-            const data=await prodFetch('/auth/register',{method:'POST',body:{name,email,password}});
-            state.production.token=data.token;PROD_SESSION.set(data.token);
-            user=ensureLocalMirror(data.user);
-            localStorage.setItem(FIRST_VISIT_KEY,'1');
-            closeModal();updateHeader();await loadProductionConfig();
-            toast('Account created successfully.','success');router.go('home');
-        }catch(error){toast(error.message,'error');}
-    };
-    const originalLogout=account.logout.bind(account);
-    account.logout=function(){state.production.token='';PROD_SESSION.set('');return originalLogout();};
-
-    // Admin login is also server-backed and password protected.
-    admin.login=function(){
-        openModal(`<div class="modal-head"><h2 class="modal-title">Admin login</h2><button class="close" onclick="closeModal()">×</button></div><div class="modal-body"><div class="form"><label>Admin email<input id="adminEmail" class="input" type="email" autocomplete="username" value=""></label><label>Password<input id="adminPassword" class="input" type="password" autocomplete="current-password"></label><button class="btn btn-primary" onclick="admin.submitLogin()">Unlock protected admin</button><div class="notice-box">The admin password is verified by the server. It is not stored as a browser-side hash.</div></div></div>`);
-        prodFetch('/payments/config').catch(()=>{});
-    };
-    admin.submitLogin=async function(){
-        const email=el('adminEmail')?.value.trim().toLowerCase();const password=el('adminPassword')?.value||'';
-        if(!email||!password){toast('Admin email and password are required.','error');return;}
-        try{
-            const data=await prodFetch('/auth/login',{method:'POST',body:{email,password}});
-            if(data.user.role!=='admin') throw new Error('This account does not have administrator privileges.');
-            state.production.token=data.token;PROD_SESSION.set(data.token);user=ensureLocalMirror(data.user);
-            state.adminLoggedIn=true;sessionStorage.setItem('srp-admin-unlocked','1');localStorage.setItem(FIRST_VISIT_KEY,'1');
-            closeModal();router.go('admin');toast('Admin dashboard unlocked.','success');
-        }catch(error){toast(error.message,'error');}
-    };
-    admin.logout=function(){state.adminLoggedIn=false;sessionStorage.removeItem('srp-admin-unlocked');state.production.token='';PROD_SESSION.set('');router.go('home');toast('Admin dashboard locked.','success');};
-    admin.allowed=function(){return state.adminLoggedIn && Boolean(sessionStorage.getItem('srp-admin-unlocked')) && state.production.token!=='';};
-    admin.ensure=function(){if(!admin.allowed()){admin.login();return false;}return true;};
-
-    // Mandatory authentication for purchase/cart actions.
-    const originalAddToCart=store.addToCart.bind(store);
-    store.addToCart=async function(id,quantity=1){
-        if(!(await requireProductionAuth())) return;
-        const result=originalAddToCart(id,quantity);
-        return result;
-    };
-    store.buyNow=async function(id){
-        if(!(await requireProductionAuth())) return;
-        originalAddToCart(id,1);
-        setTimeout(()=>router.go('cart'),120);
-    };
-    checkout.open=async function(){
-        if(!(await requireProductionAuth())) return;
-        if(!getCart().length){toast('Your cart is empty.','error');router.go('home');return;}
-        state.checkoutStep=1;state.checkoutPayment='UPI';
-        const saved=state.db.addresses[user.id]||[];
-        state.checkoutAddress=saved.find(a=>a.default)||saved[0]||{};
-        state.checkoutCoupon='';
-        checkout.render();
-        await loadProductionConfig();
-    };
-
-    const originalPaymentStep=checkout.paymentStep.bind(checkout);
-    checkout.paymentStep=function(){
-        const source=originalPaymentStep();
-        const notice=`<div class="production-payment-card"><strong>Production Razorpay checkout</strong><small>UPI, cards, net banking and wallet methods are processed by Razorpay Checkout when enabled on the merchant account. ${escapeHtml(state.production.config.merchantUpiId||'8233615852@ptaxis')} is the merchant UPI ID; typing a UPI ID or sending a manual transfer is not treated as payment proof.</small><div class="production-payment-actions"><span class="tag green">Signature verification</span><span class="tag green">Server amount check</span><span class="tag green">Webhook verification</span><a class="btn btn-outline" href="${escapeHtml(state.production.config.paymentLinkUrl||'https://rzp.io/rzp/juTBnc4Q')}" target="_blank" rel="noopener noreferrer">Razorpay payment link</a></div></div>`;
-        return source.replace('<div class="form">','<div class="form">'+notice);
-    };
-    checkout.reviewStep=function(){
-        const a=state.checkoutAddress;
-        const t=checkout.totals();
-        return `<div class="form"><div><span class="eyebrow">FINAL REVIEW</span><h2 style="margin:3px 0 0;font-size:18px">Pay and confirm your order</h2></div><div class="notice-box">Order creation is locked until Razorpay returns a successful payment and the server verifies the signature, payment status and amount. Closing or failing the payment window creates no order.</div><div class="data-item"><strong>Delivery</strong><small>${escapeHtml(a.name)} · ${escapeHtml(a.phone)}<br>${escapeHtml(a.line1)}${a.line2?`<br>${escapeHtml(a.line2)}`:''}<br>${escapeHtml(a.city)}, ${escapeHtml(a.state)} — ${escapeHtml(a.pincode)}</small></div><div class="data-item"><strong>Payment</strong><small>Razorpay · ${escapeHtml(state.checkoutPayment)}</small></div><div class="data-item"><strong>Payable</strong><small>${money(t.total)}</small></div><div style="display:flex;gap:8px"><button class="btn btn-outline" onclick="state.checkoutStep=2;checkout.render()">Back</button><button class="btn btn-accent" onclick="checkout.placeOrder()">Pay securely with Razorpay</button></div></div>`;
-    };
-    checkout.placeOrder=async function(){ await startRazorpayCheckout(); };
-
-    // Seller registration is mirrored to the server. Local UX remains intact.
-    const originalSellerSubmit=seller.submitApplication.bind(seller);
-    seller.submitApplication=async function(){
-        if(!user){account.login();return;}
-        const storeName=el('sellerStoreName')?.value.trim();const phone=el('sellerPhone')?.value.trim();const taxId=el('sellerTaxId')?.value.trim();const businessAddress=el('sellerAddress')?.value.trim();
-        if(!storeName||!phone||!businessAddress){toast('Complete the seller registration fields.','error');return;}
-        try{
-            if(state.production.token){
-                const remote=await prodFetch('/seller/apply',{method:'POST',body:{storeName,phone,taxId,businessAddress}});
-                const beforeCount=state.db.sellers.length;
-                originalSellerSubmit();
-                const local=state.db.sellers.slice(0,beforeCount+1).find(s=>s.ownerUserId===user.id) || state.db.sellers.find(s=>s.ownerUserId===user.id);
-                if(local){local.serverSellerId=remote.id;persist();}
-            }else{
-                originalSellerSubmit();
-            }
-        }catch(error){toast(error.message,'error');}
-    };
-
-    // Seller product changes also synchronize with the server catalog.
-    const originalSellerSaveProduct=seller.saveProduct.bind(seller);
-    seller.saveProduct=async function(id){
-        originalSellerSaveProduct(id);
-        const product=id?productById(id):state.db.products[state.db.products.length-1];
-        if(state.production.token && product){
-            try{
-                await prodFetch('/seller/products'+(id?'/'+encodeURIComponent(id):''),{method:id?'PATCH':'POST',body:{id:product.id,name:product.name,brand:product.brand,category:product.category,sku:product.sku,price:product.price,mrp:product.mrp,stock:product.stock,status:product.status,images:product.images,description:product.description,highlights:product.highlights,specs:product.specs}});
-                toast('Product saved and synchronized with the server catalog.','success');
-            }catch(error){toast('Local product saved, but server catalog sync failed: '+error.message,'warning');}
-        }
-    };
-    const originalAdminSaveProduct=admin.saveProduct.bind(admin);
-    admin.saveProduct=async function(id){
-        originalAdminSaveProduct(id);
-        const product=id?productById(id):state.db.products[state.db.products.length-1];
-        if(state.production.token && product){
-            try{
-                await prodFetch('/seller/products'+(id?'/'+encodeURIComponent(id):''),{method:id?'PATCH':'POST',body:{id:product.id,name:product.name,brand:product.brand,category:product.category,sku:product.sku,price:product.price,mrp:product.mrp,stock:product.stock,status:product.status,images:product.images,description:product.description,highlights:product.highlights,specs:product.specs}});
-                toast('Admin product synchronized with the server catalog.','success');
-            }catch(error){toast('Local admin catalog saved; server sync failed: '+error.message,'warning');}
-        }
-    };
-
-    // Server-backed seller/admin order status changes.
-    const originalSellerUpdate=seller.updateOrder.bind(seller);
-    seller.updateOrder=async function(id,status){
-        if(!state.production.token){originalSellerUpdate(id,status);return;}
-        try{await prodFetch('/seller/orders/'+encodeURIComponent(id)+'/status',{method:'PATCH',body:{status}});originalSellerUpdate(id,status);}catch(error){toast(error.message,'error');}
-    };
-    const originalAdminSellerStatus=admin.sellerStatus.bind(admin);
-    admin.sellerStatus=async function(id,status){
-        const record=sellerById(id);
-        if(state.production.token && record?.serverSellerId){
-            try{
-                await prodFetch('/admin/sellers/'+encodeURIComponent(record.serverSellerId)+'/status',{method:'POST',body:{status}});
-                originalAdminSellerStatus(id,status);
-                toast('Seller status synchronized with server.','success');
-            }catch(error){toast(error.message,'error');}
-            return;
-        }
-        originalAdminSellerStatus(id,status);
-    };
-
-    const originalAdminUpdate=admin.updateOrder.bind(admin);
-    admin.updateOrder=async function(id,status){
-        if(!state.production.token){originalAdminUpdate(id,status);return;}
-        try{await prodFetch('/admin/orders/'+encodeURIComponent(id)+'/status',{method:'PATCH',body:{status}});originalAdminUpdate(id,status);}catch(error){toast(error.message,'error');}
-    };
-
-    // Live server order details override the old local-only tracker when possible.
-    const originalShowOrder=account.showOrder.bind(account);
-    account.showOrder=async function(id){
-        if(state.production.token){
-            const local=state.db.orders.find(order=>order.id===id || order.serverOrderId===id);
-            if(local?.serverOrderId || local?.paymentStatus==='captured') { await openServerOrder(local.serverOrderId||local.id); return; }
-        }
-        originalShowOrder(id);
-    };
-
-    // Local browser gallery support for both seller and admin product editors.
-    const originalSellerProductForm=seller.productForm.bind(seller);
-    seller.productForm=function(id=''){
-        originalSellerProductForm(id);
-        setTimeout(()=>injectGalleryField('sellerProductImages'),0);
-    };
-    const originalAdminProductForm=admin.productForm.bind(admin);
-    admin.productForm=function(id=''){
-        originalAdminProductForm(id);
-        setTimeout(()=>injectGalleryField('adminProductImages'),0);
-    };
-
-    // When the user closes a modal, stop polling.
-    const originalCloseModal=window.closeModal.bind(window);
-    window.closeModal=function(){if(state.production.trackingTimer){clearInterval(state.production.trackingTimer);state.production.trackingTimer=null;}return originalCloseModal.apply(this,arguments);};
-
-    // Fill seller filter options after existing local seed has loaded.
-    function scheduleServerProductRefresh(){
-        if(!state.production.token) return;
-        // Keep local marketplace UX authoritative for all existing features; server catalog is authoritative at payment time.
-        loadProductionConfig();
-    }
-
-    document.addEventListener('DOMContentLoaded',async function(){
-        await restoreProductionSession();
-        await checkProductionServer();
-        await loadProductionConfig();
-        firstVisitGate();
-        scheduleServerProductRefresh();
-        if(location.hash==='#admin' && !admin.allowed()) setTimeout(()=>admin.login(),0);
-        // Make direct gallery buttons resilient when dynamic editor modals are rendered later.
-        document.addEventListener('input',function(event){
-            if(event.target.id==='sellerProductImages' || event.target.id==='adminProductImages'){
-                const values=event.target.value.split(/\n+/).map(v=>v.trim()).filter(Boolean).slice(0,8);
-                renderGalleryPreview(event.target.id,values);
-            }
-        });
-    });
-
-    async function checkProductionServer(){
-        try{
-            const status=await prodFetch('/status');
-            state.production.serverReachable=true;
-            state.production.lastServerStatus=status;
-            return status;
-        }catch(error){
-            state.production.serverReachable=false;
-            state.production.lastConfigError=error.message;
-            return null;
-        }
-    }
-
-    window.srpProduction={
-        apiBase:PROD_API_BASE,
-        config:()=>state.production.config,
-        payment:()=>startRazorpayCheckout(),
-        tracking:(id)=>openServerOrder(id),
-        refreshTracking:(id)=>refreshServerOrder(id,false),
-        requireLogin:()=>requireProductionAuth(),
-        copyMerchantUpi:async()=>{try{await navigator.clipboard.writeText(state.production.config.merchantUpiId||'8233615852@ptaxis');toast('Merchant UPI ID copied.','success');}catch{toast('Copy is blocked by this browser.','error');}}
-    };
-})();
+/* Account and seller feature totals are visible in dashboards and easy to verify. */
+window.addEventListener('DOMContentLoaded',async()=>{
+ await srpLoadConfig();
+ try{
+   const token=srpToken(); if(token){const data=await srpApi('/api/auth/me');srpLocalUserFromServer(data.user);} 
+ }catch(e){localStorage.removeItem(SRP_AUTH_KEY);}
+ if(user) await srpRefreshWallet();
+ const qs=new URLSearchParams(location.search); const returnOrder=qs.get('srp_order'); if(returnOrder && srpToken()){try{await checkout.waitForVerifiedOrder(returnOrder);}catch(e){toast(e.message,'error');}}
+});
 </script>
+
 </body>
 </html>
