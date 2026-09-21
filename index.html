@@ -4786,7 +4786,7 @@ document.addEventListener("DOMContentLoaded", () => {
   IMPORTANT: no API secret is ever put in this HTML file.
 */
 (function(){
-    const PROD_TOKEN_KEY = "srp-production-jwt";
+    const PROD_TOKEN_KEY = "srp-production-jwt-v6";
     const FIRST_VISIT_KEY = "srp-first-visit-gate-v4";
     const PROD_CONFIG_KEY = "srp-production-config-cache";
     const PROD_SESSION = {
@@ -4813,7 +4813,8 @@ document.addEventListener("DOMContentLoaded", () => {
         try{
             response = await fetch(PROD_API_BASE + path,cfg);
         }catch(error){
-            throw new Error(`SRP API is unreachable. Start the SRP server with npm start, or set window.SRP_API_BASE to your live server URL. ${error.message||''}`.trim());
+            const hint=location.protocol==='file:' ? 'Run npm start and open http://localhost:3000/ instead of double-clicking index.html.' : 'Serve this page from the SRP Node server or set window.SRP_API_BASE to your deployed API base.';
+            throw new Error(`SRP backend is unreachable. ${hint} Network error: ${error.message||'fetch failed'}`);
         }
         const raw = await response.text();
         let data = {};
@@ -5315,6 +5316,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener('DOMContentLoaded',async function(){
         await restoreProductionSession();
+        await checkProductionServer();
         await loadProductionConfig();
         firstVisitGate();
         scheduleServerProductRefresh();
@@ -5327,6 +5329,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    async function checkProductionServer(){
+        try{
+            const status=await prodFetch('/status');
+            state.production.serverReachable=true;
+            state.production.lastServerStatus=status;
+            return status;
+        }catch(error){
+            state.production.serverReachable=false;
+            state.production.lastConfigError=error.message;
+            return null;
+        }
+    }
 
     window.srpProduction={
         apiBase:PROD_API_BASE,
